@@ -74,12 +74,19 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Advapi32.lib;user32.lib;gdi32.lib;freetype.lib;winmm.lib;opengl32.lib;openal32.lib;flac.lib
+;vorbis.lib;
+vorbisenc.lib;
+vorbisfile.lib;
+ogg.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-system-s-d.lib;sfml-network-s-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -102,15 +109,19 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jai\Desktop\GDADPRG\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Jai\Desktop\GDADPRG\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freetype.lib;winmm.lib;opengl32.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Advapi32.lib;user32.lib;gdi32.lib;freetype.lib;winmm.lib;opengl32.lib;openal32.lib;flac.lib
+;vorbis.lib;
+vorbisenc.lib;
+vorbisfile.lib;
+ogg.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-audio-s-d.lib;sfml-system-s-d.lib;sfml-network-s-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,13 +141,73 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractComponent.cpp" />
+    <ClCompile Include="AbstractPoolable.cpp" />
+    <ClCompile Include="AbstractScene.cpp" />
+    <ClCompile Include="AGameObject.cpp" />
+    <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="ButtonListener.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionListener.cpp" />
+    <ClCompile Include="EmptyGameObject.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="GameObjectPool.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="GenericInputController.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="ObjectPoolHolder.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerInputController.cpp" />
+    <ClCompile Include="PlayerMovement.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SFXManager.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="UIButton.cpp" />
+    <ClCompile Include="UIButtonInputController.cpp" />
+    <ClCompile Include="UIData.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractComponent.hpp" />
+    <ClInclude Include="AbstractPoolable.hpp" />
+    <ClInclude Include="AbstractScene.hpp" />
+    <ClInclude Include="AGameObject.hpp" />
+    <ClInclude Include="ApplicationManager.hpp" />
+    <ClInclude Include="ButtonListener.hpp" />
+    <ClInclude Include="Collider.hpp" />
+    <ClInclude Include="CollisionListener.hpp" />
+    <ClInclude Include="EmptyGameObject.hpp" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="FontManager.hpp" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObjectManager.hpp" />
+    <ClInclude Include="GameObjectPool.hpp" />
+    <ClInclude Include="GameScene.hpp" />
+    <ClInclude Include="GenericInputController.hpp" />
+    <ClInclude Include="MainMenuScene.hpp" />
+    <ClInclude Include="ObjectPoolHolder.hpp" />
+    <ClInclude Include="PhysicsManager.hpp" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerInputController.hpp" />
+    <ClInclude Include="PlayerMovement.hpp" />
+    <ClInclude Include="Renderer.hpp" />
+    <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="SFXManager.hpp" />
+    <ClInclude Include="SpriteRenderer.hpp" />
+    <ClInclude Include="TextureManager.hpp" />
+    <ClInclude Include="UIButton.hpp" />
+    <ClInclude Include="UIButtonInputController.hpp" />
+    <ClInclude Include="UIData.hpp" />
+    <ClInclude Include="UIManager.hpp" />
+    <ClInclude Include="UIText.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,25 @@
+#pragma once
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <unordered_map>
+
+class TextureManager{
+public:
+	static TextureManager* getInstance();
+private:
+	TextureManager() {};
+
+	TextureManager(TextureManager const&) {};
+
+	TextureManager& operator=(TextureManager const&) {};
+
+	static TextureManager* sharedInstance;
+public:
+	void loadAll();
+	sf::Texture* getTexture(std::string key);
+private:
+	void loadTexture(std::string key, std::string path);
+	std::unordered_map<std::string, sf::Texture*> textureMap;
+
+};
+
