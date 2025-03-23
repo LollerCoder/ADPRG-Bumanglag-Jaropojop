@@ -19,6 +19,9 @@ void PlayerInputController::perform(){
 	}
 
 	switch (this->event.key.code) {
+	case sf::Keyboard::K:
+		this->movePick = isPressed;
+		break;
 	case sf::Keyboard::W:
 		this->moveUp = isPressed;
 		break;
@@ -31,6 +34,7 @@ void PlayerInputController::perform(){
 	case sf::Keyboard::D:
 		this->moveRight = isPressed;
 		break;
+
 	}
 }
 
@@ -48,4 +52,8 @@ bool PlayerInputController::isLeft() {
 
 bool PlayerInputController::isRight() {
 	return this->moveRight;
+}
+
+bool PlayerInputController::isRightClick(){
+	return this->movePick;
 }

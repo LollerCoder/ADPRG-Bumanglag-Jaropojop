@@ -7,8 +7,9 @@ Player::Player(std::string name) : AGameObject(name) {
 void Player::initialize() {
 	this->sprite = new sf::Sprite();
 	//this->sprite->setTexture(*TextureManager::getInstance()->getTexture("player-1"));
-	this->texFrames = TextureManager::getInstance()->getFrames("player");
-	this->sprite->setTexture(*this->texFrames[0]);
+	this->walkFrames = TextureManager::getInstance()->getFrames("player-walk");
+	this->hitFrames = TextureManager::getInstance()->getFrames("player-hit");
+	this->sprite->setTexture(*this->walkFrames[0]);
 
 	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
@@ -33,21 +34,32 @@ void Player::update(sf::Time deltaTime) {
 	AGameObject::update(deltaTime);
 }
 
-void Player::incrementFrame() {
-	int frame = this->currFrame + 1;
-	if (!(frame >= this->texFrames.size() || frame < 0)) {
-		this->currFrame = frame;
+void Player::incrementWalkFrame() {
+	int frame = this->currWalkFrame + 1;
+	if (!(frame >= this->walkFrames.size() || frame < 0)) {
+		this->currWalkFrame = frame;
 	}
 	else {
-		this->currFrame = 0;
+		this->currWalkFrame = 0;
 	}
-	this->sprite->setTexture(*this->texFrames[this->currFrame]);
+	this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
 }
 
-void Player::setFrame(int frame) {
-	if (!(frame >= this->texFrames.size() || frame < 0)) {
-		this->currFrame = frame;
-		this->sprite->setTexture(*this->texFrames[this->currFrame]);
+void Player::incrementHitFrame() {
+	std::cout << this->currHitFrame;
+	if (this->currHitFrame + 1 >= this->hitFrames.size() || this->currHitFrame < 0) {
+		this->currHitFrame = 0;
+	}
+	else {
+		this->currHitFrame++;
+	}
+	this->sprite->setTexture(*this->hitFrames[this->currHitFrame]);
+}
+
+void Player::setWalkFrame(int frame) {
+	if (!(frame >= this->walkFrames.size() || frame < 0)) {
+		this->currWalkFrame = frame;
+		this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
 	}
 }
 

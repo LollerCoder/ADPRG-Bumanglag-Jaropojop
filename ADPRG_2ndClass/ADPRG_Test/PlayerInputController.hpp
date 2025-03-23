@@ -12,11 +12,13 @@ public:
 	bool isDown();
 	bool isLeft();
 	bool isRight();
+	bool isRightClick();
 private:
 	const float SPEED_MULTIPLIER = 300.0f;
 	bool moveUp = false;
 	bool moveDown = false;
 	bool moveLeft = false;
 	bool moveRight = false;
+	bool movePick = false;
 };
 

@@ -18,13 +18,27 @@ void TextureManager::loadPlayer() {
     std::vector<sf::Texture*> vec;
 
     sf::Texture* texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player-1.1.png");
+    texture->loadFromFile("../Media/Textures/Player-1.1.png"); // walking
     vec.push_back(texture);
     texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player-2.1.png");
+    texture->loadFromFile("../Media/Textures/Player-2.1.png"); // walking
+    vec.push_back(texture);
+    this->framesMap["player-walk"] = vec;
+
+    vec = std::vector<sf::Texture*>();
+
+
+    //texture = new sf::Texture();
+    //texture->loadFromFile("../Media/Textures/Player-2.1.png"); // hitting
+    //vec.push_back(texture);
+    texture = new sf::Texture();
+    texture->loadFromFile("../Media/Textures/Player-3.1.png"); // hitting
+    vec.push_back(texture);
+    texture = new sf::Texture();
+    texture->loadFromFile("../Media/Textures/Player-4.1.png"); // hitting
     vec.push_back(texture);
 
-    this->framesMap["player"] = vec;
+    this->framesMap["player-hit"] = vec;
 }
 
 sf::Texture* TextureManager::getTexture(std::string key){

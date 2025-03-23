@@ -13,9 +13,12 @@ public:
 	void initialize();
 	void processInput(sf::Event event);
 	void update(sf::Time deltaTime);
-	void incrementFrame();
-	void setFrame(int frame);
+	void incrementWalkFrame();
+	void incrementHitFrame();
+	void setWalkFrame(int frame);
 public:
-	std::vector<sf::Texture*> texFrames;
-	int currFrame = 0;
+	std::vector<sf::Texture*> walkFrames;
+	std::vector<sf::Texture*> hitFrames;
+	int currWalkFrame = -1;
+	int currHitFrame = -1;
 };

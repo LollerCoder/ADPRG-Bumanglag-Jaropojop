@@ -12,5 +12,8 @@ private:
 	const float SPEED_MULTIPLIER = 200.0f;
 	float fAnimThresh = 0.1f;
 	float fAnimFreq = 0;
+	float fAnimSwing = 0.2f;
+	float fAnimTimer = 0;
+	bool isSwinging = false;
 };
 
