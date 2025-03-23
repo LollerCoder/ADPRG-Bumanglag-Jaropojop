@@ -1,18 +1,80 @@
-﻿  Game.cpp
+﻿  AbstractComponent.cpp
+  AbstractPoolable.cpp
+  AbstractScene.cpp
+  AGameObject.cpp
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\AGameObject.cpp(132,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ApplicationManager.cpp
+  ButtonListener.cpp
+  Collider.cpp
+  CollisionListener.cpp
+  EmptyGameObject.cpp
+  Entity.cpp
+  FontManager.cpp
+  Game.cpp
+  GameObjectManager.cpp
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\GameObjectManager.cpp(26,32): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  GameObjectPool.cpp
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\GameObjectPool.cpp(101,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   GameScene.cpp
+  GenericInputController.cpp
   Main.cpp
+  MainMenuScene.cpp
+  ObjectPoolHolder.cpp
+  PhysicsManager.cpp
+  Generating Code...
+  Compiling...
   Player.cpp
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,59): warning C4244:         with
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,59): warning C4244:         [
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,59): warning C4244:             T=unsigned int
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,59): warning C4244:         ]
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,40): warning C4244:         with
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,40): warning C4244:         [
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,40): warning C4244:             T=unsigned int
-C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(12,40): warning C4244:         ]
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,59): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,59): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,59): warning C4244:             T=unsigned int
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,59): warning C4244:         ]
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,40): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,40): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,40): warning C4244:             T=unsigned int
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(14,40): warning C4244:         ]
   PlayerInputController.cpp
   PlayerMovement.cpp
+  Renderer.cpp
+  SceneManager.cpp
+  SFXManager.cpp
+  SpriteRenderer.cpp
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,53): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,53): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,53): warning C4244:             T=unsigned int
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,53): warning C4244:         ]
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,34): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,34): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,34): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,34): warning C4244:             T=unsigned int
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\SpriteRenderer.cpp(7,34): warning C4244:         ]
+  TextureManager.cpp
+  UIButton.cpp
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,59): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,59): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,59): warning C4244:             T=unsigned int
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,59): warning C4244:         ]
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,40): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,40): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,40): warning C4244:             T=unsigned int
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButton.cpp(14,40): warning C4244:         ]
+  UIButtonInputController.cpp
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,75): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,75): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,75): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,75): warning C4244:             T=float
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,75): warning C4244:         ]
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,48): warning C4244:         with
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,48): warning C4244:         [
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,48): warning C4244:             T=float
+C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\UIButtonInputController.cpp(27,48): warning C4244:         ]
+  UIData.cpp
+  UIManager.cpp
+  UIText.cpp
   Generating Code...
   ADPRG_Test.vcxproj -> C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\x64\Debug\ADPRG_Test.exe

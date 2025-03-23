@@ -16,10 +16,13 @@ private:
 	static TextureManager* sharedInstance;
 public:
 	void loadAll();
+	void loadPlayer();
 	sf::Texture* getTexture(std::string key);
+	std::vector<sf::Texture*> getFrames(std::string key);
 private:
 	void loadTexture(std::string key, std::string path);
 	std::unordered_map<std::string, sf::Texture*> textureMap;
+	std::unordered_map<std::string, std::vector<sf::Texture*>> framesMap;
 
 };
 

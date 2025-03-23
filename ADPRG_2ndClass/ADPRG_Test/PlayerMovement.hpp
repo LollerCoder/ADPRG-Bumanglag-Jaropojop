@@ -9,10 +9,8 @@ public:
 public:
 	void perform();
 private:
-	const float SPEED_MULTIPLIER = 300.0f;
-	//const float BULLET_SPAWN_INTERVAL = 2.0f;
-	const float BULLET_SPAWN_INTERVAL = 0.1f;
-	float ticks = 0.0f;
-	GameObjectPool* projectilePool;
+	const float SPEED_MULTIPLIER = 200.0f;
+	float fAnimThresh = 0.1f;
+	float fAnimFreq = 0;
 };
 

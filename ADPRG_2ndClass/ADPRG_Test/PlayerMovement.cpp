@@ -14,6 +14,20 @@ void PlayerMovement::perform(){
 	}
 
 	sf::Vector2f offset(0.0f, 0.0f);
+
+	if (!(inputController->isRight() ||
+		inputController->isLeft())) {
+		airplanePlayer->setFrame(0);
+		this->fAnimFreq = 0;
+	}
+	else {
+		if (this->fAnimFreq >= this->fAnimThresh) {
+			airplanePlayer->incrementFrame();
+			this->fAnimFreq = 0;
+		}
+
+		this->fAnimFreq += this->deltaTime.asSeconds();
+	}
 	
 	if (inputController->isUp()) {
 		offset.y -= this->SPEED_MULTIPLIER;
@@ -23,12 +37,13 @@ void PlayerMovement::perform(){
 	}
 	if (inputController->isRight()) {
 		offset.x += this->SPEED_MULTIPLIER;
+		airplanePlayer->getSprite()->setScale(1.f,1.f);
 	}
 	if (inputController->isLeft()) {
 		offset.x -= this->SPEED_MULTIPLIER;
-	}
+		airplanePlayer->getSprite()->setScale(-1.f, 1.f);
 
-	this->ticks += this->deltaTime.asSeconds();
+	}
 
 	playerTransformable->move(offset * deltaTime.asSeconds());
 

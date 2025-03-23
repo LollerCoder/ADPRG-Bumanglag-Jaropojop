@@ -13,4 +13,9 @@ public:
 	void initialize();
 	void processInput(sf::Event event);
 	void update(sf::Time deltaTime);
+	void incrementFrame();
+	void setFrame(int frame);
+public:
+	std::vector<sf::Texture*> texFrames;
+	int currFrame = 0;
 };
