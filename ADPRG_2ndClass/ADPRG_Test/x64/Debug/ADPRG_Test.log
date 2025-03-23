@@ -1,9 +1,12 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ﻿  Game.cpp
 C:\Users\Jai\Desktop\GDADPRG\ADPRG_2ndClass\ADPRG_Test\Game.cpp(154,26): warning C4305: 'initializing': truncation from 'double' to 'float'
   ADPRG_Test.vcxproj -> C:\Users\Jai\Desktop\GDADPRG\ADPRG_2ndClass\x64\Debug\ADPRG_Test.exe
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 ﻿  PlayerMovement.cpp
