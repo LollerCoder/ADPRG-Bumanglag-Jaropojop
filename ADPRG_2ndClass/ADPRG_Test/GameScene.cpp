@@ -1,5 +1,6 @@
 #include "GameScene.hpp"
 
+
 GameScene::GameScene() : AbstractScene(SceneManager::GAME_SCENE_NAME) {
 
 }
@@ -23,6 +24,8 @@ void GameScene::onUnloadResources() {
 void GameScene::loadBG() {
 	Entity* entity = new Entity("Background");
 	this->registerObject(entity);
+	Block* blocks = new Block("BlockStack");
+	this->registerObject(blocks);
 }
 
 void GameScene::loadPlayer() {

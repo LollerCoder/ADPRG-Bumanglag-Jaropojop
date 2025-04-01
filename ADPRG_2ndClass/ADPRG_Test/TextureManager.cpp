@@ -11,6 +11,7 @@ TextureManager* TextureManager::getInstance(){
 void TextureManager::loadAll(){
     this->loadTexture("eagle", "../Media/Textures/Eagle.png");
     this->loadTexture("background", "../Media/Textures/background.png");
+    this->loadTexture("blocks", "../Media/Textures/iceClimbBox.png");
     this->loadPlayer();
 }
 

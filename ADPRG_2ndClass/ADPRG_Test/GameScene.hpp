@@ -12,6 +12,7 @@
 #include "UIManager.hpp"
 #include "Player.h"
 #include "Entity.h"
+#include "Block.h"
 
 
 class GameScene : public AbstractScene{
