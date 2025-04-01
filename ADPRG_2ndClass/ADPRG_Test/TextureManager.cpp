@@ -10,32 +10,28 @@ TextureManager* TextureManager::getInstance(){
 
 void TextureManager::loadAll(){
     this->loadTexture("eagle", "../Media/Textures/Eagle.png");
+    this->loadTexture("background", "../Media/Textures/background.png");
     this->loadPlayer();
-
 }
 
 void TextureManager::loadPlayer() {
     std::vector<sf::Texture*> vec;
 
     sf::Texture* texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player-1.1.png"); // walking
+    texture->loadFromFile("../Media/Textures/Player/Player-1.1.png"); // walking
     vec.push_back(texture);
     texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player-2.1.png"); // walking
+    texture->loadFromFile("../Media/Textures/Player/Player-2.1.png"); // walking
     vec.push_back(texture);
     this->framesMap["player-walk"] = vec;
 
     vec = std::vector<sf::Texture*>();
 
-
-    //texture = new sf::Texture();
-    //texture->loadFromFile("../Media/Textures/Player-2.1.png"); // hitting
-    //vec.push_back(texture);
     texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player-3.1.png"); // hitting
+    texture->loadFromFile("../Media/Textures/Player/Player-3.1.png"); // hitting
     vec.push_back(texture);
     texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player-4.1.png"); // hitting
+    texture->loadFromFile("../Media/Textures/Player/Player-4.1.png"); // hitting
     vec.push_back(texture);
 
     this->framesMap["player-hit"] = vec;

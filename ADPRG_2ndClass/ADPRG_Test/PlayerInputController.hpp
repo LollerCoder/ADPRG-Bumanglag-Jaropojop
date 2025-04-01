@@ -12,7 +12,8 @@ public:
 	bool isDown();
 	bool isLeft();
 	bool isRight();
-	bool isRightClick();
+	bool isAttack();
+	bool isJump();
 private:
 	const float SPEED_MULTIPLIER = 300.0f;
 	bool moveUp = false;
@@ -20,5 +21,6 @@ private:
 	bool moveLeft = false;
 	bool moveRight = false;
 	bool movePick = false;
+	bool moveJump = false;
 };
 

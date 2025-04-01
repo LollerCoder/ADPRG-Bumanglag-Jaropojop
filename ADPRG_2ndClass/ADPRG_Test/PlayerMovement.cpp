@@ -8,17 +8,21 @@ void PlayerMovement::perform(){
 	Player* airplanePlayer = (Player*)this->getOwner();
 	PlayerInputController* inputController = (PlayerInputController*)airplanePlayer->getComponentsOfType(ComponentType::Input)[0];
 	sf::Transformable* playerTransformable = airplanePlayer->getTransformable();
-	
+
 	if (playerTransformable == nullptr || inputController == nullptr) {
 		std::cout << "Controller or Transformable not found" << std::endl;
 	}
-
 
 	static float hitAnimTimer = 0.0f; 
 	static float frameTimer = 0.0f;    
 	static bool isHitting = false;    
 
-	sf::Vector2f offset(0.0f, 0.0f);
+	if (!this->isGrounded) {
+		this->velocity.y += GRAVITY_FORCE;
+	}
+	else {
+		this->velocity.y = 0; 
+	}
 
 	if (isHitting) {
 		hitAnimTimer -= this->deltaTime.asSeconds();
@@ -35,7 +39,7 @@ void PlayerMovement::perform(){
 		return; 
 	}
 
-	if (inputController->isRightClick() && !isHitting) {
+	if (inputController->isAttack() && !isHitting && this->isGrounded) {
 		isHitting = true;
 		hitAnimTimer = 0.2f;
 		frameTimer = 0.0f;
@@ -49,8 +53,8 @@ void PlayerMovement::perform(){
 		airplanePlayer->setWalkFrame(0);
 		this->fAnimFreq = 0;
 	}
-	else {
-		if (this->fAnimFreq >= this->fAnimThresh) {
+	else{
+		if (this->fAnimFreq >= this->fAnimThresh && this->isGrounded) {
 			airplanePlayer->incrementWalkFrame();
 			this->fAnimFreq = 0;
 		}
@@ -58,21 +62,29 @@ void PlayerMovement::perform(){
 		this->fAnimFreq += this->deltaTime.asSeconds();
 	}
 	
-	if (inputController->isUp()) {
-		offset.y -= this->SPEED_MULTIPLIER;
+	if (inputController->isJump() && this->isGrounded) {
+		this->velocity.y = -JUMP_FORCE; 
+		isGrounded = false; 
 	}
-	if (inputController->isDown()) {
-		offset.y += this->SPEED_MULTIPLIER;
+	else if (inputController->isRight()) {
+		this->velocity.x = this->SPEED_MULTIPLIER;
+		//airplanePlayer->getSprite()->setScale(1.f, 1.f);
+		airplanePlayer->getTransformable()->setScale(0.75f, 0.75f);
 	}
-	if (inputController->isRight()) {
-		offset.x += this->SPEED_MULTIPLIER;
-		airplanePlayer->getSprite()->setScale(1.f, 1.f);
+	else if (inputController->isLeft()) {
+		this->velocity.x = -this->SPEED_MULTIPLIER;
+		//airplanePlayer->getSprite()->setScale(-1.f, 1.f);
+		airplanePlayer->getTransformable()->setScale(-0.75f, 0.75f);
 	}
-	if (inputController->isLeft()) {
-		offset.x -= this->SPEED_MULTIPLIER;
-		airplanePlayer->getSprite()->setScale(-1.f, 1.f);
+	else {
+		this->velocity.x = 0; 
 	}
 
-	playerTransformable->move(offset * deltaTime.asSeconds());
+	playerTransformable->move(this->velocity * deltaTime.asSeconds());
+
+	if (playerTransformable->getPosition().y >= 410) {
+		this->isGrounded = true;
+		playerTransformable->setPosition(playerTransformable->getPosition().x, 410);
+	}
 
 }

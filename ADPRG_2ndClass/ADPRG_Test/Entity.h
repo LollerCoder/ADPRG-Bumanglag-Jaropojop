@@ -1,16 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-class Entity
+#include "AGameObject.hpp"
+#include "TextureManager.hpp"
+#include "Game.h"
+
+class Entity : public AGameObject
 {
 public:
-	Entity();
-	void setTexture(sf::Texture texture);
-	sf::Sprite* getSprite();
-	
+	Entity(std::string name);
+	virtual void initialize();
 
 private:
-	sf::Texture mTexture;
-	sf::Sprite mSprite;
+
 
 };
 

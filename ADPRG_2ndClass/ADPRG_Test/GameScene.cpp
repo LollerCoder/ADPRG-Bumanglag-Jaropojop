@@ -21,7 +21,8 @@ void GameScene::onUnloadResources() {
 }
 
 void GameScene::loadBG() {
-
+	Entity* entity = new Entity("Background");
+	this->registerObject(entity);
 }
 
 void GameScene::loadPlayer() {

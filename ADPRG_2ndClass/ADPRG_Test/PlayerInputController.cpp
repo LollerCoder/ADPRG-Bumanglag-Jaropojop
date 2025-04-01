@@ -34,7 +34,8 @@ void PlayerInputController::perform(){
 	case sf::Keyboard::D:
 		this->moveRight = isPressed;
 		break;
-
+	case sf::Keyboard::Space:
+		this->moveJump = isPressed;
 	}
 }
 
@@ -54,6 +55,10 @@ bool PlayerInputController::isRight() {
 	return this->moveRight;
 }
 
-bool PlayerInputController::isRightClick(){
+bool PlayerInputController::isAttack(){
 	return this->movePick;
+}
+
+bool PlayerInputController::isJump() {
+	return this->moveJump;
 }
