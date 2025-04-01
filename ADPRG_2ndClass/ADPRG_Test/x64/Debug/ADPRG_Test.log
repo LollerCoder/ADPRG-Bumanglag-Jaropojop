@@ -1,2 +1,30 @@
-﻿  PlayerMovement.cpp
-  ADPRG_Test.vcxproj -> C:\Users\Nikos\Desktop\Programming\GameJam\ADPRG-Network-test\ADPRG_2ndClass\x64\Debug\ADPRG_Test.exe
+﻿  Entity.cpp
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,59): warning C4244:         with
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,59): warning C4244:         [
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,59): warning C4244:             T=unsigned int
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,59): warning C4244:         ]
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,40): warning C4244:         with
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,40): warning C4244:         [
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,40): warning C4244:             T=unsigned int
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Entity.cpp(12,40): warning C4244:         ]
+  Game.cpp
+  GameScene.cpp
+  Main.cpp
+  Player.cpp
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,59): warning C4244:         with
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,59): warning C4244:         [
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,59): warning C4244:             T=unsigned int
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,59): warning C4244:         ]
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,40): warning C4244:         with
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,40): warning C4244:         [
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,40): warning C4244:             T=unsigned int
+C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\ADPRG_Test\Player.cpp(15,40): warning C4244:         ]
+  PlayerInputController.cpp
+  PlayerMovement.cpp
+  TextureManager.cpp
+  Generating Code...
+  ADPRG_Test.vcxproj -> C:\Users\Jai\Desktop\Github Repos\ADPRG-Network-test\ADPRG_2ndClass\x64\Debug\ADPRG_Test.exe
