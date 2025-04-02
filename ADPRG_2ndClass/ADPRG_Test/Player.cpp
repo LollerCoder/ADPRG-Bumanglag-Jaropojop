@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(std::string name) : AGameObject(name) {
+Player::Player(std::string name) : AGameObject(name), CollisionListener() {
 
 }
 
@@ -39,6 +39,15 @@ void Player::initialize() {
 	this->attachComponent(renderer);
 
 	this->getTransformable()->setScale(0.75f, 0.75f);
+
+	this->collider = new Collider("PlayerCollider");
+
+	collider->setLocalBounds(sprite->getGlobalBounds());
+	this->collider->setCollisionListener(this);
+	this->attachComponent(this->collider);
+
+	PhysicsManager::getInstance()->trackObject(this->collider);
+
 }
 
 void Player::processInput(sf::Event event) {
@@ -101,12 +110,12 @@ void Player::setWalkFrame(int frame) {
 
 void Player::onCollisionExit(AGameObject* contact)
 {
-
+	
 }
 
 void Player::onCollisionEnter(AGameObject* contact)
 {
-
+	std::cout << contact->getName() << std::endl;
 }
 
 

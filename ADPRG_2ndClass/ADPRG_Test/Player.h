@@ -7,6 +7,7 @@
 #include "Renderer.hpp"
 #include "FileReader.hpp"
 #include "CollisionListener.hpp"
+#include "Collider.hpp"
 
 
 class Player : public AGameObject, public CollisionListener {
@@ -29,4 +30,5 @@ public:
 	std::vector<Frame> hitFrames;
 	int currWalkFrame = -1;
 	int currHitFrame = -1;
+	Collider* collider;
 };

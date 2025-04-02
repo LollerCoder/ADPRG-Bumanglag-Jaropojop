@@ -34,6 +34,18 @@ void GameScene::loadPlayer() {
 }
 
 void GameScene::loadPoolables() {
+	EmptyGameObject* poolableHolder = new EmptyGameObject("poolableHolder");
+	GameObjectManager::getInstance()->addObject(poolableHolder);
+	GameObjectPool* walkerPool;
+	walkerPool = new GameObjectPool(ObjectPoolHolder::ENEMY_POOL_TAG,
+		new Walker("walker_enemy"),
+		10,
+		poolableHolder
+	);
+
+	walkerPool->initialize();
+	ObjectPoolHolder::getInstance()->registerObjectPool(walkerPool);
+	walkerPool->requestPoolable();
 
 }
 

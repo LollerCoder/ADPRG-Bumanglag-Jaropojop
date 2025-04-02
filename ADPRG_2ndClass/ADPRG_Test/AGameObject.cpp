@@ -217,7 +217,10 @@ AGameObject* AGameObject::getParent() {
 //}
 
 void AGameObject::setParent(AGameObject* parent){
+	
 	this->mParent = parent;
+	
+	
 }
 
 void AGameObject::setEnabled(bool flag) {

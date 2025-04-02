@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "Entity.h"
 #include "Block.h"
+#include "Walker.h"
 
 
 class GameScene : public AbstractScene{
