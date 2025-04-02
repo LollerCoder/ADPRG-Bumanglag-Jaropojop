@@ -26,6 +26,7 @@ public:
 	sf::Transformable* getTransformable();
 	sf::Sprite* getSprite();
 	sf::Transform getGlobalTransform();
+	AGameObject* findChild(std::string name);
 public:
 	void attachComponent(AbstractComponent* component);
 	void detachComponent(AbstractComponent* _component);

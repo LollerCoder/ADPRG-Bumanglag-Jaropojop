@@ -14,7 +14,7 @@
 #include "Entity.h"
 #include "Block.h"
 #include "Walker.h"
-
+#include "Hitbox.h"
 
 class GameScene : public AbstractScene{
 public:

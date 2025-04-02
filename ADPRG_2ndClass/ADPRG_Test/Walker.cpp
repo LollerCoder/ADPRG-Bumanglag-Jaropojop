@@ -20,7 +20,7 @@ void Walker::initialize()
 
 	this->getTransformable()->setScale(1.0f, 1.0f);
 
-	this->collider = new Collider("PlayerCollider");
+	this->collider = new Collider("WalkerCollider");
 
 	collider->setLocalBounds(sprite->getGlobalBounds());
 	this->collider->setCollisionListener(this);

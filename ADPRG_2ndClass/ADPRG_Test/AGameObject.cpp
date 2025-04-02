@@ -137,6 +137,16 @@ sf::Transform AGameObject::getGlobalTransform() {
 	return transform;
 }
 
+AGameObject* AGameObject::findChild(std::string name)
+{
+	for (int i = 0; i < childList.size();i++) {
+		if (childList[i]->getName() == name) {
+			return childList[i];
+		}
+	}
+	return nullptr;
+}
+
 void AGameObject::attachComponent(AbstractComponent* component){
 	//std::cout << component->getName() << std::endl;
 	this->componentList.push_back(component);

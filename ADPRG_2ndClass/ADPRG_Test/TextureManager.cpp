@@ -37,6 +37,7 @@ void TextureManager::loadPlayer() {
 
     //this->framesMap["player-hit"] = vec;
     this->loadTexture("Walker", "../Media/Textures/yeti.png");
+    this->loadTexture("Hitbox", "../Media/Textures/hitboxTest.png");
 
     this->loadTexture("Player", "../Media/Textures/SpriteSheets/Player/Player.png");
     FileReader::getInstance()->loadFrames("Player", "../Media/Textures/SpriteSheets/Player/Player.json");

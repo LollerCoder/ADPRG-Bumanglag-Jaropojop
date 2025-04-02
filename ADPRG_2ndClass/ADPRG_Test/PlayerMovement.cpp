@@ -45,7 +45,14 @@ void PlayerMovement::perform(){
 		frameTimer = 0.0f;
 		player->incrementHitFrame();
 		this->fAnimFreq = 0;
+
+		Hitbox* hit = (Hitbox*)player->findChild("FrontHitbox");
+		hit->setEnabled(true);
 		return; 
+	}
+	else {
+		Hitbox* hit = (Hitbox*)player->findChild("FrontHitbox");
+		hit->setEnabled(false);
 	}
 
 	if (!(inputController->isRight() ||
@@ -64,8 +71,14 @@ void PlayerMovement::perform(){
 	
 	if (inputController->isJump() && this->isGrounded) {
 		this->velocity.y = -JUMP_FORCE; 
+
 		isGrounded = false; 
 		player->setJumpFrame(0);
+
+		isGrounded = false;  
+		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
+		hit->setEnabled(true);
+
 	}
 	else if (inputController->isRight()) {
 		this->velocity.x = this->SPEED_MULTIPLIER;
@@ -85,6 +98,13 @@ void PlayerMovement::perform(){
 
 	if (playerTransformable->getPosition().y >= 410) {
 		this->isGrounded = true;
+
+
+		//hitbox temp
+		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
+		hit->setEnabled(false);
+		//hitbox temp
+
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 410);
 	}
 

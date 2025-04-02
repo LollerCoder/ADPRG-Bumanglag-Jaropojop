@@ -31,6 +31,19 @@ void GameScene::loadBG() {
 void GameScene::loadPlayer() {
 	Player* player = new Player("Player");
 	this->registerObject(player);
+
+	Hitbox* hit = new Hitbox("FrontHitbox", 0.25,0.15);
+	player->attachChild(hit);
+	sf::IntRect playerBounds = player->getSprite()->getTextureRect();
+	hit->setPosition(playerBounds.width/2 -10, 0);
+	hit->setEnabled(false);
+
+	Hitbox* hit2 = new Hitbox("TopHitbox", 0.1, 0.25);
+	player->attachChild(hit2);
+	sf::IntRect playerBounds2 = player->getSprite()->getTextureRect();
+	hit2->setPosition(0, -playerBounds2.height/2);
+	hit2->getSprite()->rotate(90.0f);
+	hit2->setEnabled(false);
 }
 
 void GameScene::loadPoolables() {
