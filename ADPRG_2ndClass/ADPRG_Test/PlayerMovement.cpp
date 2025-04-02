@@ -72,8 +72,14 @@ void PlayerMovement::perform(){
 	if (inputController->isJump() && this->isGrounded) {
 		this->velocity.y = -JUMP_FORCE; 
 
+
 		isGrounded = false; 
 		player->setJumpFrame(0);
+
+		isGrounded = false;  
+		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
+		hit->setEnabled(true);
+
 
 		isGrounded = false;  
 		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
