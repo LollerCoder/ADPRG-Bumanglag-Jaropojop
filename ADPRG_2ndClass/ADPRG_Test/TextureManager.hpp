@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
+#include "FileReader.hpp"
 
 class TextureManager{
 public:

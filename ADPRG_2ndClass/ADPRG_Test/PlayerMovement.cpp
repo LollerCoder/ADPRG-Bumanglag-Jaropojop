@@ -5,9 +5,9 @@ PlayerMovement::PlayerMovement(std::string name) : AbstractComponent(name, Scrip
 }
 
 void PlayerMovement::perform(){
-	Player* airplanePlayer = (Player*)this->getOwner();
-	PlayerInputController* inputController = (PlayerInputController*)airplanePlayer->getComponentsOfType(ComponentType::Input)[0];
-	sf::Transformable* playerTransformable = airplanePlayer->getTransformable();
+	Player* player = (Player*)this->getOwner();
+	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(ComponentType::Input)[0];
+	sf::Transformable* playerTransformable = player->getTransformable();
 
 	if (playerTransformable == nullptr || inputController == nullptr) {
 		std::cout << "Controller or Transformable not found" << std::endl;
@@ -29,7 +29,7 @@ void PlayerMovement::perform(){
 		frameTimer += this->deltaTime.asSeconds();
 
 		if (frameTimer >= 0.1f) {
-			airplanePlayer->incrementHitFrame();
+			player->incrementHitFrame();
 			frameTimer = 0.0f;
 		}
 
@@ -43,19 +43,19 @@ void PlayerMovement::perform(){
 		isHitting = true;
 		hitAnimTimer = 0.2f;
 		frameTimer = 0.0f;
-		airplanePlayer->incrementHitFrame();
+		player->incrementHitFrame();
 		this->fAnimFreq = 0;
 		return; 
 	}
 
 	if (!(inputController->isRight() ||
 		inputController->isLeft())) {
-		airplanePlayer->setWalkFrame(0);
+		player->setWalkFrame(0);
 		this->fAnimFreq = 0;
 	}
 	else{
 		if (this->fAnimFreq >= this->fAnimThresh && this->isGrounded) {
-			airplanePlayer->incrementWalkFrame();
+			player->incrementWalkFrame();
 			this->fAnimFreq = 0;
 		}
 
@@ -68,13 +68,13 @@ void PlayerMovement::perform(){
 	}
 	else if (inputController->isRight()) {
 		this->velocity.x = this->SPEED_MULTIPLIER;
-		//airplanePlayer->getSprite()->setScale(1.f, 1.f);
-		airplanePlayer->getTransformable()->setScale(0.75f, 0.75f);
+		//player->getSprite()->setScale(1.f, 1.f);
+		player->getTransformable()->setScale(0.75f, 0.75f);
 	}
 	else if (inputController->isLeft()) {
 		this->velocity.x = -this->SPEED_MULTIPLIER;
-		//airplanePlayer->getSprite()->setScale(-1.f, 1.f);
-		airplanePlayer->getTransformable()->setScale(-0.75f, 0.75f);
+		//player->getSprite()->setScale(-1.f, 1.f);
+		player->getTransformable()->setScale(-0.75f, 0.75f);
 	}
 	else {
 		this->velocity.x = 0; 

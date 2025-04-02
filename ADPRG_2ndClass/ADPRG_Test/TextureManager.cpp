@@ -16,26 +16,29 @@ void TextureManager::loadAll(){
 }
 
 void TextureManager::loadPlayer() {
-    std::vector<sf::Texture*> vec;
+    //std::vector<sf::Texture*> vec;
 
-    sf::Texture* texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player/Player-1.1.png"); // walking
-    vec.push_back(texture);
-    texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player/Player-2.1.png"); // walking
-    vec.push_back(texture);
-    this->framesMap["player-walk"] = vec;
+    //sf::Texture* texture = new sf::Texture();
+    //texture->loadFromFile("../Media/Textures/Player/Player-1.1.png"); // walking
+    //vec.push_back(texture);
+    //texture = new sf::Texture();
+    //texture->loadFromFile("../Media/Textures/Player/Player-2.1.png"); // walking
+    //vec.push_back(texture);
+    //this->framesMap["player-walk"] = vec;
 
-    vec = std::vector<sf::Texture*>();
+    //vec = std::vector<sf::Texture*>();
 
-    texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player/Player-3.1.png"); // hitting
-    vec.push_back(texture);
-    texture = new sf::Texture();
-    texture->loadFromFile("../Media/Textures/Player/Player-4.1.png"); // hitting
-    vec.push_back(texture);
+    //texture = new sf::Texture();
+    //texture->loadFromFile("../Media/Textures/Player/Player-3.1.png"); // hitting
+    //vec.push_back(texture);
+    //texture = new sf::Texture();
+    //texture->loadFromFile("../Media/Textures/Player/Player-4.1.png"); // hitting
+    //vec.push_back(texture);
 
-    this->framesMap["player-hit"] = vec;
+    //this->framesMap["player-hit"] = vec;
+
+    this->loadTexture("Player", "../Media/Textures/SpriteSheets/Player/Player.png");
+    FileReader::getInstance()->loadFrames("Player", "../Media/Textures/SpriteSheets/Player/Player.json");
 }
 
 sf::Texture* TextureManager::getTexture(std::string key){

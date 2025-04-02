@@ -6,13 +6,26 @@ Player::Player(std::string name) : AGameObject(name) {
 
 void Player::initialize() {
 	this->sprite = new sf::Sprite();
-	//this->sprite->setTexture(*TextureManager::getInstance()->getTexture("player-1"));
-	this->walkFrames = TextureManager::getInstance()->getFrames("player-walk");
-	this->hitFrames = TextureManager::getInstance()->getFrames("player-hit");
-	this->sprite->setTexture(*this->walkFrames[0]);
+	//this->walkFrames = TextureManager::getInstance()->getFrames("player-walk");
+	//this->hitFrames = TextureManager::getInstance()->getFrames("player-hit");
+	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Player"));
+	
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Player", 0));
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Player", 1));
+	
+	this->hitFrames.push_back(FileReader::getInstance()->getFrame("Player", 2));
+	this->hitFrames.push_back(FileReader::getInstance()->getFrame("Player", 3));
 
-	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
-	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
+	this->sprite->setTextureRect(sf::IntRect(
+											this->walkFrames[0][0],
+											this->walkFrames[0][1],
+											this->walkFrames[0][2],
+											this->walkFrames[0][3]
+											)
+								);
+
+	sf::IntRect frameRect = this->sprite->getTextureRect();
+	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
 	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 20);
 
 	PlayerInputController* playerInput = new PlayerInputController("MyPlayerInput");
@@ -44,7 +57,14 @@ void Player::incrementWalkFrame() {
 	else {
 		this->currWalkFrame = 0;
 	}
-	this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
+	//this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
+	this->sprite->setTextureRect(sf::IntRect(
+											this->walkFrames[this->currWalkFrame][0],
+											this->walkFrames[this->currWalkFrame][1],
+											this->walkFrames[this->currWalkFrame][2],
+											this->walkFrames[this->currWalkFrame][3]
+											)
+								);
 }
 
 void Player::incrementHitFrame() {
@@ -55,13 +75,27 @@ void Player::incrementHitFrame() {
 	else {
 		this->currHitFrame++;
 	}
-	this->sprite->setTexture(*this->hitFrames[this->currHitFrame]);
+	//this->sprite->setTexture(*this->hitFrames[this->currHitFrame]);
+	this->sprite->setTextureRect(sf::IntRect(
+											this->hitFrames[this->currHitFrame][0],
+											this->hitFrames[this->currHitFrame][1],
+											this->hitFrames[this->currHitFrame][2],
+											this->hitFrames[this->currHitFrame][3]
+											)
+								);
 }
 
 void Player::setWalkFrame(int frame) {
 	if (!(frame >= this->walkFrames.size() || frame < 0)) {
 		this->currWalkFrame = frame;
-		this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
+		//this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
+		this->sprite->setTextureRect(sf::IntRect(
+												this->walkFrames[this->currWalkFrame][0],
+												this->walkFrames[this->currWalkFrame][1],
+												this->walkFrames[this->currWalkFrame][2],
+												this->walkFrames[this->currWalkFrame][3]
+											)
+									);
 	}
 }
 

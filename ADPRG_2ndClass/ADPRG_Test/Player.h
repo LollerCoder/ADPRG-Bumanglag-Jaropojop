@@ -5,6 +5,7 @@
 #include "PlayerInputController.hpp"
 #include "PlayerMovement.hpp"
 #include "Renderer.hpp"
+#include "FileReader.hpp"
 
 class Player : public AGameObject {
 public:
@@ -17,8 +18,8 @@ public:
 	void incrementHitFrame();
 	void setWalkFrame(int frame);
 public:
-	std::vector<sf::Texture*> walkFrames;
-	std::vector<sf::Texture*> hitFrames;
+	std::vector<Frame> walkFrames;
+	std::vector<Frame> hitFrames;
 	int currWalkFrame = -1;
 	int currHitFrame = -1;
 };

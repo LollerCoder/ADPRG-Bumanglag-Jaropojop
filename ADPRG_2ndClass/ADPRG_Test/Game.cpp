@@ -1,7 +1,5 @@
 #include "Game.h"
 
-
-
 Game::Game() : mWindow(sf::VideoMode(640,480), "SFML Application"){
     TextureManager::getInstance()->loadAll();
     FontManager::getInstance()->loadAll();
