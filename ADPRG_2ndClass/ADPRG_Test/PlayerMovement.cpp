@@ -49,7 +49,7 @@ void PlayerMovement::perform(){
 	}
 
 	if (!(inputController->isRight() ||
-		inputController->isLeft())) {
+		inputController->isLeft()) && this->isGrounded) {
 		player->setWalkFrame(0);
 		this->fAnimFreq = 0;
 	}
@@ -65,6 +65,7 @@ void PlayerMovement::perform(){
 	if (inputController->isJump() && this->isGrounded) {
 		this->velocity.y = -JUMP_FORCE; 
 		isGrounded = false; 
+		player->setJumpFrame(0);
 	}
 	else if (inputController->isRight()) {
 		this->velocity.x = this->SPEED_MULTIPLIER;

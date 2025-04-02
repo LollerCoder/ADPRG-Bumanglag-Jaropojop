@@ -108,6 +108,19 @@ void Player::setWalkFrame(int frame) {
 	}
 }
 
+void Player::setJumpFrame(int frame) {
+	if (!(frame >= this->walkFrames.size() || frame < 0)) {
+		this->currWalkFrame = frame;
+		this->sprite->setTextureRect(sf::IntRect(
+												this->hitFrames[this->currWalkFrame][0],
+												this->hitFrames[this->currWalkFrame][1],
+												this->hitFrames[this->currWalkFrame][2],
+												this->hitFrames[this->currWalkFrame][3]
+												)
+									);
+	}
+}
+
 void Player::onCollisionExit(AGameObject* contact)
 {
 	

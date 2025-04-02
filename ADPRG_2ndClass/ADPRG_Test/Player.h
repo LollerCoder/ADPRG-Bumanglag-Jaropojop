@@ -20,6 +20,7 @@ public:
 	void incrementWalkFrame();
 	void incrementHitFrame();
 	void setWalkFrame(int frame);
+	void setJumpFrame(int frame);
 
 	//collision
 	void onCollisionExit(AGameObject* contact);
