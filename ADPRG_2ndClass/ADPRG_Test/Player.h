@@ -6,8 +6,10 @@
 #include "PlayerMovement.hpp"
 #include "Renderer.hpp"
 #include "FileReader.hpp"
+#include "CollisionListener.hpp"
 
-class Player : public AGameObject {
+
+class Player : public AGameObject, public CollisionListener {
 public:
 	Player(std::string name);
 public:
@@ -17,6 +19,11 @@ public:
 	void incrementWalkFrame();
 	void incrementHitFrame();
 	void setWalkFrame(int frame);
+
+	//collision
+	void onCollisionExit(AGameObject* contact);
+	void onCollisionEnter(AGameObject* contact);
+
 public:
 	std::vector<Frame> walkFrames;
 	std::vector<Frame> hitFrames;
