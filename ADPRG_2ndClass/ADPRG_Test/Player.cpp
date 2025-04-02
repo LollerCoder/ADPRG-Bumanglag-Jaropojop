@@ -99,5 +99,15 @@ void Player::setWalkFrame(int frame) {
 	}
 }
 
+void Player::onCollisionExit(AGameObject* contact)
+{
+
+}
+
+void Player::onCollisionEnter(AGameObject* contact)
+{
+
+}
+
 
 
