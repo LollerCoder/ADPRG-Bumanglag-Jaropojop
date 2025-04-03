@@ -21,6 +21,10 @@ class Hitbox : public AGameObject, public CollisionListener
 		void onCollisionExit(AGameObject* contact);
 		void onCollisionEnter(AGameObject* contact);
 
+		//onOff
+		void activate();
+		void deactivate();
+
 	public:
 		float width;
 		float height;

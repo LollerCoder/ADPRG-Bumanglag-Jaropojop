@@ -124,11 +124,15 @@ void Player::setJumpFrame(int frame) {
 void Player::onCollisionExit(AGameObject* contact)
 {
 	
+	
 }
 
 void Player::onCollisionEnter(AGameObject* contact)
 {
-	std::cout << contact->getName() << std::endl;
+	
+	//this->setPosition(this->getPosition().x, contact->getTransformable()->getPosition().y );
+	//std::cout << contact->getTransformable()->getPosition().y << std::endl;
+	
 }
 
 

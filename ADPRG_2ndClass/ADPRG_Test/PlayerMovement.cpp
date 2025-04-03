@@ -47,12 +47,12 @@ void PlayerMovement::perform(){
 		this->fAnimFreq = 0;
 
 		Hitbox* hit = (Hitbox*)player->findChild("FrontHitbox");
-		hit->setEnabled(true);
+		hit->activate();
 		return; 
 	}
 	else {
 		Hitbox* hit = (Hitbox*)player->findChild("FrontHitbox");
-		hit->setEnabled(false);
+		hit->deactivate();
 	}
 
 	if (!(inputController->isRight() ||
@@ -78,12 +78,7 @@ void PlayerMovement::perform(){
 
 		isGrounded = false;  
 		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
-		hit->setEnabled(true);
-
-
-		isGrounded = false;  
-		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
-		hit->setEnabled(true);
+		hit->activate();
 
 	}
 	else if (inputController->isRight()) {
@@ -108,10 +103,16 @@ void PlayerMovement::perform(){
 
 		//hitbox temp
 		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
-		hit->setEnabled(false);
+		hit->deactivate();
 		//hitbox temp
 
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 410);
+		
 	}
+	//std::cout << playerTransformable->getPosition().y << std::endl;
+}
 
+void PlayerMovement::setGrounded(bool flag)
+{
+	this->isGrounded = flag;
 }

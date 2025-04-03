@@ -13,6 +13,12 @@ void Hitbox::initialize()
 
 	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
+
+	//invisible sprite
+	/*sf::Color invisible = sf::Color::Transparent;
+
+	this->sprite->setColor(invisible);*/
+
 	this->transformable.setPosition(0,0);
 
 	Renderer* renderer = new Renderer("HitRenderer");
@@ -27,7 +33,7 @@ void Hitbox::initialize()
 	this->collider->setCollisionListener(this);
 	this->attachComponent(this->collider);
 
-	PhysicsManager::getInstance()->trackObject(this->collider);
+	
 }
 
 void Hitbox::onCollisionExit(AGameObject* contact)
@@ -37,4 +43,19 @@ void Hitbox::onCollisionExit(AGameObject* contact)
 
 void Hitbox::onCollisionEnter(AGameObject* contact)
 {
+	std::cout << "BONK" << std::endl;
+	ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
+}
+
+void Hitbox::activate()
+{
+	
+	this->setEnabled(true);
+	PhysicsManager::getInstance()->trackObject(this->collider);
+}
+
+void Hitbox::deactivate()
+{
+	PhysicsManager::getInstance()->untrackObject(this->collider);
+	this->setEnabled(false);
 }

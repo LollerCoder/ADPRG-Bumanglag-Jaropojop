@@ -50,6 +50,6 @@ void Walker::onCollisionExit(AGameObject* contact)
 
 void Walker::onCollisionEnter(AGameObject* contact)
 {
-	ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)this);
+	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)this);
 
 }

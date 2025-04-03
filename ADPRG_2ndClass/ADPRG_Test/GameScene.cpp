@@ -24,8 +24,8 @@ void GameScene::onUnloadResources() {
 void GameScene::loadBG() {
 	Entity* entity = new Entity("Background");
 	this->registerObject(entity);
-	Block* blocks = new Block("BlockStack");
-	this->registerObject(blocks);
+	/*Block* blocks = new Block("BlockStack");
+	this->registerObject(blocks);*/
 }
 
 void GameScene::loadPlayer() {
@@ -35,15 +35,22 @@ void GameScene::loadPlayer() {
 	Hitbox* hit = new Hitbox("FrontHitbox", 0.25,0.15);
 	player->attachChild(hit);
 	sf::IntRect playerBounds = player->getSprite()->getTextureRect();
-	hit->setPosition(playerBounds.width/2 -10, 0);
+	hit->setPosition(playerBounds.width/2 , 0);
 	hit->setEnabled(false);
 
 	Hitbox* hit2 = new Hitbox("TopHitbox", 0.1, 0.25);
 	player->attachChild(hit2);
 	sf::IntRect playerBounds2 = player->getSprite()->getTextureRect();
-	hit2->setPosition(0, -playerBounds2.height/2);
+	hit2->setPosition(0, -playerBounds2.height/2 -10 );
 	hit2->getSprite()->rotate(90.0f);
 	hit2->setEnabled(false);
+
+	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.01);
+	player->attachChild(gr);
+	sf::IntRect playerBounds3 = player->getSprite()->getTextureRect();
+	gr->setPosition(0, +playerBounds3.height / 2 );
+	gr->getSprite()->rotate(90.0f);
+	gr->setEnabled(true);
 }
 
 void GameScene::loadPoolables() {

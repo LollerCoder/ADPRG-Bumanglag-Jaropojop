@@ -15,6 +15,7 @@
 #include "Block.h"
 #include "Walker.h"
 #include "Hitbox.h"
+#include "GroundChecker.h"
 
 class GameScene : public AbstractScene{
 public:

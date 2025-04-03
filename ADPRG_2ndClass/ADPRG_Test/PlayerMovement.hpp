@@ -8,6 +8,7 @@ public:
 	PlayerMovement(std::string name);
 public:
 	void perform();
+	void setGrounded(bool flag);
 private:
 	const float SPEED_MULTIPLIER = 150.0f;
 	float fAnimThresh = 0.1f;
