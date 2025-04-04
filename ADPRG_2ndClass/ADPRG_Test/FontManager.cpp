@@ -11,6 +11,9 @@ FontManager* FontManager::getInstance() {
 
 void FontManager::loadAll() {
     this->loadFont("default", "../Media/Font/Sansation.ttf");
+    this->loadFont("ice", "../Media/Font/m09.ttf");
+    this->loadFont("nes", "../Media/Font/nintendo-nes-font.ttf");
+    
 }
 
 sf::Font* FontManager::getFont(std::string key) {

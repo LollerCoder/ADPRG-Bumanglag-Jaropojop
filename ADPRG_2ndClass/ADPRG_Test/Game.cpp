@@ -5,8 +5,9 @@ Game::Game() : mWindow(sf::VideoMode(640,480), "SFML Application"){
     FontManager::getInstance()->loadAll();
     ApplicationManager::getInstance()->initialize(&mWindow);
 
-    //SceneManager::getInstance()->registerScene(new MainMenuScene());
+   
     SceneManager::getInstance()->registerScene(new GameScene());
+    SceneManager::getInstance()->registerScene(new MainMenuScene());
     SceneManager::getInstance()->loadScene(SceneManager::GAME_SCENE_NAME);
 }
 

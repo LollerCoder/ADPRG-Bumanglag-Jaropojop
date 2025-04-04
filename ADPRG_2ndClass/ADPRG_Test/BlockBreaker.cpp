@@ -19,7 +19,7 @@ void BlockBreaker::initialize()
 	//invisible sprite
 	sf::Color invisible = sf::Color::Transparent;
 
-	this->sprite->setColor(invisible);
+	/*this->sprite->setColor(invisible);*/
 
 	this->transformable.setPosition(0, 0);
 
@@ -45,8 +45,9 @@ void BlockBreaker::onCollisionExit(AGameObject* contact)
 
 void BlockBreaker::onCollisionEnter(AGameObject* contact)
 {
-	
-
+	if (contact->getName() == "Block") {
+		 contact->setEnabled(false);
+	}
 }
 
 void BlockBreaker::activate()

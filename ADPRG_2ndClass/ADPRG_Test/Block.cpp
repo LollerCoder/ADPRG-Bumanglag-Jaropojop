@@ -11,7 +11,7 @@ void Block::initialize() {
 
 	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
-	this->transformable.setPosition((Game::WINDOW_WIDTH / 2)+150, (Game::WINDOW_HEIGHT / 2) +170 );
+	this->transformable.setPosition((Game::WINDOW_WIDTH / 2)+150, (Game::WINDOW_HEIGHT / 2) );
 
 	Renderer* renderer = new Renderer("BlockSprite");
 	renderer->assignDrawable(this->sprite);
@@ -34,9 +34,7 @@ void Block::onCollisionExit(AGameObject* contact)
 
 void Block::onCollisionEnter(AGameObject* contact)
 {
-	if (contact->getName() == "TopHitbox") {
-		//this->setEnabled(false);
-	}
+	
 
 }
 
