@@ -38,7 +38,7 @@ void Walker::initialize() {
 	WalkerMovement* walkerMovement = new WalkerMovement("WalkerMovement");
 	this->attachComponent(walkerMovement);
 
-	this->setPosition(spawn.x, spawn.y);
+	this->setPosition(this->spawn.x, this->spawn.y);
 
 	PhysicsManager::getInstance()->trackObject(this->collider);
 }
@@ -67,6 +67,10 @@ void Walker::onCollisionEnter(AGameObject* contact) {
 
 	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)this);
 
+}
+
+sf::Vector2f Walker::getSpawnLoc() {
+	return this->spawn;
 }
 
 void Walker::incrementWalkFrame() {

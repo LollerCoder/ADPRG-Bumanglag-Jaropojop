@@ -22,6 +22,8 @@ public:
 	void onCollisionExit(AGameObject* contact);
 	void onCollisionEnter(AGameObject* contact);
 
+	sf::Vector2f getSpawnLoc();
+
 	Collider* collider;
 private:
 	void incrementWalkFrame();
