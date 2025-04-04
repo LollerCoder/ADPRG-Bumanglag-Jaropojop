@@ -11,9 +11,9 @@ void GameScene::onLoadResources() {
 
 void GameScene::onLoadObjects() {
 	this->loadPhysicsManager();
+	this->loadEnemies();
 	this->loadBG();
 	this->loadPlayer();
-	this->loadEnemies();
 	this->loadPoolables();
 	this->loadUIButton();
 }
@@ -55,7 +55,7 @@ void GameScene::loadPlayer() {
 }
 
 void GameScene::loadEnemies() {
-	Walker* walker = new Walker("Walker", (sf::Vector2f(655, 400)));
+	Walker* walker = new Walker("Walker", (sf::Vector2f(-50, 400)));
 	this->registerObject(walker);
 	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.01);
 	walker->attachChild(gr);

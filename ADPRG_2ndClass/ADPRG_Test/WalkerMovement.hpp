@@ -11,5 +11,7 @@ private:
 	const float SPEED_MULTIPLIER = 50.0f;
 	const float GRAVITY_FORCE = 9.80f;
 	sf::Vector2f velocity = sf::Vector2f(0.0f, 0.0f);
+public:
+	bool isMoving = false;
 };
 

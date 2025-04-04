@@ -46,7 +46,10 @@ void Hitbox::onCollisionEnter(AGameObject* contact)
 	std::cout << "BONK" << std::endl;
 	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
 	if (contact->getName() == "Walker") {
-		contact->setEnabled(false);
+		Walker* walker = (Walker*)contact;
+		walker->setPosition(walker->getSpawnLoc().x, walker->getSpawnLoc().y);
+		WalkerMovement* mv = (WalkerMovement*)walker->findComponentByName("WalkerMovement");
+		//mv->isMoving = false;
 	}
 }
 

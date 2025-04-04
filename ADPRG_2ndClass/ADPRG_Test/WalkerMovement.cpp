@@ -30,7 +30,7 @@ void WalkerMovement::perform() {
 
 	walkerTransformable->move(this->velocity * deltaTime.asSeconds());
 
-	if (walkerTransformable->getPosition().y >= 410) {
+	if (walkerTransformable->getPosition().y >= 400) {
 		this->isGrounded = true;
 
 		walkerTransformable->setPosition(walkerTransformable->getPosition().x, 410);
