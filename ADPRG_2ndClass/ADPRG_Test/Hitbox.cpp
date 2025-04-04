@@ -44,7 +44,10 @@ void Hitbox::onCollisionExit(AGameObject* contact)
 void Hitbox::onCollisionEnter(AGameObject* contact)
 {
 	std::cout << "BONK" << std::endl;
-	ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
+	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
+	if (contact->getName() == "Walker") {
+		contact->setEnabled(false);
+	}
 }
 
 void Hitbox::activate()

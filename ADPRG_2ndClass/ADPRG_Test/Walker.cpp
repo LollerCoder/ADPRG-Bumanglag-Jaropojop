@@ -1,55 +1,87 @@
 #include "Walker.h"
 
-Walker::Walker(std::string name) : AbstractPoolable(name)
-{
-
+Walker::Walker(std::string name, sf::Vector2f spawn) : AGameObject(name) {
+	this->spawn = spawn;
 }
 
-void Walker::initialize()
-{
+void Walker::initialize() {
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Walker"));
 
-	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
-	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
-	this->transformable.setPosition((Game::WINDOW_WIDTH / 2)-100, (Game::WINDOW_HEIGHT / 2) + 200);
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Walker", 0));
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Walker", 1));
+
+	this->sprite->setTextureRect(sf::IntRect(
+											this->walkFrames[0][0],
+											this->walkFrames[0][1],
+											this->walkFrames[0][2],
+											this->walkFrames[0][3]
+											)
+								);
+
+	sf::IntRect frameRect = this->sprite->getTextureRect();
+	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
+	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 20);
 
 	Renderer* renderer = new Renderer("WalkerSprite");
 	renderer->assignDrawable(this->sprite);
 	this->attachComponent(renderer);
 
-	this->getTransformable()->setScale(1.0f, 1.0f);
+	this->getTransformable()->setScale(0.7f, 0.7f);
 
 	this->collider = new Collider("WalkerCollider");
 
-	collider->setLocalBounds(sprite->getGlobalBounds());
+	this->collider->setLocalBounds(sprite->getGlobalBounds());
 	this->collider->setCollisionListener(this);
 	this->attachComponent(this->collider);
-}
 
-void Walker::onActivate()
-{
+	WalkerMovement* walkerMovement = new WalkerMovement("WalkerMovement");
+	this->attachComponent(walkerMovement);
+
+	this->setPosition(spawn.x, spawn.y);
+
 	PhysicsManager::getInstance()->trackObject(this->collider);
+}
+
+void Walker::processInput(sf::Event event) {
+	AGameObject::processInput(event);
+}
+
+void Walker::update(sf::Time deltaTime) {
+	AGameObject::update(deltaTime);
+
+	if (this->fAnimFreq >= this->fAnimThresh) {
+		this->incrementWalkFrame();
+		this->fAnimFreq = 0;
+	}
+
+	this->fAnimFreq += deltaTime.asSeconds();
+}
+
+
+void Walker::onCollisionExit(AGameObject* contact) {
 
 }
 
-void Walker::onRelease()
-{
-	PhysicsManager::getInstance()->untrackObject(this->collider);
-}
+void Walker::onCollisionEnter(AGameObject* contact) {
 
-AbstractPoolable* Walker::clone()
-{
-	AbstractPoolable* cloned = new Walker(this->name);
-	return cloned;
-}
-
-void Walker::onCollisionExit(AGameObject* contact)
-{
-}
-
-void Walker::onCollisionEnter(AGameObject* contact)
-{
 	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)this);
 
+}
+
+void Walker::incrementWalkFrame() {
+	int frame = this->currWalkFrame + 1;
+	if (!(frame >= this->walkFrames.size() || frame < 0)) {
+		this->currWalkFrame = frame;
+	}
+	else {
+		this->currWalkFrame = 0;
+	}
+	this->sprite->setTextureRect(sf::IntRect(
+												this->walkFrames[this->currWalkFrame][0],
+												this->walkFrames[this->currWalkFrame][1],
+												this->walkFrames[this->currWalkFrame][2],
+												this->walkFrames[this->currWalkFrame][3]
+											)
+								);
 }

@@ -29,6 +29,7 @@ public:
 private:
 	void loadBG();
 	void loadPlayer();
+	void loadEnemies();
 	void loadPoolables();
 	void loadUIButton();
 	void loadPhysicsManager();

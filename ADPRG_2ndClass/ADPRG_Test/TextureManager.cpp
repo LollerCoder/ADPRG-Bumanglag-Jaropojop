@@ -13,6 +13,7 @@ void TextureManager::loadAll(){
     this->loadTexture("background", "../Media/Textures/background.png");
     this->loadTexture("blocks", "../Media/Textures/iceClimbBox.png");
     this->loadPlayer();
+    this->loadEnemies();
 }
 
 void TextureManager::loadPlayer() {
@@ -47,8 +48,8 @@ void TextureManager::loadEnemies() {
     this->loadTexture("Bird_1", "../Media/Textures/SpriteSheets/Enemies/Bird_1.png");
     FileReader::getInstance()->loadFrames("Bird_1", "../Media/Textures/SpriteSheets/Enemies/Bird_1.json");
 
-    this->loadTexture("Seal", "../Media/Textures/SpriteSheets/Enemies/Seal.png");
-    FileReader::getInstance()->loadFrames("Seal", "../Media/Textures/SpriteSheets/Enemies/Seal.json");
+    this->loadTexture("Walker", "../Media/Textures/SpriteSheets/Enemies/Seal.png");
+    FileReader::getInstance()->loadFrames("Walker", "../Media/Textures/SpriteSheets/Enemies/Seal.json");
 }
 
 sf::Texture* TextureManager::getTexture(std::string key){
@@ -59,17 +60,6 @@ sf::Texture* TextureManager::getTexture(std::string key){
     else {
         std::cout << "No texture found for " << key << std::endl;
         return nullptr;
-    }
-}
-
-std::vector<sf::Texture*> TextureManager::getFrames(std::string key) {
-    if (!this->framesMap[key].empty()) {
-        //std::cout << "Texture found for " << key << std::endl;
-        return this->framesMap[key];
-    }
-    else {
-        std::cout << "No texture found for " << key << std::endl;
-        return {};
     }
 }
 

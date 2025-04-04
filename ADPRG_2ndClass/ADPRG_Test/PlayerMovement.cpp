@@ -109,10 +109,10 @@ void PlayerMovement::perform(){
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 		
 	}
-	//std::cout << playerTransformable->getPosition().y << std::endl;
+	//std::cout << playerTransformable->getPosition().x << "," << playerTransformable->getPosition().y << std::endl;
 }
 
-void PlayerMovement::setGrounded(bool flag)
-{
-	this->isGrounded = flag;
-}
+//void PlayerMovement::setGrounded(bool flag)
+//{
+//	this->isGrounded = flag;
+//}

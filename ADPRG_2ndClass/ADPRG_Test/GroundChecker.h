@@ -8,6 +8,8 @@
 #include "FileReader.hpp"
 #include "CollisionListener.hpp"
 #include "Collider.hpp"
+#include "WalkerMovement.hpp"
+
 
 class GroundChecker : public AGameObject, public CollisionListener
 {

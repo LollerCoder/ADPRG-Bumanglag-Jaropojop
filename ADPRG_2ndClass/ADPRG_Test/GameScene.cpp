@@ -13,6 +13,7 @@ void GameScene::onLoadObjects() {
 	this->loadPhysicsManager();
 	this->loadBG();
 	this->loadPlayer();
+	this->loadEnemies();
 	this->loadPoolables();
 	this->loadUIButton();
 }
@@ -53,19 +54,18 @@ void GameScene::loadPlayer() {
 	gr->setEnabled(true);
 }
 
-void GameScene::loadPoolables() {
-	EmptyGameObject* poolableHolder = new EmptyGameObject("poolableHolder");
-	GameObjectManager::getInstance()->addObject(poolableHolder);
-	GameObjectPool* walkerPool;
-	walkerPool = new GameObjectPool(ObjectPoolHolder::ENEMY_POOL_TAG,
-		new Walker("walker_enemy"),
-		10,
-		poolableHolder
-	);
+void GameScene::loadEnemies() {
+	Walker* walker = new Walker("Walker", (sf::Vector2f(300, 300)));
+	this->registerObject(walker);
+	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.01);
+	walker->attachChild(gr);
+	sf::IntRect playerBounds3 = walker->getSprite()->getTextureRect();
+	gr->setPosition(0, +playerBounds3.height / 2);
+	gr->getSprite()->rotate(90.0f);
+	gr->setEnabled(true);
+}
 
-	walkerPool->initialize();
-	ObjectPoolHolder::getInstance()->registerObjectPool(walkerPool);
-	walkerPool->requestPoolable();
+void GameScene::loadPoolables() {
 
 }
 

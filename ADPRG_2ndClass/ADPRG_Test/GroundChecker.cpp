@@ -39,15 +39,26 @@ void GroundChecker::initialize()
 
 void GroundChecker::onCollisionExit(AGameObject* contact)
 {
-	PlayerMovement* pm = nullptr;
+	AbstractComponent* pm = nullptr;
 	//std::cout << contact->getName() << std::endl;
 	for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
 		if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "MyPlayerMovement") {
-			pm = (PlayerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
+			//std::cout << "pm found" << std::endl;
+			pm = this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
+
+		}
+		if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "WalkerMovement") {
+			pm = (WalkerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
 			//std::cout << "pm found" << std::endl;
 		}
 	}
-	pm->setGrounded(false);
+	if (pm == nullptr) {
+		std::cout << "NULL" << std::endl;
+	}
+	else {
+		pm->setGrounded(false);
+	}
+
 }
 
 void GroundChecker::onCollisionEnter(AGameObject* contact)
