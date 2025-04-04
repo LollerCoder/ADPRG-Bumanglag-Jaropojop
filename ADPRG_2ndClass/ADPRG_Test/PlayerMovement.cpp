@@ -84,12 +84,12 @@ void PlayerMovement::perform(){
 	else if (inputController->isRight()) {
 		this->velocity.x = this->SPEED_MULTIPLIER;
 		//player->getSprite()->setScale(1.f, 1.f);
-		player->getTransformable()->setScale(0.75f, 0.75f);
+		player->getTransformable()->setScale(1.f, 1.f);
 	}
 	else if (inputController->isLeft()) {
 		this->velocity.x = -this->SPEED_MULTIPLIER;
 		//player->getSprite()->setScale(-1.f, 1.f);
-		player->getTransformable()->setScale(-0.75f, 0.75f);
+		player->getTransformable()->setScale(-1.f, 1.f);
 	}
 	else {
 		this->velocity.x = 0; 
@@ -97,7 +97,7 @@ void PlayerMovement::perform(){
 
 	playerTransformable->move(this->velocity * deltaTime.asSeconds());
 
-	if (playerTransformable->getPosition().y >= 410) {
+	if (playerTransformable->getPosition().y >= 400) {
 		this->isGrounded = true;
 
 
@@ -106,7 +106,7 @@ void PlayerMovement::perform(){
 		hit->deactivate();
 		//hitbox temp
 
-		playerTransformable->setPosition(playerTransformable->getPosition().x, 410);
+		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 		
 	}
 	//std::cout << playerTransformable->getPosition().y << std::endl;

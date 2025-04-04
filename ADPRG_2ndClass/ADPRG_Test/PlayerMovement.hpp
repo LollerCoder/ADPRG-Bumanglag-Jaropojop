@@ -18,7 +18,7 @@ private:
 	bool isSwinging = false;
 	bool isGrounded = false;
 	const float GRAVITY_FORCE = 9.80f;
-	const float JUMP_FORCE = 200.0f; 
+	const float JUMP_FORCE = 390.0f; 
 	sf::Vector2f velocity = sf::Vector2f(0.0f, 0.0f);
 };
 

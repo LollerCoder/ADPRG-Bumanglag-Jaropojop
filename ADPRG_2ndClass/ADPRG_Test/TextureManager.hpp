@@ -18,6 +18,7 @@ private:
 public:
 	void loadAll();
 	void loadPlayer();
+	void loadEnemies();
 	sf::Texture* getTexture(std::string key);
 	std::vector<sf::Texture*> getFrames(std::string key);
 private:

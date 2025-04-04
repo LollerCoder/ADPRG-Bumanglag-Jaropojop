@@ -24,6 +24,8 @@ void Player::initialize() {
 											)
 								);
 
+	this->getTransformable()->setScale(1.0f, 1.0f);
+
 	sf::IntRect frameRect = this->sprite->getTextureRect();
 	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
 	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 20);
@@ -37,8 +39,6 @@ void Player::initialize() {
 	Renderer* renderer = new Renderer("MyPlayerSprite");
 	renderer->assignDrawable(this->sprite);
 	this->attachComponent(renderer);
-
-	this->getTransformable()->setScale(0.75f, 0.75f);
 
 	this->collider = new Collider("PlayerCollider");
 

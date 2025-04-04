@@ -43,6 +43,14 @@ void TextureManager::loadPlayer() {
     FileReader::getInstance()->loadFrames("Player", "../Media/Textures/SpriteSheets/Player/Player.json");
 }
 
+void TextureManager::loadEnemies() {
+    this->loadTexture("Bird_1", "../Media/Textures/SpriteSheets/Enemies/Bird_1.png");
+    FileReader::getInstance()->loadFrames("Bird_1", "../Media/Textures/SpriteSheets/Enemies/Bird_1.json");
+
+    this->loadTexture("Seal", "../Media/Textures/SpriteSheets/Enemies/Seal.png");
+    FileReader::getInstance()->loadFrames("Seal", "../Media/Textures/SpriteSheets/Enemies/Seal.json");
+}
+
 sf::Texture* TextureManager::getTexture(std::string key){
     if (this->textureMap[key] != nullptr) {
         //std::cout << "Texture found for " << key << std::endl;
