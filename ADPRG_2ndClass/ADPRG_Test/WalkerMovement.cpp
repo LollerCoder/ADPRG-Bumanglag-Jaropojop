@@ -19,6 +19,15 @@ void WalkerMovement::perform() {
 		this->velocity.y = 0;
 	}
 
+	if (walker->getSpawnLoc().x < 0) {
+		walker->getTransformable()->setScale(-0.7f, 0.7f);
+		this->velocity.x = this->SPEED_MULTIPLIER;
+	}
+	if (walker->getSpawnLoc().x > 0) {
+		walker->getTransformable()->setScale(0.7f, 0.7f);
+		this->velocity.x = -this->SPEED_MULTIPLIER;
+	}
+
 	walkerTransformable->move(this->velocity * deltaTime.asSeconds());
 
 	if (walkerTransformable->getPosition().y >= 410) {
