@@ -16,9 +16,9 @@ void GroundChecker::initialize()
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
 
 	//invisible sprite
-	/*sf::Color invisible = sf::Color::Transparent;
+	sf::Color invisible = sf::Color::Transparent;
 
-	this->sprite->setColor(invisible);*/
+	this->sprite->setColor(invisible);
 
 	this->transformable.setPosition(0, 0);
 
@@ -40,11 +40,11 @@ void GroundChecker::initialize()
 void GroundChecker::onCollisionExit(AGameObject* contact)
 {
 	PlayerMovement* pm = nullptr;
-	std::cout << contact->getName() << std::endl;
+	//std::cout << contact->getName() << std::endl;
 	for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
 		if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "MyPlayerMovement") {
 			pm = (PlayerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
-			std::cout << "pm found" << std::endl;
+			//std::cout << "pm found" << std::endl;
 		}
 	}
 	pm->setGrounded(false);
@@ -52,25 +52,39 @@ void GroundChecker::onCollisionExit(AGameObject* contact)
 
 void GroundChecker::onCollisionEnter(AGameObject* contact)
 {
+	
 	if (contact->getName() != "Player") {
 		PlayerMovement* pm = nullptr;
-		std::cout << contact->getName() << std::endl;
+		//::cout << contact->getName() << std::endl;
 		for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
 			if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "MyPlayerMovement") {
 				pm = (PlayerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
 				
-				std::cout << "pm found" << std::endl;
+				//std::cout << "pm found" << std::endl;
 			}
 		}
 		if (pm == nullptr) {
 			std::cout << " PAKC" << std::endl;
 		}
 		else {
-			pm->setGrounded(true);
+			float contPos = contact->getTransformable()->getPosition().y;
+			float aug = contact->getSprite()->getGlobalBounds().height/2;
+
+			std::cout << "ToCheck: " << contPos - aug << std::endl;
+			std::cout << "curr pos: "  << this->getGlobalTransform().transformPoint(0,0).y << std::endl;
+
+
+			if (contPos - aug -5 <= this->getGlobalTransform().transformPoint(0, 0).y && this->getGlobalTransform().transformPoint(0, 0).y <= contPos - aug + 5) {
+				pm->setGrounded(true);
+				this->getParent()->findChild("TopHitbox")->setEnabled(false);
+			}
+
+			
+
 		}
 
 
-		this->getParent()->setPosition(this->getParent()->getPosition().x, this->getParent()->getPosition().y - 1);
+		this->getParent()->setPosition(this->getParent()->getPosition().x, this->getParent()->getPosition().y);
 	}
 	
 }

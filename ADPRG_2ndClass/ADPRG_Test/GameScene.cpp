@@ -24,8 +24,8 @@ void GameScene::onUnloadResources() {
 void GameScene::loadBG() {
 	Entity* entity = new Entity("Background");
 	this->registerObject(entity);
-	/*Block* blocks = new Block("BlockStack");
-	this->registerObject(blocks);*/
+	Block* blocks = new Block("BlockStack");
+	this->registerObject(blocks);
 }
 
 void GameScene::loadPlayer() {
@@ -38,7 +38,7 @@ void GameScene::loadPlayer() {
 	hit->setPosition(playerBounds.width/2 , 0);
 	hit->setEnabled(false);
 
-	Hitbox* hit2 = new Hitbox("TopHitbox", 0.1, 0.25);
+	BlockBreaker* hit2 = new BlockBreaker("TopHitbox", 0.1, 0.25);
 	player->attachChild(hit2);
 	sf::IntRect playerBounds2 = player->getSprite()->getTextureRect();
 	hit2->setPosition(0, -playerBounds2.height/2 -10 );

@@ -1,12 +1,14 @@
-#include "Hitbox.h"
+#include "BlockBreaker.h"
 
-Hitbox::Hitbox(std::string name, float width, float height) : CollisionListener(), AGameObject(name)
+
+
+BlockBreaker::BlockBreaker(std::string name, float width, float height) : CollisionListener(), AGameObject(name)
 {
 	this->width = width;
 	this->height = height;
 }
 
-void Hitbox::initialize()
+void BlockBreaker::initialize()
 {
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Hitbox"));
@@ -19,7 +21,7 @@ void Hitbox::initialize()
 
 	this->sprite->setColor(invisible);
 
-	this->transformable.setPosition(0,0);
+	this->transformable.setPosition(0, 0);
 
 	Renderer* renderer = new Renderer("HitRenderer");
 	renderer->assignDrawable(this->sprite);
@@ -32,30 +34,31 @@ void Hitbox::initialize()
 	collider->setLocalBounds(sprite->getGlobalBounds());
 	this->collider->setCollisionListener(this);
 	this->attachComponent(this->collider);
+	PhysicsManager::getInstance()->trackObject(this->collider);
 
-	
 }
 
-void Hitbox::onCollisionExit(AGameObject* contact)
+void BlockBreaker::onCollisionExit(AGameObject* contact)
 {
 
 }
 
-void Hitbox::onCollisionEnter(AGameObject* contact)
-{
-	std::cout << "BONK" << std::endl;
-	ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
-}
-
-void Hitbox::activate()
+void BlockBreaker::onCollisionEnter(AGameObject* contact)
 {
 	
+
+}
+
+void BlockBreaker::activate()
+{
+
 	this->setEnabled(true);
 	PhysicsManager::getInstance()->trackObject(this->collider);
 }
 
-void Hitbox::deactivate()
+void BlockBreaker::deactivate()
 {
 	PhysicsManager::getInstance()->untrackObject(this->collider);
 	this->setEnabled(false);
 }
+

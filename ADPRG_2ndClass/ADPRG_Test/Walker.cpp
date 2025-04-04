@@ -12,7 +12,7 @@ void Walker::initialize()
 
 	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
-	this->transformable.setPosition((Game::WINDOW_WIDTH / 2)+50, (Game::WINDOW_HEIGHT / 2) + 200);
+	this->transformable.setPosition((Game::WINDOW_WIDTH / 2)-100, (Game::WINDOW_HEIGHT / 2) + 200);
 
 	Renderer* renderer = new Renderer("WalkerSprite");
 	renderer->assignDrawable(this->sprite);
