@@ -15,6 +15,10 @@ private:
 	const float GRAVITY_FORCE = 9.80f;
 	sf::Vector2f velocity = sf::Vector2f(0.0f, 0.0f);
 	bool isGrounded = true;
+
+	float fAnimThresh = 0.1f;
+	float fAnimFreq = 0;
+	float fAnimTimer = 0;
 public:
 	bool isMoving = false;
 };

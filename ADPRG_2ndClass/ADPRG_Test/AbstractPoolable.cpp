@@ -1,3 +1,3 @@
 #include "AbstractPoolable.hpp"
 
-AbstractPoolable::AbstractPoolable(std::string name) : AGameObject(name) { }
+AbstractPoolable::AbstractPoolable(std::string name, Tag tag) : AGameObject(name, tag) { }

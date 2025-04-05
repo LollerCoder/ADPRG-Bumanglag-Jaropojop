@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(std::string name) : AGameObject(name), CollisionListener() {
+Player::Player(std::string name) : AGameObject(name, Tag::PLAYER), CollisionListener() {
 
 }
 

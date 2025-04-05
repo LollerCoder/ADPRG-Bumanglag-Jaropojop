@@ -1,6 +1,6 @@
 #include "UIText.hpp"
 
-UIText::UIText(std::string name, std::string fontTag, sf::Color colFil, sf::Color outFil) : AGameObject(name) {
+UIText::UIText(std::string name, std::string fontTag, sf::Color colFil, sf::Color outFil) : AGameObject(name, Tag::UI) {
 	this->text = new sf::Text();
 	this->font = FontManager::getInstance()->getFont(fontTag);
 	this->text->setFillColor(colFil);

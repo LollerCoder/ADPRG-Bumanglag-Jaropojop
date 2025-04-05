@@ -6,9 +6,19 @@
 #include "GenericInputController.hpp"
 #include "Renderer.hpp"
 
+enum Tag{
+	PLAYER,
+	ENEMY,
+	BLOCK,
+	BACKGROUND,
+	POOLABLE,
+	UI,
+	TOOL
+};
+
 class AGameObject {
 public:
-	AGameObject(std::string name); //constructor
+	AGameObject(std::string name, Tag tag); //constructor
 	virtual ~AGameObject(); //deconstructor
 public:
 	virtual void initialize() = 0; // pure virtual
@@ -19,6 +29,7 @@ public:
 public:
 	std::string getName();
 
+	Tag getTag();
 	void attachChild(AGameObject* child);
 	void detachCild(AGameObject* child);
 	void setPosition(float x, float y);
@@ -27,6 +38,7 @@ public:
 	sf::Sprite* getSprite();
 	sf::Transform getGlobalTransform();
 	AGameObject* findChild(std::string name);
+	sf::Vector2f getSpawnLoc();
 public:
 	void attachComponent(AbstractComponent* component);
 	void detachComponent(AbstractComponent* _component);
@@ -51,6 +63,9 @@ private:
 private:
 	bool enabled = true;
 	AGameObject* mParent;
+protected:
+	Tag tag;
+	sf::Vector2f spawn;
 public:
 	void setEnabled(bool flag);
 	bool isEnabled();

@@ -1,6 +1,6 @@
 #include "Hitbox.h"
 
-Hitbox::Hitbox(std::string name, float width, float height) : CollisionListener(), AGameObject(name)
+Hitbox::Hitbox(std::string name, float width, float height) : CollisionListener(), AGameObject(name, Tag::TOOL)
 {
 	this->width = width;
 	this->height = height;
@@ -45,11 +45,9 @@ void Hitbox::onCollisionEnter(AGameObject* contact)
 {
 	std::cout << "BONK" << std::endl;
 	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
-	if (contact->getName() == "Walker") {
-		Walker* walker = (Walker*)contact;
-		walker->setPosition(walker->getSpawnLoc().x, walker->getSpawnLoc().y);
-		WalkerMovement* mv = (WalkerMovement*)walker->findComponentByName("WalkerMovement");
-		//mv->isMoving = false;
+	if (contact->getTag() == Tag::ENEMY) {
+		contact->setPosition(contact->getSpawnLoc().x, contact->getSpawnLoc().y);
+		contact->setEnabled(false);
 	}
 }
 

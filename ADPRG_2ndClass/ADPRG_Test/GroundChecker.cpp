@@ -1,7 +1,7 @@
 #include "GroundChecker.h"
 
 
-GroundChecker::GroundChecker(std::string name, float width, float height) : CollisionListener(), AGameObject(name)
+GroundChecker::GroundChecker(std::string name, float width, float height) : CollisionListener(), AGameObject(name, Tag::TOOL)
 {
 	this->width = width;
 	this->height = height;

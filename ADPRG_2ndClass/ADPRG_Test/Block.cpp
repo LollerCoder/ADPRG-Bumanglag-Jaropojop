@@ -1,7 +1,7 @@
 #include "Block.h"
 
 
-Block::Block(std::string name) : AGameObject(name) {
+Block::Block(std::string name) : AGameObject(name, Tag::BLOCK) {
 
 }
 

@@ -3,7 +3,7 @@
 
 class EmptyGameObject : public AGameObject {
 public:
-	EmptyGameObject(std::string name);
+	EmptyGameObject(std::string name, Tag tag);
 public:
 	void initialize();
 };

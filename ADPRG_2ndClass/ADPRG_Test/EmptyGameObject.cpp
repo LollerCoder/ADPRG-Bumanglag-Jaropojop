@@ -1,6 +1,6 @@
 #include "EmptyGameObject.hpp"
 
-EmptyGameObject::EmptyGameObject(std::string name) : AGameObject(name) {
+EmptyGameObject::EmptyGameObject(std::string name, Tag tag) : AGameObject(name, tag) {
 
 }
 

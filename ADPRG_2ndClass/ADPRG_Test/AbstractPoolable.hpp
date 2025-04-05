@@ -3,7 +3,7 @@
 
 class AbstractPoolable : public AGameObject{
 public:
-	AbstractPoolable(std::string name);
+	AbstractPoolable(std::string name, Tag tag);
 public:
 	virtual void initialize() = 0;
 	virtual void onRelease() = 0;

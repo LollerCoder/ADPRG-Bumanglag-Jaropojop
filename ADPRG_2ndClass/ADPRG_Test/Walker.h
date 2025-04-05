@@ -22,19 +22,11 @@ public:
 	void onCollisionExit(AGameObject* contact);
 	void onCollisionEnter(AGameObject* contact);
 
-	sf::Vector2f getSpawnLoc();
-
 	Collider* collider;
-private:
+public:
 	void incrementWalkFrame();
 private:
 	std::vector<Frame> walkFrames;
 	int currWalkFrame = -1;
-
-	float fAnimThresh = 0.1f;
-	float fAnimFreq = 0;
-	float fAnimTimer = 0;
-
-	sf::Vector2f spawn;
 };
 

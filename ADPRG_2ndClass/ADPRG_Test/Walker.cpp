@@ -1,6 +1,6 @@
 #include "Walker.h"
 
-Walker::Walker(std::string name, sf::Vector2f spawn) : AGameObject(name) {
+Walker::Walker(std::string name, sf::Vector2f spawn) : AGameObject(name, Tag::ENEMY) {
 	this->spawn = spawn;
 }
 
@@ -55,14 +55,9 @@ void Walker::processInput(sf::Event event) {
 }
 
 void Walker::update(sf::Time deltaTime) {
+
 	AGameObject::update(deltaTime);
 
-	if (this->fAnimFreq >= this->fAnimThresh) {
-		this->incrementWalkFrame();
-		this->fAnimFreq = 0;
-	}
-
-	this->fAnimFreq += deltaTime.asSeconds();
 }
 
 
@@ -74,10 +69,6 @@ void Walker::onCollisionEnter(AGameObject* contact) {
 
 	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)this);
 
-}
-
-sf::Vector2f Walker::getSpawnLoc() {
-	return this->spawn;
 }
 
 void Walker::incrementWalkFrame() {

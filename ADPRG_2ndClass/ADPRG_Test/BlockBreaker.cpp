@@ -2,7 +2,7 @@
 
 
 
-BlockBreaker::BlockBreaker(std::string name, float width, float height) : CollisionListener(), AGameObject(name)
+BlockBreaker::BlockBreaker(std::string name, float width, float height) : CollisionListener(), AGameObject(name, Tag::TOOL)
 {
 	this->width = width;
 	this->height = height;

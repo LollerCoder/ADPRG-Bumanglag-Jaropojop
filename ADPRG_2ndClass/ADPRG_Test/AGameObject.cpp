@@ -1,7 +1,8 @@
 #include "AGameObject.hpp"
 
-AGameObject::AGameObject(std::string name){
+AGameObject::AGameObject(std::string name, Tag tag){
 	this->name = name;
+	this->tag = tag;
 }
 
 AGameObject::~AGameObject(){ // when a gameobject is destroyed, destroy its component and children
@@ -82,6 +83,10 @@ std::string AGameObject::getName(){
 	return this->name;
 }
 
+Tag AGameObject::getTag() {
+	return this->tag;
+}
+
 void AGameObject::attachChild(AGameObject* child){
 	this->childList.push_back(child);
 	child->setParent(this);
@@ -145,6 +150,10 @@ AGameObject* AGameObject::findChild(std::string name)
 		}
 	}
 	return nullptr;
+}
+
+sf::Vector2f AGameObject::getSpawnLoc() {
+	return this->spawn;
 }
 
 void AGameObject::attachComponent(AbstractComponent* component){

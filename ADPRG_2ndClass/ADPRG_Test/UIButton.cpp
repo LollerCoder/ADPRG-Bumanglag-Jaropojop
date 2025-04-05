@@ -1,6 +1,6 @@
 #include "UIButton.hpp"
 
-UIButton::UIButton(std::string name, sf::Texture* normalTexture, sf::Texture* pressedTexture) : AGameObject(name){
+UIButton::UIButton(std::string name, sf::Texture* normalTexture, sf::Texture* pressedTexture) : AGameObject(name, Tag::UI){
 	this->normalTexture = normalTexture;
 	this->pressedTexture = pressedTexture;
 	this->listener = nullptr;

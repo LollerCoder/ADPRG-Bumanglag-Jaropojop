@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(std::string name) : AGameObject(name) {
+Entity::Entity(std::string name, Tag tag) : AGameObject(name, tag) {
 
 }
 

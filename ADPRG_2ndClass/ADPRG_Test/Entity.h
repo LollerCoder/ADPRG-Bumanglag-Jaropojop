@@ -7,7 +7,7 @@
 class Entity : public AGameObject
 {
 public:
-	Entity(std::string name);
+	Entity(std::string name, Tag tag);
 	virtual void initialize();
 
 private:

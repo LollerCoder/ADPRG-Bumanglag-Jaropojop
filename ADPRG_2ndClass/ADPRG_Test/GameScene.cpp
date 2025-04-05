@@ -23,7 +23,7 @@ void GameScene::onUnloadResources() {
 }
 
 void GameScene::loadBG() {
-	Entity* entity = new Entity("Background");
+	Entity* entity = new Entity("Background", Tag::BACKGROUND);
 	this->registerObject(entity);
 	Block* blocks = new Block("BlockStack");
 	this->registerObject(blocks);
@@ -48,8 +48,19 @@ void GameScene::loadPlayer() {
 }
 
 void GameScene::loadEnemies() {
-	Walker* walker = new Walker("Walker", (sf::Vector2f(-50, 400)));
+	Walker* walker = new Walker("Walker-1", (sf::Vector2f(-50, 400)));
 	this->registerObject(walker);
+
+	walker = new Walker("Walker-2", (sf::Vector2f(650, 285)));
+	this->registerObject(walker);
+
+	walker = new Walker("Walker-3", (sf::Vector2f(-50, 165)));
+	this->registerObject(walker);
+
+	walker = new Walker("Walker-4", (sf::Vector2f(650, 45)));
+	this->registerObject(walker);
+
+
 }
 
 void GameScene::loadPoolables() {
@@ -61,7 +72,7 @@ void GameScene::loadUIButton() {
 }
 
 void GameScene::loadPhysicsManager() {
-	EmptyGameObject* physicsHolder = new EmptyGameObject("PhysicsManagerHolder");
+	EmptyGameObject* physicsHolder = new EmptyGameObject("PhysicsManagerHolder", Tag::TOOL);
 	PhysicsManager::initialize("Physics Manager", physicsHolder);
 	GameObjectManager::getInstance()->addObject(physicsHolder);
 }

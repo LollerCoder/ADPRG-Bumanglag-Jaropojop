@@ -19,6 +19,13 @@ void WalkerMovement::perform() {
 		this->velocity.y = 0;
 	}
 
+	if (this->fAnimFreq >= this->fAnimThresh) {
+		walker->incrementWalkFrame();
+		this->fAnimFreq = 0;
+	}
+
+	this->fAnimFreq += deltaTime.asSeconds();
+
 	if (walker->getSpawnLoc().x < 0) {
 		walker->getTransformable()->setScale(-0.7f, 0.7f);
 		this->velocity.x = this->SPEED_MULTIPLIER;
