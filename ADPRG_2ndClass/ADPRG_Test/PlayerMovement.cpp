@@ -132,3 +132,8 @@ void PlayerMovement::setGrounded(bool flag)
 {
 	this->isGrounded = flag;
 }
+
+void PlayerMovement::setVelocity(sf::Vector2f newVel)
+{
+	this->velocity = newVel;
+}

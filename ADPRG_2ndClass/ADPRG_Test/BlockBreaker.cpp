@@ -19,7 +19,7 @@ void BlockBreaker::initialize()
 	//invisible sprite
 	sf::Color invisible = sf::Color::Transparent;
 
-	/*this->sprite->setColor(invisible);*/
+	//this->sprite->setColor(invisible);
 
 	this->transformable.setPosition(0, 0);
 
@@ -47,6 +47,30 @@ void BlockBreaker::onCollisionEnter(AGameObject* contact)
 {
 	if (contact->getName() == "Block") {
 		 contact->setEnabled(false);
+
+
+		
+			 PlayerMovement* pm = nullptr;
+			 //::cout << contact->getName() << std::endl;
+			 for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
+				 if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "MyPlayerMovement") {
+					 pm = (PlayerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
+
+					 //std::cout << "pm found" << std::endl;
+				 }
+			 }
+			 if (pm == nullptr) {
+				 //std::cout << " PAKC" << std::endl;
+			 }
+			 else {
+				 pm->setVelocity(sf::Vector2f(15.0f, 0.0f));
+
+
+
+			 }
+
+
+		 
 	}
 }
 

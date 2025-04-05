@@ -28,6 +28,7 @@ public:
 	void deactivate();
 
 public:
+	float inside = 0;
 	float width;
 	float height;
 	Collider* collider;

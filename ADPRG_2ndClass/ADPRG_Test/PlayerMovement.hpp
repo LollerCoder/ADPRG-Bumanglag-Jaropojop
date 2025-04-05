@@ -9,6 +9,7 @@ public:
 public:
 	void perform();
 	void setGrounded(bool flag);
+	void setVelocity(sf::Vector2f newVel);
 private:
 	const float SPEED_MULTIPLIER = 150.0f;
 	const float AIR_SPEED_MULTIPLIER = 0.5f;
@@ -19,7 +20,7 @@ private:
 	bool isSwinging = false;
 	bool isGrounded = false;
 	const float GRAVITY_FORCE = 20.0f;
-	const float JUMP_FORCE = 535.0f; 
+	const float JUMP_FORCE = 550.0f; 
 	sf::Vector2f velocity = sf::Vector2f(0.0f, 0.0f);
 };
 

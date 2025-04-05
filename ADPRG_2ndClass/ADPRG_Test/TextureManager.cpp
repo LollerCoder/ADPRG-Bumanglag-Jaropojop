@@ -12,7 +12,16 @@ void TextureManager::loadAll(){
     this->loadTexture("eagle", "../Media/Textures/Eagle.png");
     this->loadTexture("background", "../Media/Textures/background.png");
     this->loadTexture("blocks", "../Media/Textures/iceClimbBox.png");
+
     this->loadTexture("eval_box", "../Media/Textures/eval_box.png");
+
+    
+    //blocks
+    this->loadTexture("block", "../Media/Textures/SpriteSheets/Blocks/blocks.png");
+    FileReader::getInstance()->loadFrames("block", "../Media/Textures/SpriteSheets/Blocks/blocks.json");
+
+
+
     this->loadPlayer();
     this->loadEnemies();
 }

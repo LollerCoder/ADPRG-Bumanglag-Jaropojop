@@ -19,11 +19,12 @@ public:
 	void releasePoolableBatch(std::vector<AbstractPoolable*> objectList);
 
 	std::string getTag();
+	float getAvailableSize();
 private:
 	std::string tag;
 	AbstractPoolable* poolableCopy = NULL;
 	AGameObject* parent = NULL;
-	int maxPoolSize = 20;
+	int maxPoolSize = 30;
 	std::vector<AbstractPoolable*> availableObjects;
 	std::vector<AbstractPoolable*> usedObjects;
 private:

@@ -18,7 +18,7 @@ void GroundChecker::initialize()
 	//invisible sprite
 	sf::Color invisible = sf::Color::Transparent;
 
-	this->sprite->setColor(invisible);
+	//this->sprite->setColor(invisible);
 
 	this->transformable.setPosition(0, 0);
 
@@ -39,6 +39,7 @@ void GroundChecker::initialize()
 
 void GroundChecker::onCollisionExit(AGameObject* contact)
 {
+
 	PlayerMovement* pm = nullptr;
 	WalkerMovement* wm = nullptr;
 	//std::cout << contact->getName() << std::endl;
@@ -52,18 +53,29 @@ void GroundChecker::onCollisionExit(AGameObject* contact)
 			//std::cout << "pm found" << std::endl;
 		}
 	}
-	if (pm != nullptr) {
-		pm->setGrounded(false);
+	if (contact->getTag() == Tag::BLOCK) {
+		inside--;
 	}
-	if (wm != nullptr) {
-		wm->setGrounded(false);
+	if (inside == 0) {
+		if (pm != nullptr) {
+			pm->setGrounded(false);
+		}
+		if (wm != nullptr) {
+			wm->setGrounded(false);
+		}
 	}
+	
 }
 
 void GroundChecker::onCollisionEnter(AGameObject* contact)
 {
 	
-	if (contact->getName() != "Player") {
+	if (contact->getTag() == Tag::BLOCK) {
+		if (this->getParent()->getName() == "Player") {
+			//std::cout << "BlockFound" << std::endl;
+		}
+		
+		inside++;
 		PlayerMovement* pm = nullptr;
 		//::cout << contact->getName() << std::endl;
 		for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
@@ -74,19 +86,25 @@ void GroundChecker::onCollisionEnter(AGameObject* contact)
 			}
 		}
 		if (pm == nullptr) {
-			std::cout << " PAKC" << std::endl;
+			//std::cout << " PAKC" << std::endl;
 		}
 		else {
 			float contPos = contact->getTransformable()->getPosition().y;
 			float aug = contact->getSprite()->getGlobalBounds().height/2;
 
-			std::cout << "ToCheck: " << contPos - aug << std::endl;
-			std::cout << "curr pos: "  << this->getGlobalTransform().transformPoint(0,0).y << std::endl;
+			/*std::cout << "ToCheck: " << contPos - aug << std::endl;
+			std::cout << "curr pos: "  << this->getGlobalTransform().transformPoint(0,0).y << std::endl;*/
 
 
-			if (contPos - aug -5 <= this->getGlobalTransform().transformPoint(0, 0).y && this->getGlobalTransform().transformPoint(0, 0).y <= contPos - aug + 5) {
+			if (contPos - aug -10 <= this->getGlobalTransform().transformPoint(0, 0).y && this->getGlobalTransform().transformPoint(0, 0).y <= contPos - aug + 10) {
+				if (this->getParent()->getName() == "Player") {
+	
+					//std::cout << "I'm walking" << std::endl;
+				}
+				pm->setVelocity(sf::Vector2f(0, 0));
 				pm->setGrounded(true);
 				this->getParent()->findChild("TopHitbox")->setEnabled(false);
+				
 			}
 
 			

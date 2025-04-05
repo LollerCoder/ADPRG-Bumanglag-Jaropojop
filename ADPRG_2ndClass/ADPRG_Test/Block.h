@@ -3,22 +3,27 @@
 #include "AGameObject.hpp"
 #include "TextureManager.hpp"
 #include "Game.h"
-class Block : public AGameObject, public CollisionListener
+class Block : public AbstractPoolable, public CollisionListener
 {
 
 
 
 public:
-	Block(std::string name);
+	Block(std::string name, float x, float y);
 	virtual void initialize();
 	//collision
 	void onCollisionExit(AGameObject* contact);
 	void onCollisionEnter(AGameObject* contact);
 
+	void setPos(float x, float y);
 	Collider* collider;
 
-private:
+	void onActivate();
+	void onRelease();
+	AbstractPoolable* clone();
 
+private:
+	Frame frame;
 
 
 
