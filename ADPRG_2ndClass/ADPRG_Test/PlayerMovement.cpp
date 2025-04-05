@@ -97,6 +97,13 @@ void PlayerMovement::perform(){
 
 	playerTransformable->move(this->velocity * deltaTime.asSeconds());
 
+	if (playerTransformable->getPosition().x < -25.0f) {
+		playerTransformable->setPosition(680.0f, playerTransformable->getPosition().y);
+	}
+	if (playerTransformable->getPosition().x > 680.0f) {
+		playerTransformable->setPosition(-25.0f, playerTransformable->getPosition().y);
+	}
+
 	if (playerTransformable->getPosition().y >= 400) {
 		this->isGrounded = true;
 
