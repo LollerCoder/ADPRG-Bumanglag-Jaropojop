@@ -44,3 +44,7 @@ void WalkerMovement::perform() {
 
 	}
 }
+
+void WalkerMovement::setGrounded(bool flag) {
+	this->isGrounded = flag;
+}

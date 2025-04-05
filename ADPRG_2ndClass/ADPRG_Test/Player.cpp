@@ -30,6 +30,13 @@ void Player::initialize() {
 	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
 	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 20);
 
+	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.01);
+	this->attachChild(gr);
+	sf::IntRect playerBounds3 = this->getSprite()->getTextureRect();
+	gr->setPosition(0, +playerBounds3.height / 2);
+	gr->getSprite()->rotate(90.0f);
+	gr->setEnabled(true);
+
 	PlayerInputController* playerInput = new PlayerInputController("MyPlayerInput");
 	this->attachComponent(playerInput);
 

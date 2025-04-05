@@ -45,24 +45,11 @@ void GameScene::loadPlayer() {
 	hit2->setPosition(0, -playerBounds2.height/2 -10 );
 	hit2->getSprite()->rotate(90.0f);
 	hit2->setEnabled(false);
-
-	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.01);
-	player->attachChild(gr);
-	sf::IntRect playerBounds3 = player->getSprite()->getTextureRect();
-	gr->setPosition(0, +playerBounds3.height / 2 );
-	gr->getSprite()->rotate(90.0f);
-	gr->setEnabled(true);
 }
 
 void GameScene::loadEnemies() {
 	Walker* walker = new Walker("Walker", (sf::Vector2f(-50, 400)));
 	this->registerObject(walker);
-	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.01);
-	walker->attachChild(gr);
-	sf::IntRect playerBounds3 = walker->getSprite()->getTextureRect();
-	gr->setPosition(0, +playerBounds3.height / 2);
-	gr->getSprite()->rotate(90.0f);
-	gr->setEnabled(true);
 }
 
 void GameScene::loadPoolables() {

@@ -68,6 +68,8 @@ void PlayerMovement::perform(){
 
 		this->fAnimFreq += this->deltaTime.asSeconds();
 	}
+
+	float dir = 0.0f;
 	
 	if (inputController->isJump() && this->isGrounded) {
 		this->velocity.y = -JUMP_FORCE; 
@@ -82,17 +84,24 @@ void PlayerMovement::perform(){
 
 	}
 	else if (inputController->isRight()) {
-		this->velocity.x = this->SPEED_MULTIPLIER;
+		dir = 1.0f;
 		//player->getSprite()->setScale(1.f, 1.f);
 		player->getTransformable()->setScale(1.f, 1.f);
 	}
 	else if (inputController->isLeft()) {
-		this->velocity.x = -this->SPEED_MULTIPLIER;
+		dir = -1.f;
 		//player->getSprite()->setScale(-1.f, 1.f);
 		player->getTransformable()->setScale(-1.f, 1.f);
 	}
 	else {
 		this->velocity.x = 0; 
+	}
+
+	if (!this->isGrounded) {
+		this->velocity.x = dir * this->SPEED_MULTIPLIER * this->AIR_SPEED_MULTIPLIER;
+	}
+	else {
+		this->velocity.x = dir * this->SPEED_MULTIPLIER;
 	}
 
 	playerTransformable->move(this->velocity * deltaTime.asSeconds());
@@ -119,7 +128,7 @@ void PlayerMovement::perform(){
 	//std::cout << playerTransformable->getPosition().x << "," << playerTransformable->getPosition().y << std::endl;
 }
 
-//void PlayerMovement::setGrounded(bool flag)
-//{
-//	this->isGrounded = flag;
-//}
+void PlayerMovement::setGrounded(bool flag)
+{
+	this->isGrounded = flag;
+}

@@ -22,14 +22,10 @@ public:
 
 	void setDeltatime(sf::Time deltaTime);
 	virtual void perform() = 0;
-
-	void setGrounded(bool flag);
 protected:
 	AGameObject* owner;
 	ComponentType type;
 	std::string name;
 	sf::Time deltaTime;
-
-	bool isGrounded = false;
 };
 

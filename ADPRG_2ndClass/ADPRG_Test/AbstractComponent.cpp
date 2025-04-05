@@ -35,9 +35,6 @@ void AbstractComponent::setDeltatime(sf::Time deltaTime){
 	this->deltaTime = deltaTime;
 }
 
-void AbstractComponent::setGrounded(bool flag)
-{
-	this->isGrounded = flag;
-}
+
 
 
