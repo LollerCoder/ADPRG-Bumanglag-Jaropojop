@@ -4,15 +4,12 @@
 #include "TextureManager.hpp"
 #include "Game.h"
 
-class Entity : public AGameObject
+class Seal : public AGameObject
 {
 public:
-	Entity(std::string name, Tag tag);
+	Seal(std::string name, Tag tag);
 	virtual void initialize();
-	
+
 private:
-
-
 };
 
-	

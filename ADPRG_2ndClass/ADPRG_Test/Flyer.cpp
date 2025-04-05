@@ -43,7 +43,7 @@ void Flyer::initialize() {
 }
 
 void Flyer::processInput(sf::Event event) {
-	AGameObject::processInput;
+	AGameObject::processInput(event);
 }
 
 void Flyer::update(sf::Time deltaTime) {

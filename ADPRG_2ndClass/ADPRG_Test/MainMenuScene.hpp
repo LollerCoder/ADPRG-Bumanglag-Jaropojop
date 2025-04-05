@@ -3,7 +3,9 @@
 #include "SceneManager.hpp"
 #include "UIText.hpp"
 #include "Game.h"
-
+#include "Seal.hpp"
+#include "MainMenuScreen.h"
+#include "UIBox.h"
 
 class MainMenuScene : public AbstractScene{
 public:
@@ -11,6 +13,7 @@ public:
 public:
 	void onLoadResources();
 	void onLoadObjects();
+	void LoadUI();
 
 	void onUnloadResources();
 

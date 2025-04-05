@@ -34,5 +34,6 @@ private:
 	void loadPoolables();
 	void loadUIButton();
 	void loadPhysicsManager();
+	void loadUI();
 };
 

@@ -16,6 +16,7 @@ void GameScene::onLoadObjects() {
 	this->loadPlayer();
 	this->loadPoolables();
 	this->loadUIButton();
+	this->loadUI();
 }
 
 void GameScene::onUnloadResources() {
@@ -76,6 +77,13 @@ void GameScene::loadPhysicsManager() {
 	EmptyGameObject* physicsHolder = new EmptyGameObject("PhysicsManagerHolder", Tag::TOOL);
 	PhysicsManager::initialize("Physics Manager", physicsHolder);
 	GameObjectManager::getInstance()->addObject(physicsHolder);
+}
+
+void GameScene::loadUI()
+{
+	UIBox* uiBox = new UIBox("UIBoxGame");
+	uiBox->setEnabled(false);
+	this->registerObject(uiBox);
 }
 
 

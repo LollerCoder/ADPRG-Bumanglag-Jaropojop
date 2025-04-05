@@ -1,4 +1,6 @@
 #include "PlayerInputController.hpp"
+#include "GameObjectManager.hpp"
+#include "ApplicationManager.hpp"
 
 PlayerInputController::PlayerInputController(std::string name) : GenericInputController(name) {
 
@@ -13,6 +15,13 @@ void PlayerInputController::perform(){
 
 	if (this->event.type == sf::Event::KeyPressed) {
 		isPressed = true;
+		if (this->event.key.code == sf::Keyboard::P) {
+			if (this->Pause == false) {
+				GameObjectManager::getInstance()->findObjectByName("UIBoxGame")->setEnabled(true);
+				ApplicationManager::getInstance()->pauseApplication();
+			}
+			else ApplicationManager::getInstance()->resumeApplication();
+		}
 	}
 	else if (this->event.type == sf::Event::KeyReleased) {
 		isPressed = false;
@@ -36,6 +45,9 @@ void PlayerInputController::perform(){
 		break;
 	case sf::Keyboard::Space:
 		this->moveJump = isPressed;
+	
+
+
 	}
 }
 
@@ -62,3 +74,9 @@ bool PlayerInputController::isAttack(){
 bool PlayerInputController::isJump() {
 	return this->moveJump;
 }
+
+bool PlayerInputController::isPause()
+{
+	return this->Pause;
+}
+

@@ -40,7 +40,18 @@ void TextureManager::loadPlayer() {
     this->loadTexture("Walker", "../Media/Textures/yeti.png");
     this->loadTexture("Hitbox", "../Media/Textures/hitboxTest.png");
 
+    //UI
+    this->loadTexture("sealSingle", "../Media/Textures/UI/SealLog.png");
+    this->loadTexture("iceBg", "../Media/Textures/UI/IceBg.png");
+   
+    this->loadTexture("iceButton", "../Media/Textures/UI/IceButton.png");
+    this->loadTexture("iceButtonPressed", "../Media/Textures/UI/IceButtonSelected.png");
+  
+    
+
+   
     this->loadTexture("Player", "../Media/Textures/SpriteSheets/Player/Player.png");
+
     FileReader::getInstance()->loadFrames("Player", "../Media/Textures/SpriteSheets/Player/Player.json");
 }
 
