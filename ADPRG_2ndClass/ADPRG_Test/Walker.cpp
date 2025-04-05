@@ -37,7 +37,6 @@ void Walker::initialize() {
 	this->getTransformable()->setScale(0.7f, 0.7f);
 
 	this->collider = new Collider("WalkerCollider");
-
 	this->collider->setLocalBounds(sprite->getGlobalBounds());
 	this->collider->setCollisionListener(this);
 	this->attachComponent(this->collider);
@@ -55,8 +54,23 @@ void Walker::processInput(sf::Event event) {
 }
 
 void Walker::update(sf::Time deltaTime) {
+	if (!this->isEnabled()) {
+		this->hidden = true;
+		this->setEnabled(true);
+	}
 
-	AGameObject::update(deltaTime);
+	if(this->hidden) {
+		this->timer += deltaTime.asSeconds();
+		if (this->timer >= this->RESPAWN_TIMER) {
+			this->setEnabled(true);
+			this->timer = 0.0f;
+			this->hidden = false;
+		}
+	}
+	else {
+		AGameObject::update(deltaTime);
+
+	}
 
 }
 

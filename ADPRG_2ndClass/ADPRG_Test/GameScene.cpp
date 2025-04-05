@@ -48,19 +48,20 @@ void GameScene::loadPlayer() {
 }
 
 void GameScene::loadEnemies() {
-	Walker* walker = new Walker("Walker-1", (sf::Vector2f(-50, 400)));
+	Walker* walker = new Walker("Walker-1", (sf::Vector2f(-60, 400)));
 	this->registerObject(walker);
 
-	walker = new Walker("Walker-2", (sf::Vector2f(650, 285)));
+	walker = new Walker("Walker-2", (sf::Vector2f(660, 285)));
 	this->registerObject(walker);
 
-	walker = new Walker("Walker-3", (sf::Vector2f(-50, 165)));
+	walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
 	this->registerObject(walker);
 
-	walker = new Walker("Walker-4", (sf::Vector2f(650, 45)));
+	walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
 	this->registerObject(walker);
 
-
+	Flyer* flyer = new Flyer("Flyer-1", sf::Vector2f(300,300));
+	this->registerObject(flyer);
 }
 
 void GameScene::loadPoolables() {

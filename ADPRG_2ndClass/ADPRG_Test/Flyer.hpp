@@ -1,36 +1,31 @@
 #pragma once
-#pragma once
-#include <SFML/Graphics.hpp>
 #include "AGameObject.hpp"
 #include "TextureManager.hpp"
-#include "AGameObject.hpp"
+#include "FileReader.hpp"
 #include "Game.h"
 #include "Collider.hpp"
 #include "CollisionListener.hpp"
-#include "WalkerMovement.hpp"
+#include "FlyerMovement.hpp"
 
-class Walker : public AGameObject , public CollisionListener
-{
+class Flyer : public AGameObject, public CollisionListener {
 public:
-	Walker(std::string name, sf::Vector2f spawn);
-
+	Flyer(std::string name, sf::Vector2f spawn);
+public:
 	void initialize();
 	void processInput(sf::Event event);
 	void update(sf::Time deltaTime);
 
-	//collision
 	void onCollisionExit(AGameObject* contact);
 	void onCollisionEnter(AGameObject* contact);
-
-	Collider* collider;
-public:
-	void incrementWalkFrame();
+	void incrementFlyFrame();
 private:
-	std::vector<Frame> walkFrames;
+	std::vector<Frame> flyFrames;
 	int currWalkFrame = -1;
 
 	bool hidden = false;
 	float timer = 0.0f;
 	const float RESPAWN_TIMER = 4.f;
+
+	Collider* collider;
 };
 

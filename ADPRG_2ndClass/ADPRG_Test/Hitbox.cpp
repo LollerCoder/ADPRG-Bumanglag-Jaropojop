@@ -46,14 +46,14 @@ void Hitbox::onCollisionEnter(AGameObject* contact)
 	std::cout << "BONK" << std::endl;
 	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
 	if (contact->getTag() == Tag::ENEMY) {
-		contact->setPosition(contact->getSpawnLoc().x, contact->getSpawnLoc().y);
 		contact->setEnabled(false);
+		contact->setPosition(contact->getSpawnLoc().x, contact->getSpawnLoc().y);
 	}
 }
 
 void Hitbox::activate()
 {
-	
+
 	this->setEnabled(true);
 	PhysicsManager::getInstance()->trackObject(this->collider);
 }
