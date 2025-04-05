@@ -10,9 +10,7 @@ public:
 public:
 	void initialize();
 	void setSize(unsigned int size);
-	void setText(std::string text);
-	
-	
+	void setText(std::string text);	
 
 	std::string getText();
 private:

@@ -9,6 +9,7 @@ class SceneManager {
 public:
 	static std::string MAIN_MENU_SCENE_NAME;
 	static std::string GAME_SCENE_NAME;
+	static std::string EVAL_SCENE_NAME;
 public:
 	static SceneManager* getInstance();
 	void registerScene(AbstractScene* scene);

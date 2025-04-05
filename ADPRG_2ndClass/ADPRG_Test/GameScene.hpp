@@ -11,7 +11,7 @@
 #include "UIData.hpp"
 #include "UIManager.hpp"
 #include "Player.h"
-#include "Entity.h"
+#include "GameBG.h"
 #include "Block.h"
 #include "Walker.h"
 #include "Hitbox.h"

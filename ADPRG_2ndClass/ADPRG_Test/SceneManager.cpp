@@ -1,6 +1,7 @@
 #include "SceneManager.hpp"
 std::string SceneManager::MAIN_MENU_SCENE_NAME = "MainMenuScene";
 std::string SceneManager::GAME_SCENE_NAME = "GameScene";
+std::string SceneManager::EVAL_SCENE_NAME = "EvalScene";
 
 SceneManager* SceneManager::sharedInstance = nullptr;
 

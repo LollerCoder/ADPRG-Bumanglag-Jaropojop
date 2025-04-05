@@ -10,6 +10,7 @@
 #include "SceneManager.hpp"
 #include "MainMenuScene.hpp"
 #include "GameScene.hpp"
+#include "EvaluationScene.hpp"
 
 class Game
 {

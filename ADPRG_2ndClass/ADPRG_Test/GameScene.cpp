@@ -24,8 +24,8 @@ void GameScene::onUnloadResources() {
 }
 
 void GameScene::loadBG() {
-	Entity* entity = new Entity("Background", Tag::BACKGROUND);
-	this->registerObject(entity);
+	GameBG* bg = new GameBG("Background", Tag::BACKGROUND);
+	this->registerObject(bg);
 	Block* blocks = new Block("BlockStack");
 	this->registerObject(blocks);
 }
