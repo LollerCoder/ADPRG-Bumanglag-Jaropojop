@@ -20,4 +20,3 @@ void Seal::initialize() {
 
 	this->getTransformable()->setScale(1.5f, 1.5f);
 }
-
