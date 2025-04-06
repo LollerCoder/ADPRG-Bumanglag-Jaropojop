@@ -172,6 +172,28 @@ void BlockHandler::perform() {
 		}
 
 		break;
+	case 8:
+		if (blockPool->getAvailableSize() >= 21) {
+			x = 2;
+			for (int i = 0; i < 21; i++) {
+				float rng = this->generateRandom();
+				if (rng < chance) {
+					Block* newBlock = (Block*)blockPool->requestPoolable();
+					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(0);
+					newBlock->setInvincibility(true);
+					blocksMade.push_back(newBlock);
+
+				}
+				x++;
+			}
+			flor++;
+		}
+		else {
+			std::cout << "notEnough for floor: " << flor << std::endl;
+		}
+
+		break;
 	
 	}
 	//for (int i = 0; i < blockPool->getAvailableSize(); i++) {
@@ -208,20 +230,23 @@ void BlockHandler::perform() {
 
 void BlockHandler::clearUnused()
 {
-	//std::cout << "Cleaning blocks" << std::endl;
-	sf::View cam = CameraManager::getInstance()->getViewCamera();
-	int cleaned = 0;
-	for (int i = 0; i < this->blocksMade.size(); i++) {
-		std::cout << "Block at: " << blocksMade[i]->getTransformable()->getPosition().y << std::endl;
-		std::cout << "Cam was: " << cam.getCenter().y + Game::WINDOW_HEIGHT / 2 << std::endl;
-		if (blocksMade[i]->getTransformable()->getPosition().y > cam.getCenter().y - 120) {
-			//std::cout << "got cleaned" << std::endl;
-			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BLOCK_POOL_TAG)->releasePoolable(blocksMade[i]);
-			cleaned++;
+	if (flor <= 6) {
+		sf::View cam = CameraManager::getInstance()->getViewCamera();
+		int cleaned = 0;
+		for (int i = 0; i < this->blocksMade.size(); i++) {
+			std::cout << "Block at: " << blocksMade[i]->getTransformable()->getPosition().y << std::endl;
+			std::cout << "Cam was: " << cam.getCenter().y - 60 << std::endl;
+			if (blocksMade[i]->getTransformable()->getPosition().y > cam.getCenter().y - 60) {
+				std::cout << "got cleaned" << std::endl;
+				ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BLOCK_POOL_TAG)->releasePoolable(blocksMade[i]);
+				cleaned++;
+			}
+
 		}
-		
+		std::cout << cleaned << std::endl;
 	}
-	std::cout << cleaned << std::endl;
+	//std::cout << "Cleaning blocks" << std::endl;
+	
 }
 
 float BlockHandler::generateRandom()
