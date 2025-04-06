@@ -19,6 +19,7 @@ private:
 	float fAnimThresh = 0.1f;
 	float fAnimFreq = 0;
 	float fAnimTimer = 0;
+	bool updatedCP = false;
 public:
 	bool isMoving = false;
 };

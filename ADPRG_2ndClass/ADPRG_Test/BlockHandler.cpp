@@ -1,6 +1,7 @@
 #include "BlockHandler.h"
 #include <random>
 #include "CameraManager.hpp"
+#include "GameValue.hpp"
 
 BlockHandler::BlockHandler(std::string name, GameObjectPool* blockPool) : AbstractComponent(name, Script) {
 	this->blockPool = blockPool;
@@ -222,7 +223,7 @@ void BlockHandler::perform() {
 	//		//std::cout << "Flor: " << flor << " needed:  " << needed << std::endl;
 	//	}
 	//}
-	if (Game::camera) {
+	if (GameInfo::cameraMoving) {
 		clearUnused();
 	}
 }

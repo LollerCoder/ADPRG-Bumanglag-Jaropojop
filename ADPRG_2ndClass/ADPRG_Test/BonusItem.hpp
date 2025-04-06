@@ -16,6 +16,5 @@ public:
 	void onCollisionExit(AGameObject* gameObject);
 private:
 	Collider* collider;
-	Frame frame;
 };
 

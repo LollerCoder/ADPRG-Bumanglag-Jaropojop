@@ -22,5 +22,4 @@ private:
 	std::vector<float> cameraPosTarget;
 	sf::RenderWindow* window;
 
-	int currCheckP = 0;
 };

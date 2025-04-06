@@ -1,5 +1,5 @@
 #include "BonusItem.hpp"
-#include "PlayerScore.hpp"
+#include "GameValue.hpp"
 
 BonusItem::BonusItem(std::string name) : AGameObject(name, Tag::ITEM), CollisionListener() {
 
@@ -8,19 +8,19 @@ BonusItem::BonusItem(std::string name) : AGameObject(name, Tag::ITEM), Collision
 void BonusItem::initialize() {
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("bonus_item"));
-	this->frame = FileReader::getInstance()->getFrame("bonus_item", PlayerScore::Level % 2);
+	Frame frame = FileReader::getInstance()->getFrame("bonus_item", PlayerScore::Level % 2);
 
 	this->sprite->setTextureRect(sf::IntRect(
-												this->frame[0],
-												this->frame[1],
-												this->frame[2],
-												this->frame[3]
+												frame[0],
+												frame[1],
+												frame[2],
+												frame[3]
 											)
 								);
 
 	sf::IntRect frameRect = this->sprite->getTextureRect();
 	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
-	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2));
+	this->transformable.setPosition((Game::WINDOW_WIDTH / 2), -680.0f);
 
 	Renderer* renderer = new Renderer("ItemRenderer");
 	renderer->assignDrawable(this->sprite);
@@ -32,6 +32,7 @@ void BonusItem::initialize() {
 	this->collider->setLocalBounds(sprite->getGlobalBounds());
 	this->collider->setCollisionListener(this);
 	this->attachComponent(this->collider);
+	PhysicsManager::getInstance()->trackObject(this->collider);
 }
 
 void BonusItem::onCollisionEnter(AGameObject* gameObject) {

@@ -8,6 +8,8 @@
 #include "UIText.hpp"
 #include "UIData.hpp"
 #include "EvaluationBox.hpp"
+#include "CameraManager.hpp"
+#include "UIiMage.h"
 
 class EvaluationScene : public AbstractScene {
 public:

@@ -40,6 +40,7 @@ public:
 	sf::Transform getGlobalTransform();
 	AGameObject* findChild(std::string name);
 	sf::Vector2f getSpawnLoc();
+	void setSpawnLoc(float x, float y);
 public:
 	void attachComponent(AbstractComponent* component);
 	void detachComponent(AbstractComponent* _component);

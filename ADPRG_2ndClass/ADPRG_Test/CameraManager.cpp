@@ -1,5 +1,6 @@
 #include "CameraManager.hpp"
-#include "Game.h"
+#include "ApplicationManager.hpp"
+#include "Gamevalue.hpp"
 
 CameraManager* CameraManager::sharedInstance = nullptr;
 
@@ -28,31 +29,17 @@ void CameraManager::setUpCamera(sf::RenderWindow* window) {
 void CameraManager::updateCamera(sf::Time deltaTime) {
     
     sf::Vector2f currentCenter = this->view.getCenter();
-    if (currentCenter.y > this->cameraPosTarget[this->currCheckP]) {
+
+    if (currentCenter.y > this->cameraPosTarget[GameInfo::currCP]) {
         float speed = 300.f;
         float delta = speed * deltaTime.asSeconds();
 
         currentCenter.y -= delta;
 
-        if (currentCenter.y <= this->cameraPosTarget[this->currCheckP]) {
-            currentCenter.y = this->cameraPosTarget[this->currCheckP];
-            Game::camera = false;
+        if (currentCenter.y <= this->cameraPosTarget[GameInfo::currCP]) {
+            currentCenter.y = this->cameraPosTarget[GameInfo::currCP];
+            GameInfo::cameraMoving = false;
             ApplicationManager::getInstance()->resumeApplication();
-            switch (this->currCheckP) {
-            case 0: Game::cp1 = true;
-                break;
-            case 1: Game::cp2 = true;
-                break;
-            case 2: Game::cp3 = true;
-                break;
-            case 3: Game::cp4 = true;
-                break;
-            case 4: Game::cp5 = true;
-                break;
-            case 5: Game::cp6 = true;
-                break;
-            }
-            this->currCheckP++;
         }
 
        /* sf::View lookingView(sf::FloatRect(0.0f, -800.0f, 700.0f, 1200.0f));
@@ -66,10 +53,10 @@ void CameraManager::updateCamera(sf::Time deltaTime) {
 void CameraManager::resetCamera() {
     this->view.setCenter(this->originalPos);
     this->window->setView(this->view);
-    this->currCheckP = 0;
 }
 
 sf::View CameraManager::getViewCamera()
 {
     return this->window->getView();
 }
+

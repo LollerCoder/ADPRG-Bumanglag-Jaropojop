@@ -1,6 +1,6 @@
 #include "EvaluationScene.hpp"
-#include "PlayerScore.hpp"
-#include "CameraManager.hpp"
+#include "GameValue.hpp"
+
 
 EvaluationScene::EvaluationScene() : AbstractScene(SceneManager::EVAL_SCENE_NAME) {
 
@@ -11,12 +11,6 @@ void EvaluationScene::onLoadResources() {
 }
 
 void EvaluationScene::onLoadObjects() {
-	Game::cp1 = false;
-	Game::cp2 = false;
-	Game::cp3 = false;
-	Game::cp4 = false;
-	Game::cp5 = false;
-	Game::cp6 = false;
 	CameraManager::getInstance()->resetCamera();
 	this->loadUI();
 }
@@ -28,6 +22,9 @@ void EvaluationScene::onUnloadResources() {
 void EvaluationScene::loadUI() {
 	EvaluationBox* evalBox = new EvaluationBox("evalBox");
 	this->registerObject(evalBox);
+
+	UIiMage* item = new UIiMage("Item");
+	evalBox->attachChild(item);
 
 	UIText* playerText = new UIText("PlayerText", "nes", sf::Color::White, sf::Color::Transparent);
 	evalBox->attachChild(playerText);

@@ -92,6 +92,19 @@ void GameObjectManager::deleteAllObjectsInScene() {
     this->mGameObjectMap.clear();
 }
 
+AGameObject* GameObjectManager::findObjectByTag(Tag tag) {
+    AGameObject* object;
+    int index = -1;
+    for (int i = 0; i < this->mGameObjectList.size() && index == -1; i++) {
+        object = this->mGameObjectList[i];
+        if (object->getTag() == tag) {
+            index = i;
+        }
+    }
+
+    return this->mGameObjectList[index];
+}
+
 
 
 

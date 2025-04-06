@@ -1,5 +1,5 @@
 #include "GameScene.hpp"
-#include "PlayerScore.hpp"
+#include "GameValue.hpp"
 
 GameScene::GameScene() : AbstractScene(SceneManager::GAME_SCENE_NAME) {
 
@@ -19,6 +19,7 @@ void GameScene::onLoadObjects() {
 	this->loadUI();
 	PlayerScore::resetScore();
 	PlayerScore::Level += 1;
+	GameInfo::resetInfo();
 }
 
 void GameScene::onUnloadResources() {
@@ -59,11 +60,11 @@ void GameScene::loadEnemies() {
 	walker = new Walker("Walker-2", (sf::Vector2f(660, 290)));
 	this->registerObject(walker);
 
-	//walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
-	//this->registerObject(walker);
+	walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
+	this->registerObject(walker);
 
-	//walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
-	//this->registerObject(walker);
+	walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
+	this->registerObject(walker);
 
 	Flyer* flyer = new Flyer("Flyer-1", sf::Vector2f(0, 30));
 	this->registerObject(flyer);

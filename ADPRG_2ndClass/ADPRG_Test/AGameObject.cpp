@@ -156,6 +156,10 @@ sf::Vector2f AGameObject::getSpawnLoc() {
 	return this->spawn;
 }
 
+void AGameObject::setSpawnLoc(float x, float y) {
+	this->spawn = spawn;
+}
+
 void AGameObject::attachComponent(AbstractComponent* component){
 	//std::cout << component->getName() << std::endl;
 	this->componentList.push_back(component);

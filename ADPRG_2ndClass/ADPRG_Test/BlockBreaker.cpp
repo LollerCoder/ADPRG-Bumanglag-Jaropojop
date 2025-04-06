@@ -1,5 +1,5 @@
 #include "BlockBreaker.h"
-#include "PlayerScore.hpp"
+#include "GameValue.hpp"
 
 
 BlockBreaker::BlockBreaker(std::string name, float width, float height) : CollisionListener(), AGameObject(name, Tag::TOOL)

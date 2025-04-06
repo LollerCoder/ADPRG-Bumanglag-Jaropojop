@@ -11,7 +11,6 @@ FileReader* FileReader::getInstance() {
 }
 
 void FileReader::loadFrames(std::string name, std::string path) {
-	std::cout << name << std::endl;
 	FILE* file = fopen(path.c_str(), "rb");
 	assert(file != 0);
 

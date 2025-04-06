@@ -1,12 +1,5 @@
 #include "Game.h"
-
-bool Game::camera = false;
-bool Game::cp1 = false;
-bool Game::cp2 = false;
-bool Game::cp3 = false;
-bool Game::cp4 = false;
-bool Game::cp5 = false;
-bool Game::cp6 = false;
+#include "GameValue.hpp"
 
 Game::Game() : mWindow(sf::VideoMode(640,480), "SFML Application"){
     TextureManager::getInstance()->loadAll();
@@ -17,7 +10,6 @@ Game::Game() : mWindow(sf::VideoMode(640,480), "SFML Application"){
     
     SceneManager::getInstance()->registerScene(new GameScene());
     SceneManager::getInstance()->registerScene(new MainMenuScene());
-    SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
     SceneManager::getInstance()->registerScene(new EvaluationScene());
     SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 }
@@ -70,7 +62,7 @@ void Game::update(sf::Time deltaTime) {
         GameObjectManager::getInstance()->update(deltaTime);
     }
     
-    if (Game::camera) {
+    if (GameInfo::cameraMoving) {
         CameraManager::getInstance()->updateCamera(deltaTime);
     }
 }

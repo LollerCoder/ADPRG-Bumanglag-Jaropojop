@@ -1,5 +1,6 @@
 #include "PlayerMovement.hpp"
 #include "CameraManager.hpp"
+#include "GameValue.hpp"
 
 PlayerMovement::PlayerMovement(std::string name) : AbstractComponent(name, Script){
 
@@ -136,32 +137,38 @@ void PlayerMovement::perform(){
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 	}
 
-	//std::cout << playerTransformable->getPosition().y << std::endl;
+	std::cout << playerTransformable->getPosition().y << std::endl;
 
-	if (playerTransformable->getPosition().y <= 40.0f && !Game::cp1 && !this->isGrounded) {
+	if (playerTransformable->getPosition().y <= 40.0f && !GameInfo::cp1 && !this->isGrounded) {
+		GameInfo::cp1 = true;
+		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
-		Game::camera = true;
+		GameInfo::cameraMoving = true;
 	}
-	if (playerTransformable->getPosition().y <= -320.0f && !Game::cp2 && !this->isGrounded) {
+	if (playerTransformable->getPosition().y <= -320.0f && !GameInfo::cp2 && !this->isGrounded) {
+		GameInfo::cp2 = true;
+		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
-		Game::camera = true;
+		GameInfo::cameraMoving = true;
 	}
-	if (playerTransformable->getPosition().y <= -560.0f && !Game::cp3 && !this->isGrounded) {
+	if (playerTransformable->getPosition().y <= -560.0f && !GameInfo::cp3 && !this->isGrounded) {
+		GameInfo::cp3 = true;
+		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
-		Game::camera = true;
+		GameInfo::cameraMoving = true;
 	}
-	if (playerTransformable->getPosition().y <= -885.0f && !Game::cp4 && !this->isGrounded) {
-		ApplicationManager::getInstance()->pauseApplication();
-		Game::camera = true;
-	}
-	if (playerTransformable->getPosition().y <= -1180.0f && !Game::cp5 && !this->isGrounded) {
-		ApplicationManager::getInstance()->pauseApplication();
-		Game::camera = true;
-	}
-	if (playerTransformable->getPosition().y <= -1360.0f && !Game::cp6 && !this->isGrounded) {
-		ApplicationManager::getInstance()->pauseApplication();
-		Game::camera = true;
-	}
+	//if (playerTransformable->getPosition().y <= -885.0f && !Game::cp4 && !this->isGrounded) {
+	//	ApplicationManager::getInstance()->pauseApplication();
+	//	Game::camera = true;
+	//}
+	//if (playerTransformable->getPosition().y <= -1180.0f && !Game::cp5 && !this->isGrounded) {
+	//	ApplicationManager::getInstance()->pauseApplication();
+	//	Game::camera = true;
+	//}
+	//if (playerTransformable->getPosition().y <= -1360.0f && !Game::cp6 && !this->isGrounded) {
+	//	ApplicationManager::getInstance()->pauseApplication();
+	//	Game::camera = true;
+	//}
 
 	if (this->velocity.y >= 0) {
 		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");

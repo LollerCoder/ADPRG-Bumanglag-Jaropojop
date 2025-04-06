@@ -18,6 +18,7 @@ public:
 	void deleteObject(AGameObject* gameObject);
 	void deleteObjectByName(std::string name);
 	void deleteAllObjectsInScene();
+	AGameObject* findObjectByTag(Tag tag);
 private:
 	GameObjectManager() {};
 
@@ -30,6 +31,5 @@ private:
 private:
 	std::unordered_map<std::string, AGameObject*> mGameObjectMap;
 	std::vector<AGameObject*> mGameObjectList;
-
 };
 

@@ -1,4 +1,5 @@
 #include "Walker.h"
+#include "GameValue.hpp"
 
 Walker::Walker(std::string name, sf::Vector2f spawn) : AGameObject(name, Tag::ENEMY) {
 	this->spawn = spawn;
@@ -51,6 +52,7 @@ void Walker::initialize() {
 
 void Walker::processInput(sf::Event event) {
 	AGameObject::processInput(event);
+
 }
 
 void Walker::update(sf::Time deltaTime) {
@@ -62,14 +64,12 @@ void Walker::update(sf::Time deltaTime) {
 	if(this->hidden) {
 		this->timer += deltaTime.asSeconds();
 		if (this->timer >= this->respawnCD) {
-			this->setEnabled(true);
 			this->timer = 0.0f;
 			this->hidden = false;
 		}
 	}
 	else {
 		AGameObject::update(deltaTime);
-
 	}
 
 }
@@ -80,8 +80,6 @@ void Walker::onCollisionExit(AGameObject* contact) {
 }
 
 void Walker::onCollisionEnter(AGameObject* contact) {
-
-	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)this);
 
 }
 
