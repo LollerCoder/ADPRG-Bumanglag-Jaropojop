@@ -8,6 +8,7 @@ class ObjectPoolHolder : sf::NonCopyable {
 public:
 	static const std::string ENEMY_POOL_TAG;
 	static const std::string PROJECTILE_POOL_TAG;
+	static const std::string BLOCK_POOL_TAG;
 
 	static ObjectPoolHolder* getInstance();
 

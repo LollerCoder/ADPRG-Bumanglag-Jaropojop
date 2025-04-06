@@ -18,6 +18,7 @@
 #include "GroundChecker.h"
 #include "BlockBreaker.h"
 #include "Flyer.hpp"
+#include "BlockHandler.h"
 
 class GameScene : public AbstractScene{
 public:

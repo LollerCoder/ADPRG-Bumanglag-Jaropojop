@@ -55,6 +55,8 @@ void CameraManager::updateCamera(sf::Time deltaTime) {
             this->currCheckP++;
         }
 
+       /* sf::View lookingView(sf::FloatRect(0.0f, -800.0f, 700.0f, 1200.0f));
+        this->window->setView(lookingView);*/
 
         this->view.setCenter(currentCenter);
         this->window->setView(this->view);
@@ -65,4 +67,9 @@ void CameraManager::resetCamera() {
     this->view.setCenter(this->originalPos);
     this->window->setView(this->view);
     this->currCheckP = 0;
+}
+
+sf::View CameraManager::getViewCamera()
+{
+    return this->view;
 }

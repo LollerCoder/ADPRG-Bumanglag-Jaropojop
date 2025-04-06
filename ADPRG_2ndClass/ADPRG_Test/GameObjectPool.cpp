@@ -116,7 +116,7 @@ std::string GameObjectPool::getTag() {
 float GameObjectPool::getAvailableSize()
 {
 	
-	return this->maxPoolSize;
+	return this->availableObjects.size();
 }
 
 void GameObjectPool::setEnabled(AbstractPoolable* poolableObject, bool flag) {

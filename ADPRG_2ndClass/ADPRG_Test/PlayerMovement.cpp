@@ -137,7 +137,7 @@ void PlayerMovement::perform(){
 		
 	}
 
-	std::cout << playerTransformable->getPosition().y << std::endl;
+	//std::cout << playerTransformable->getPosition().y << std::endl;
 
 	if (playerTransformable->getPosition().y <= 40.0f && !Game::cp1 && !this->isGrounded) {
 		ApplicationManager::getInstance()->pauseApplication();

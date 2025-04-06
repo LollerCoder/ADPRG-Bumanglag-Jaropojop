@@ -74,9 +74,9 @@ void GameScene::loadEnemies() {
 
 void GameScene::loadPoolables() {
 	EmptyGameObject* poolableHolder = new EmptyGameObject("poolableHolder",Tag::TOOL);
-	GameObjectManager::getInstance()->addObject(poolableHolder);
+	this->registerObject(poolableHolder);
 	GameObjectPool* blockPool;
-	blockPool = new GameObjectPool(ObjectPoolHolder::ENEMY_POOL_TAG,
+	blockPool = new GameObjectPool(ObjectPoolHolder::BLOCK_POOL_TAG,
 		new Block("Block", Game::WINDOW_WIDTH / 2 + 240, (Game::WINDOW_HEIGHT / 2) + 80),
 		71,
 		poolableHolder
@@ -84,37 +84,12 @@ void GameScene::loadPoolables() {
 
 	blockPool->initialize();
 	ObjectPoolHolder::getInstance()->registerObjectPool(blockPool);
+
+	BlockHandler* blockHandle = new BlockHandler("blockHandler",blockPool);
+	poolableHolder->attachComponent(blockHandle);
 	//blockPool->requestPoolable();
 
-	//block placer
-	float count = 0;
-	float x = 0;
-	int flor = 0;
-	float needed = 25;
-	float sameCol = 0;
-	float rep = 1;
-	for (int i = 0; i < blockPool->getAvailableSize(); i++) {
-		count++;
-		
-		Block* newBlock = (Block*)blockPool->requestPoolable();
-		newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 -(x *19.6), (Game::WINDOW_HEIGHT / 2) + 80 -(120* flor));
-		x++;
-		std::cout << "spawn" << std::endl;
-		if (count >= needed) {
-			count = 0;
-			x = 1;
-			flor++;
-			switch ((int)flor) {
-			case 1:
-				needed -= 2;
-				break;
-			case 4:
-				needed -= 2;
-				x = 2;
-			}
-			std::cout << "Flor: " << flor << " needed:  " << needed << std::endl;
-		}
-	}
+	
 }
 
 void GameScene::loadUIButton() {
