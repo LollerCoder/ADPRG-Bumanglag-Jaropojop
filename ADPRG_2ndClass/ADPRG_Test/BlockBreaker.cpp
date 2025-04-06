@@ -48,7 +48,8 @@ void BlockBreaker::onCollisionEnter(AGameObject* contact)
 	if (contact->getName() == "Block") {
 		Block* cont = (Block*)contact;
 		if (!cont->getInvi()) {
-			contact->setEnabled(false);
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BLOCK_POOL_TAG)->releasePoolable(cont);
+			//contact->setEnabled(false);
 		}
 		 PlayerScore::blockScore += 1;
 

@@ -65,8 +65,8 @@ void GameScene::loadEnemies() {
 	walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
 	this->registerObject(walker);
 
-	//walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
-	//this->registerObject(walker);
+	walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
+	this->registerObject(walker);
 
 	Flyer* flyer = new Flyer("Flyer-1", sf::Vector2f(0, 30));
 	this->registerObject(flyer);
@@ -78,7 +78,7 @@ void GameScene::loadPoolables() {
 	GameObjectPool* blockPool;
 	blockPool = new GameObjectPool(ObjectPoolHolder::BLOCK_POOL_TAG,
 		new Block("Block", Game::WINDOW_WIDTH / 2 + 240, (Game::WINDOW_HEIGHT / 2) + 80),
-		71,
+		90,
 		poolableHolder
 	);
 

@@ -15,7 +15,7 @@ public:
 	
 private:
 	//random
-	float chance = 65;
+	float chance = 55;
 
 	GameObjectPool* blockPool;
 	float count = 0;

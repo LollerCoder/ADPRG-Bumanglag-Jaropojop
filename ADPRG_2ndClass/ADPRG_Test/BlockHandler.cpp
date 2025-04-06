@@ -8,12 +8,23 @@ BlockHandler::BlockHandler(std::string name, GameObjectPool* blockPool) : Abstra
 }
 
 void BlockHandler::perform() {
-	
+	Block* unBreakBlock;
 	
 
 	switch ((int)flor) {
 	case 0:
+		if (blockPool->getAvailableSize() >= 3) {
+			for (int i = 0; i < 3; i++) {
+				unBreakBlock = (Block*)blockPool->requestPoolable();
+				unBreakBlock->setPosition(Game::WINDOW_WIDTH / 2 + 259.6 + (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80);
+				unBreakBlock->setColCheck(2);
+				unBreakBlock->setInvincibility(true);
+				blocksMade.push_back(unBreakBlock);
+				x++;
+			}
+		}
 		
+		x = 0;
 		if (blockPool->getAvailableSize() >= 25) {
 			for (int i = 0; i < 25; i++) {
 				float rng = this->generateRandom();
@@ -27,15 +38,21 @@ void BlockHandler::perform() {
 				
 				x++;
 			}
+			
 			flor++;
 		}
 		else {
 			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
+		
+		
+		
 		break;
 	case 1:
+		
+		x = 1;
 		if (blockPool->getAvailableSize() >= 23) {
-			x = 1;
+			
 			for (int i = 0; i < 23; i++) {
 				float rng = this->generateRandom();
 				if (rng < chance){
@@ -46,6 +63,17 @@ void BlockHandler::perform() {
 				}
 				x++;
 			}
+			if (blockPool->getAvailableSize() >= 5) {
+				for (int i = 0; i < 5; i++) {
+					unBreakBlock = (Block*)blockPool->requestPoolable();
+					unBreakBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					unBreakBlock->setColCheck(1);
+					unBreakBlock->setInvincibility(true);
+					blocksMade.push_back(unBreakBlock);
+					x++;
+				}
+			}
+			
 			flor++;
 		}
 		else {
@@ -53,8 +81,10 @@ void BlockHandler::perform() {
 		}
 		break;
 	case 2:
+		x = 1;
+	
 		if (blockPool->getAvailableSize() >= 23) {
-			x = 1;
+			
 			for (int i = 0; i < 23; i++) {
 				float rng = this->generateRandom();
 				if (rng < chance) {
@@ -65,13 +95,39 @@ void BlockHandler::perform() {
 				}
 				x++;
 			}
+			if (blockPool->getAvailableSize() >= 5){
+				for (int i = 0; i < 5; i++) {
+					unBreakBlock = (Block*)blockPool->requestPoolable();
+					unBreakBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					unBreakBlock->setColCheck(1);
+					unBreakBlock->setInvincibility(true);
+					blocksMade.push_back(unBreakBlock);
+					x++;
+				}
+			}
+			
 			flor++;
 		}
+
 		else {
 			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		break;
 	case 3:
+		x = 1;
+		if(blockPool->getAvailableSize() >= 4) {
+			for (int i = 0; i < 4; i++) {
+				unBreakBlock = (Block*)blockPool->requestPoolable();
+				unBreakBlock->setPosition(Game::WINDOW_WIDTH / 2 + 220.4 + (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+				unBreakBlock->setColCheck(1);
+				unBreakBlock->setInvincibility(true);
+				blocksMade.push_back(unBreakBlock);
+				x++;
+			}
+		}
+		
+		
+		x = 1;
 		if (blockPool->getAvailableSize() >= 23){
 			x = 1;
 			for (int i = 0; i < 23; i++) {
@@ -84,6 +140,8 @@ void BlockHandler::perform() {
 				}
 				x++;
 			}
+			
+			
 			flor++;
 		}
 		else {
@@ -102,6 +160,16 @@ void BlockHandler::perform() {
 					blocksMade.push_back(newBlock);
 				}
 				x++;
+			}
+			if (blockPool->getAvailableSize() >= 5) {
+				for (int i = 0; i < 5; i++) {
+					unBreakBlock = (Block*)blockPool->requestPoolable();
+					unBreakBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					unBreakBlock->setColCheck(0);
+					unBreakBlock->setInvincibility(true);
+					blocksMade.push_back(unBreakBlock);
+					x++;
+				}
 			}
 			flor++;
 		}
@@ -152,7 +220,7 @@ void BlockHandler::perform() {
 		
 		break;
 	case 7:
-		if (blockPool->getAvailableSize() >= 21) {
+		if (blockPool->getAvailableSize() >= 17) {
 			x = 2;
 			for (int i = 0; i < 21; i++) {
 				float rng = this->generateRandom();
@@ -174,7 +242,7 @@ void BlockHandler::perform() {
 
 		break;
 	case 8:
-		if (blockPool->getAvailableSize() >= 21) {
+		if (blockPool->getAvailableSize() >= 17) {
 			x = 2;
 			for (int i = 0; i < 21; i++) {
 				float rng = this->generateRandom();
