@@ -92,7 +92,7 @@ void GameScene::loadPoolables() {
 	GameObjectPool* blockPool;
 	blockPool = new GameObjectPool(ObjectPoolHolder::BLOCK_POOL_TAG,
 		new Block("Block", Game::WINDOW_WIDTH / 2 + 240, (Game::WINDOW_HEIGHT / 2) + 80),
-		90,
+		91,
 		poolableHolder
 	);
 
