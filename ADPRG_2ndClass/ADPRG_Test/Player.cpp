@@ -136,9 +136,12 @@ void Player::onCollisionExit(AGameObject* contact)
 
 void Player::onCollisionEnter(AGameObject* contact)
 {
+	if (contact->getTag() == Tag::ENEMY) {
+		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+	}
 	
 	//this->setPosition(this->getPosition().x, contact->getTransformable()->getPosition().y );
-	std::cout << contact->getTransformable()->getPosition().y << std::endl;
+	/*std::cout << contact->getTransformable()->getPosition().y << std::endl;*/
 }
 
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractComponent.hpp"
 #include "PlayerInputController.hpp"
+#include "SceneManager.hpp"
 #include "Player.h"
 
 class PlayerMovement : public AbstractComponent{
