@@ -11,12 +11,18 @@ void EvaluationScene::onLoadResources() {
 }
 
 void EvaluationScene::onLoadObjects() {
+	Game::cp1 = false;
+	Game::cp2 = false;
+	Game::cp3 = false;
+	Game::cp4 = false;
+	Game::cp5 = false;
+	Game::cp6 = false;
 	CameraManager::getInstance()->resetCamera();
 	this->loadUI();
 }
 
 void EvaluationScene::onUnloadResources() {
-	PlayerScore::resetScore();
+
 }
 
 void EvaluationScene::loadUI() {

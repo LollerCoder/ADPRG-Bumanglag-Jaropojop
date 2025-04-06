@@ -20,11 +20,11 @@ void Hitbox::initialize()
 
 	this->sprite->setColor(invisible);
 
-	this->transformable.setPosition(0,0);
+	//this->transformable.setPosition(0,0);
 
-	Renderer* renderer = new Renderer("HitRenderer");
-	renderer->assignDrawable(this->sprite);
-	this->attachComponent(renderer);
+	//Renderer* renderer = new Renderer("HitRenderer");
+	//renderer->assignDrawable(this->sprite);
+	//this->attachComponent(renderer);
 
 	this->getTransformable()->setScale(width, height);
 

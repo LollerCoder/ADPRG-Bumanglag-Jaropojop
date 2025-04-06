@@ -138,8 +138,7 @@ void Player::onCollisionEnter(AGameObject* contact)
 {
 	
 	//this->setPosition(this->getPosition().x, contact->getTransformable()->getPosition().y );
-	//std::cout << contact->getTransformable()->getPosition().y << std::endl;
-	
+	std::cout << contact->getTransformable()->getPosition().y << std::endl;
 }
 
 

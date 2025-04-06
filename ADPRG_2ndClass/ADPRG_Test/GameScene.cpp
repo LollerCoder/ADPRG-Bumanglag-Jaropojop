@@ -1,4 +1,5 @@
 #include "GameScene.hpp"
+#include "PlayerScore.hpp"
 
 GameScene::GameScene() : AbstractScene(SceneManager::GAME_SCENE_NAME) {
 
@@ -9,19 +10,14 @@ void GameScene::onLoadResources() {
 }
 
 void GameScene::onLoadObjects() {
-	Game::cp1 = false;
-	Game::cp2 = false;
-	Game::cp3 = false;
-	Game::cp4 = false;
-	Game::cp5 = false;
-	Game::cp6 = false;
 	this->loadPhysicsManager();
 	//this->loadEnemies();
 	this->loadBG();
 	this->loadPlayer();
 	this->loadPoolables();
-	//this->loadUIButton();
-	//this->loadUI();
+	this->loadUIButton();
+	this->loadUI();
+	PlayerScore::resetScore();
 }
 
 void GameScene::onUnloadResources() {

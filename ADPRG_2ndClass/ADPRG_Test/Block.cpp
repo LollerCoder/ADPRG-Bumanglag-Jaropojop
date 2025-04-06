@@ -36,8 +36,7 @@ void Block::initialize() {
 	renderer->assignDrawable(this->sprite);
 	this->attachComponent(renderer);
 
-	PhysicsManager::getInstance()->trackObject(this->collider);
-	//std::cout << "IM BLOCK" << std::endl;
+	std::cout << "IM BLOCK" << std::endl;
 }
 
 void Block::onCollisionExit(AGameObject* contact)
@@ -57,10 +56,13 @@ void Block::setPos(float x, float y)
 
 void Block::onActivate()
 {
+
+	PhysicsManager::getInstance()->trackObject(this->collider);
 }
 
 void Block::onRelease()
 {
+	PhysicsManager::getInstance()->untrackObject(this->collider);
 }
 
 AbstractPoolable* Block::clone()

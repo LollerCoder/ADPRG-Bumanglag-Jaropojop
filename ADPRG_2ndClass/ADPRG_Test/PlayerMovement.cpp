@@ -18,19 +18,19 @@ void PlayerMovement::perform(){
 	static float frameTimer = 0.0f;    
 	static bool isHitting = false;    
 
-	if (inputController->isJump()) {
-		this->velocity.y = -this->SPEED_MULTIPLIER - 100;
-	}
-	else {
-		this->velocity.y = 0;
-	}
-
-	//if (!this->isGrounded) {
-	//	this->velocity.y += GRAVITY_FORCE;
+	//if (inputController->isJump()) {
+	//	this->velocity.y = -this->SPEED_MULTIPLIER - 100;
 	//}
 	//else {
-	//	this->velocity.y = 0; 
+	//	this->velocity.y = 0;
 	//}
+
+	if (!this->isGrounded) {
+		this->velocity.y += GRAVITY_FORCE;
+	}
+	else {
+		this->velocity.y = 0; 
+	}
 
 	if (isHitting) {
 		hitAnimTimer -= this->deltaTime.asSeconds();
@@ -79,21 +79,21 @@ void PlayerMovement::perform(){
 
 	float dir = 0.0f;
 	
-	//if (inputController->isJump() && this->isGrounded) {
-	//	this->velocity.y = -JUMP_FORCE; 
+	if (inputController->isJump() && this->isGrounded) {
+		this->velocity.y = -JUMP_FORCE; 
 
 
-	//	isGrounded = false; 
-	//	player->setJumpFrame(0);
+		isGrounded = false; 
+		player->setJumpFrame(0);
 
 
-	//	isGrounded = false;  
-	//	Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
-	//	hit->activate();
+		isGrounded = false;  
+		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
+		hit->activate();
 
 
 
-	//}
+	}
 	if (inputController->isRight()) {
 		dir = 1.0f;
 		//player->getSprite()->setScale(1.f, 1.f);
@@ -134,7 +134,6 @@ void PlayerMovement::perform(){
 		//hitbox temp
 
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
-		
 	}
 
 	//std::cout << playerTransformable->getPosition().y << std::endl;
@@ -165,10 +164,6 @@ void PlayerMovement::perform(){
 	}	if (playerTransformable->getPosition().y <= -1460.0f && !this->isGrounded) {
 		SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
 	}
-
-	//if (playerTransformable->getPosition().y <= 20.0f) {
-	//	SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
-	//}
 
 	if (this->velocity.y >= 0) {
 		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");
