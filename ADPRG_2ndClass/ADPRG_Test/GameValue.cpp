@@ -3,10 +3,10 @@
 int PlayerScore::bonusScore = 0;
 int PlayerScore::killScore = 0;
 int PlayerScore::blockScore = 0;
-int PlayerScore::Level = 0;
+int PlayerScore::Level = -1;
 
 void PlayerScore::resetScore() {
-	PlayerScore::bonusScore = 0;
+	PlayerScore::bonusScore = -1;
 	PlayerScore::killScore = 0;
 	PlayerScore::blockScore = 0;
 }

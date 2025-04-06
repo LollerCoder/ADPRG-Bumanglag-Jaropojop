@@ -10,15 +10,16 @@ void GameScene::onLoadResources() {
 }
 // executes everything needed for this scene
 void GameScene::onLoadObjects() {
+	PlayerScore::resetScore(); // resets score
+	PlayerScore::Level += 1; //incremenent level
+	GameInfo::resetInfo(); // reset checkpoint and camera boolean
+
 	this->loadPhysicsManager();
 	this->loadEnemies();
 	this->loadBG();
 	this->loadPlayer();
 	this->loadPoolables();
 	this->loadUI();
-	PlayerScore::resetScore(); // resets score
-	PlayerScore::Level += 1; //incremenent level
-	GameInfo::resetInfo(); // reset checkpoint and camera boolean
 
 	// gets the sound from sfx manager
 	if (this->bgm == nullptr) {
@@ -43,9 +44,6 @@ void GameScene::loadBG() {
 
 	GameBG* bg = new GameBG("Background", Tag::BACKGROUND);
 	this->registerObject(bg);
-
-
-
 }
 
 void GameScene::loadPlayer() {
