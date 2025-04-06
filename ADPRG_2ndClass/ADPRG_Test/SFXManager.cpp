@@ -9,10 +9,8 @@ SFXManager* SFXManager::getInstance(){
 }
 
 void SFXManager::loadAll(){
-	this->loadSound("EnemyGunFire", "Media/Sounds/EnemyGunFire.wav");
-	this->loadSound("Explosion1", "Media/Sounds/Explosion1.wav");
-	this->loadSound("Explosion2", "Media/Sounds/Explosion2.wav");
-	this->loadSound("LaunchMissile", "Media/Sounds/LaunchMissile.wav");
+	this->loadSound("stage", "../Media/Sounds/iceclimber_stage.wav");
+	this->loadSound("title", "../Media/Sounds/iceclimber_title.wav");
 }
 
 sf::Sound* SFXManager::getSound(std::string key){

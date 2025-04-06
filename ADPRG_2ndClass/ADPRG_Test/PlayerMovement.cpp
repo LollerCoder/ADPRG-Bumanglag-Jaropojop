@@ -145,7 +145,7 @@ void PlayerMovement::perform(){
 		ApplicationManager::getInstance()->pauseApplication();
 		GameInfo::cameraMoving = true;
 	}
-	if (playerTransformable->getPosition().y <= -320.0f && !GameInfo::cp2 && !this->isGrounded && GameInfo::currCP == 0) {
+	if (playerTransformable->getPosition().y <= -315.0f && !GameInfo::cp2 && !this->isGrounded && GameInfo::currCP == 0) {
 		GameInfo::cp2 = true;
 		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
@@ -169,6 +169,31 @@ void PlayerMovement::perform(){
 	//	ApplicationManager::getInstance()->pauseApplication();
 	//	Game::camera = true;
 	//}
+
+	sf::View view = CameraManager::getInstance()->getViewCamera();
+
+	sf::Vector2f center = view.getCenter();
+	sf::Vector2f size = view.getSize();
+
+	float left = center.x - size.x / 2.f;
+	float right = center.x + size.x / 2.f;
+	float top = center.y - size.y / 2.f;
+	float bottom = center.y + size.y / 2.f;
+
+	sf::FloatRect cameraBounds(left, top, size.x, size.y);
+
+	center = player->getTransformable()->getPosition();
+
+	left = center.x - player->getSprite()->getGlobalBounds().width / 2.f;
+	right = center.x + player->getSprite()->getGlobalBounds().width / 2.f;
+	top = center.y - player->getSprite()->getGlobalBounds().height / 2.f;
+	bottom = center.y + player->getSprite()->getGlobalBounds().height / 2.f;
+
+	sf::FloatRect playerBounds(left, top, right - left, bottom - top);
+
+	if (!playerBounds.intersects(cameraBounds)) {
+		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+	}
 
 	if (this->velocity.y >= 0) {
 		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");

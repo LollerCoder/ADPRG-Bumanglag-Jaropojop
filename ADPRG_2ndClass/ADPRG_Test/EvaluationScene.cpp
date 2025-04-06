@@ -10,6 +10,7 @@ void EvaluationScene::onLoadResources() {
 
 }
 
+// executes everything needed for the scene
 void EvaluationScene::onLoadObjects() {
 	CameraManager::getInstance()->resetCamera();
 	this->loadUI();
@@ -19,12 +20,19 @@ void EvaluationScene::onUnloadResources() {
 
 }
 
+// loads the Evaluation box as well as the score of the player
 void EvaluationScene::loadUI() {
 	EvaluationBox* evalBox = new EvaluationBox("evalBox");
 	this->registerObject(evalBox);
 
-	UIiMage* item = new UIiMage("Item");
+	UIiMage* item = new UIiMage("Item"); // the bonus item for the level
 	evalBox->attachChild(item);
+
+	UIText* continueText = new UIText("ContinueText", "nes", sf::Color::White, sf::Color::Transparent);
+	this->registerObject(continueText);
+	continueText->setText("Press Enter to Continue");
+	continueText->setPosition((Game::WINDOW_WIDTH/2) + 470, (Game::WINDOW_HEIGHT / 2) + 240);
+	continueText->setSize(13.f);
 
 	UIText* playerText = new UIText("PlayerText", "nes", sf::Color::White, sf::Color::Transparent);
 	evalBox->attachChild(playerText);

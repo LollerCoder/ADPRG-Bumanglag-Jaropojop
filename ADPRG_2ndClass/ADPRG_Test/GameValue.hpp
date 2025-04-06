@@ -1,7 +1,9 @@
 #pragma once
+// holds classes with static values for storing and passing information between scenes
+
 class PlayerScore {
 public:
-	static void resetScore();
+	static void resetScore();  // resets every value for this class
 public:
 	static int bonusScore;
 	static int killScore;
@@ -11,7 +13,7 @@ public:
 
 class GameInfo {
 public:
-	static void resetInfo();
+	static void resetInfo(); // resets every value for this class
 public:
 	static bool cameraMoving;
 	static int cp1;

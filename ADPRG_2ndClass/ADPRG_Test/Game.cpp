@@ -1,10 +1,13 @@
 #include "Game.h"
 #include "GameValue.hpp"
 
+// loads everything needed for the game (Assets and Scenes)
+// also sets the view for camera control
 Game::Game() : mWindow(sf::VideoMode(640,480), "SFML Application"){
     TextureManager::getInstance()->loadAll();
     FontManager::getInstance()->loadAll();
     ApplicationManager::getInstance()->initialize(&mWindow);
+    SFXManager::getInstance()->loadAll();
 
     CameraManager::getInstance()->setUpCamera(&mWindow);
     
@@ -61,7 +64,7 @@ void Game::update(sf::Time deltaTime) {
     if (!ApplicationManager::getInstance()->isPaused()) {
         GameObjectManager::getInstance()->update(deltaTime);
     }
-    
+    // if the application is paused and the camera is moving, move camera
     if (GameInfo::cameraMoving) {
         CameraManager::getInstance()->updateCamera(deltaTime);
     }

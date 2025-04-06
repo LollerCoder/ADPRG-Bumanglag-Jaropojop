@@ -15,7 +15,10 @@ public:
 	void onLoadObjects();
 	void LoadUI();
 
+	void onUnloadObjects();
 	void onUnloadResources();
+private:
+	sf::Sound* bgm = nullptr;
 
 };
 

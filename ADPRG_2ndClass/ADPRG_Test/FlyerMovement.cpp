@@ -14,6 +14,7 @@ void FlyerMovement::perform() {
 		return;
 	}
 
+	// for animation of bird
 	if (this->fAnimFreq >= this->fAnimThresh) {
 		flyer->incrementFlyFrame();
 		this->fAnimFreq = 0;
@@ -21,6 +22,7 @@ void FlyerMovement::perform() {
 
 	this->fAnimFreq += deltaTime.asSeconds();
 
+	// to face on the right direction
 	if (this->targetPos.x < 0.0f) {
 		flyerTransform->setScale(0.7f, 0.7f);
 	}
@@ -28,6 +30,7 @@ void FlyerMovement::perform() {
 		flyerTransform->setScale(-0.7f, 0.7f);
 	}
 
+	// searches for the player when moving
 	if (!this->moving) {
 		pos = player->getPosition();
 		sf::Vector2f dir = pos - flyerTransform->getPosition();
@@ -40,8 +43,13 @@ void FlyerMovement::perform() {
 			this->timer = 0.0f;
 		}
 		this->moving = true;
+
+		if (flyer->onSecond) {
+			this->fastMode = true;
+			flyer->onSecond = false;
+		}
 	}
-	else {
+	else { // delays the next find
 		this->timer += deltaTime.asSeconds();
 		if (this->timer >= this->findPlayerCD) {
 			this->moving = false;
@@ -55,7 +63,14 @@ void FlyerMovement::perform() {
 			return;
 		}
 
-		flyerTransform->move(this->targetPos * this->SPEED_MULTIPLIER * this->deltaTime.asSeconds());
+		// mode for when moving
+		if (this->fastMode) {
+			std::cout << "flying" << std::endl;
+			flyerTransform->move(this->targetPos * (this->SPEED_MULTIPLIER + 600) * this->deltaTime.asSeconds());
+		}
+		else {
+			flyerTransform->move(this->targetPos * this->SPEED_MULTIPLIER * this->deltaTime.asSeconds());
+		}
 	}
 	
 

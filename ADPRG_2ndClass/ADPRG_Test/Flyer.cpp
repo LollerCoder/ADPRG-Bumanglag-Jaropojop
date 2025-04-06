@@ -51,9 +51,11 @@ void Flyer::processInput(sf::Event event) {
 		this->setEnabled(false);
 	}
 	if (GameInfo::cp2 && GameInfo::currCP == 1 && !this->hidden) {
-		this->setSpawnLoc(this->spawn.x, this->spawn.y - 150);
+		this->setSpawnLoc(this->spawn.x, this->spawn.y - 250);
 		this->hidden = true;
 		this->setEnabled(false);
+		this->onSecond = true;
+		std::cout << "awd" << std::endl;
 	}
 	if (GameInfo::cp3 && GameInfo::currCP == 2 && !this->hidden) {
 		this->setSpawnLoc(this->spawn.x, this->spawn.y);

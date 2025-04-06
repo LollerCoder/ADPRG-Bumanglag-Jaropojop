@@ -27,7 +27,7 @@ public:
 public:
 	void onLoadResources();
 	void onLoadObjects();
-
+	void onUnloadObjects();
 	void onUnloadResources();
 private:
 	void loadBG();
@@ -37,5 +37,7 @@ private:
 	void loadUIButton();
 	void loadPhysicsManager();
 	void loadUI();
+private:
+	sf::Sound* bgm = nullptr;
 };
 

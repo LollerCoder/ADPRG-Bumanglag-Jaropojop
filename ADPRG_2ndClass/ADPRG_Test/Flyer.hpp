@@ -18,11 +18,14 @@ public:
 	void onCollisionExit(AGameObject* contact);
 	void onCollisionEnter(AGameObject* contact);
 	void incrementFlyFrame();
+	bool onSecond = false;
+
 private:
 	std::vector<Frame> flyFrames;
 	int currWalkFrame = -1;
 
 	bool onFinal = false;
+
 	bool hidden = false;
 	float timer = 0.0f;
 	const float RESPAWN_TIMER = 1.5f;

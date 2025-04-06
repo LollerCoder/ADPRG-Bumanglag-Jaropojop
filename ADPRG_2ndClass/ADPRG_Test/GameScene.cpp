@@ -20,6 +20,17 @@ void GameScene::onLoadObjects() {
 	PlayerScore::resetScore();
 	PlayerScore::Level += 1;
 	GameInfo::resetInfo();
+
+	if (this->bgm == nullptr) {
+		this->bgm = SFXManager::getInstance()->getSound("stage");
+		this->bgm->setVolume(40);
+	}
+	this->bgm->play();
+}
+
+void GameScene::onUnloadObjects() {
+	this->bgm->stop();
+	AbstractScene::onUnloadObjects();
 }
 
 void GameScene::onUnloadResources() {
@@ -62,7 +73,7 @@ void GameScene::loadEnemies() {
 	walker = new Walker("Walker-2", (sf::Vector2f(600, 290)));
 	this->registerObject(walker);
 
-	walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
+	walker = new Walker("Walker-3", (sf::Vector2f(-10, 165)));
 	this->registerObject(walker);
 
 	walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));

@@ -56,6 +56,33 @@ void WalkerMovement::perform() {
 
 	}
 	//std::cout << walkerTransformable->getPosition().y << std::endl;
+
+	sf::View view = CameraManager::getInstance()->getViewCamera();
+
+	sf::Vector2f center = view.getCenter();
+	sf::Vector2f size = view.getSize();
+
+	float left = center.x - size.x / 2.f;
+	float right = center.x + size.x / 2.f;
+	float top = center.y - size.y / 2.f;
+	float bottom = center.y + size.y / 2.f;
+
+	sf::FloatRect cameraBounds(left, top, size.x, size.y);
+
+	center = walker->getTransformable()->getPosition();
+
+	left = center.x - walker->getSprite()->getGlobalBounds().width / 2.f;
+	right = center.x + walker->getSprite()->getGlobalBounds().width / 2.f;
+	top = center.y - walker->getSprite()->getGlobalBounds().height / 2.f;
+	bottom = center.y + walker->getSprite()->getGlobalBounds().height / 2.f;
+
+
+
+	sf::FloatRect walkerBounds(left, top, right - left, bottom - top);
+
+	if (!walkerBounds.intersects(cameraBounds)) {
+		walker->setEnabled(false);
+	}
 }
 
 void WalkerMovement::setGrounded(bool flag) {
