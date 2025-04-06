@@ -9,10 +9,14 @@ public:
 public:
 	void perform();
 	void clearUnused();
+	float generateRandom();
 	//block placer
 	
 	
 private:
+	//random
+	float chance = 65;
+
 	GameObjectPool* blockPool;
 	float count = 0;
 	float x = 0;

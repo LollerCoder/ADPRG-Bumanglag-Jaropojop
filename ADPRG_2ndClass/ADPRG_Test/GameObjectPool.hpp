@@ -15,6 +15,7 @@ public:
 	AbstractPoolable* requestPoolable();
 	std::vector<AbstractPoolable*>requestPoolableBatch(int size);
 
+
 	void releasePoolable(AbstractPoolable* poolableObject);
 	void releasePoolableBatch(std::vector<AbstractPoolable*> objectList);
 
