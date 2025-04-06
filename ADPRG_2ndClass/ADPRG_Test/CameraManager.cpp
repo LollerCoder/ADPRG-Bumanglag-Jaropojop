@@ -71,5 +71,5 @@ void CameraManager::resetCamera() {
 
 sf::View CameraManager::getViewCamera()
 {
-    return this->view;
+    return this->window->getView();
 }

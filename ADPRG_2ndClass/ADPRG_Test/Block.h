@@ -16,6 +16,9 @@ public:
 	void onCollisionEnter(AGameObject* contact);
 
 	void setPos(float x, float y);
+	void setColCheck(int col);
+	void setInvincibility(bool invinc);
+	bool getInvi();
 	Collider* collider;
 
 	void onActivate();
@@ -23,8 +26,9 @@ public:
 	AbstractPoolable* clone();
 
 private:
+	bool isInvincible = false;
 	Frame frame;
-
+	int colCheck;
 
 
 

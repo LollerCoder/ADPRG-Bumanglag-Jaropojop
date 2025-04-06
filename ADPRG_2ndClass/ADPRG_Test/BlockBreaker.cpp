@@ -46,7 +46,10 @@ void BlockBreaker::onCollisionExit(AGameObject* contact)
 void BlockBreaker::onCollisionEnter(AGameObject* contact)
 {
 	if (contact->getName() == "Block") {
-		 contact->setEnabled(false);
+		Block* cont = (Block*)contact;
+		if (!cont->getInvi()) {
+			contact->setEnabled(false);
+		}
 		 PlayerScore::blockScore += 1;
 
 		

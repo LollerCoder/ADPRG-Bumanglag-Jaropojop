@@ -19,7 +19,9 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(2);
 					blocksMade.push_back(newBlock);
+
 				}
 				
 				x++;
@@ -38,6 +40,7 @@ void BlockHandler::perform() {
 				if (rng < chance){
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(1);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -56,6 +59,7 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(1);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -74,6 +78,7 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(1);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -92,6 +97,7 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(0);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -110,6 +116,7 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(0);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -129,6 +136,8 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(0);
+					
 					blocksMade.push_back(newBlock);
 					
 				}
@@ -149,8 +158,10 @@ void BlockHandler::perform() {
 				if (rng < chance) {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
+					newBlock->setColCheck(0);
+					newBlock->setInvincibility(true);
 					blocksMade.push_back(newBlock);
-					
+
 				}
 				x++;
 			}
@@ -159,7 +170,9 @@ void BlockHandler::perform() {
 		else {
 			std::cout << "notEnough for floor: " << flor << std::endl;
 		}
+
 		break;
+	
 	}
 	//for (int i = 0; i < blockPool->getAvailableSize(); i++) {
 	//	count++;
@@ -199,9 +212,9 @@ void BlockHandler::clearUnused()
 	sf::View cam = CameraManager::getInstance()->getViewCamera();
 	int cleaned = 0;
 	for (int i = 0; i < this->blocksMade.size(); i++) {
-		//std::cout << "Block at: " << blocksMade[i]->getTransformable()->getPosition().y << std::endl;
-		//std::cout << "Cam was: " << cam.getCenter().y << std::endl;
-		if (blocksMade[i]->getTransformable()->getPosition().y > cam.getCenter().y -160) {
+		std::cout << "Block at: " << blocksMade[i]->getTransformable()->getPosition().y << std::endl;
+		std::cout << "Cam was: " << cam.getCenter().y + Game::WINDOW_HEIGHT / 2 << std::endl;
+		if (blocksMade[i]->getTransformable()->getPosition().y > cam.getCenter().y - 120) {
 			//std::cout << "got cleaned" << std::endl;
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BLOCK_POOL_TAG)->releasePoolable(blocksMade[i]);
 			cleaned++;
