@@ -18,7 +18,12 @@ public:
 	void onCollisionEnter(AGameObject* contact);
 
 	//used to initialize for POOLABLES. To see how they are initialized...DON'T for your Own sanity...its in BlockHandler.
-	/**/
+	/*
+		Setinvi will make the block not destroyable and change the sprite
+		setColCheck changes the sprite color block
+		set pos....sets the pos
+		get invi is for error checking.
+	*/
 	void setPos(float x, float y);
 	void setColCheck(int col);
 	void setInvincibility(bool invinc);

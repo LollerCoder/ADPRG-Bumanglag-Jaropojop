@@ -15,16 +15,7 @@ void Hitbox::initialize()
 	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
 
-	//invisible sprite
-	sf::Color invisible = sf::Color::Transparent;
-
-	this->sprite->setColor(invisible);
-
-	//this->transformable.setPosition(0,0);
-
-	//Renderer* renderer = new Renderer("HitRenderer");
-	//renderer->assignDrawable(this->sprite);
-	//this->attachComponent(renderer);
+	
 
 	this->getTransformable()->setScale(width, height);
 
@@ -44,8 +35,8 @@ void Hitbox::onCollisionExit(AGameObject* contact)
 
 void Hitbox::onCollisionEnter(AGameObject* contact)
 {
-	std::cout << "BONK" << std::endl;
-	//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG)->releasePoolable((AbstractPoolable*)contact);
+
+	
 	if (contact->getTag() == Tag::ENEMY) {
 		contact->setEnabled(false);
 		contact->setPosition(contact->getSpawnLoc().x, contact->getSpawnLoc().y);

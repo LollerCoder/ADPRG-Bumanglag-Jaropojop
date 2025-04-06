@@ -54,29 +54,7 @@ void MainMenuScreen::initialize()
 	sf::Texture* btnPressed = TextureManager::getInstance()->getTexture("iceButtonPressed");
 
 
-	/*UIText* menu_Text = new UIText("menu_text_1");
-	this->attachChild(menu_Text);
-	menu_Text->setSize(40);
-	menu_Text->setPosition(0, -70);
-	menu_Text->setText("    Are you sure \n you wanna quit?");*/
-
-
-
 	
-	//UIText* button_1Text = new UIText("text_1");
-	//button1->attachChild(button_1Text);
-	//button_1Text->setPosition(0, -20);
-	//button_1Text->setSize(100);
-	//button_1Text->setText("Play Game");
-
-
-	
-
-	//UIText* button_2Text = new UIText("text_2");
-	//button2->attachChild(button_2Text);
-	//button_2Text->setPosition(0, -20);
-	//button_2Text->setSize(100);
-	//button_2Text->setText("Quit");
 
 
 	//////
@@ -85,7 +63,7 @@ void MainMenuScreen::initialize()
 	this->attachChild(titleText);
 	
 
-	//this->registerObject(titleText);
+	
 	titleText->setSize(50);
 	titleText->setText("Seal \n RIZZler");
 
@@ -101,7 +79,7 @@ void MainMenuScreen::initialize()
 	startText->setPosition(0,0);
 	button1->attachChild(startText);
 
-	//this->registerObject(startText);
+	
 	startText->setSize(30);
 	startText->setText("Start");
 
@@ -122,14 +100,14 @@ void MainMenuScreen::initialize()
 
 	UIText* nikText = new UIText("nikos_Text", "nes", sf::Color(7, 42, 200), sf::Color(255, 165, 0));
 	this->attachChild(nikText);
-	//this->registerObject(nikText);
+	
 	nikText->setPosition(Game::WINDOW_WIDTH / 2, Game::WINDOW_HEIGHT / 2 + 160);
 	nikText->setSize(20);
 	nikText->setText("Nikos Bumanglag");
 
 	UIText* jaiText = new UIText("jai_Text", "nes", sf::Color(0, 200, 0), sf::Color(9, 82, 86));
 	this->attachChild(jaiText);
-	//this->registerObject(jaiText);
+	
 	jaiText->setPosition(Game::WINDOW_WIDTH / 2, Game::WINDOW_HEIGHT / 2 + 200);
 	jaiText->setSize(20);
 	jaiText->setText("Jairo Jaropojop");

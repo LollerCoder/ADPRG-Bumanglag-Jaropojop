@@ -15,7 +15,7 @@ void PlayerInputController::perform(){
 
 	if (this->event.type == sf::Event::KeyPressed) {
 		isPressed = true;
-		if (this->event.key.code == sf::Keyboard::P) {
+		if (this->event.key.code == sf::Keyboard::P) { //just finds the ui box, moves it(if necessary and then makes it SEEN
 			if (this->Pause == false) {
 				AGameObject* uiGameBox = GameObjectManager::getInstance()->findObjectByName("UIBoxGame");
 				uiGameBox->setEnabled(true);

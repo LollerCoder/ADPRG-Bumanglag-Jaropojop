@@ -140,8 +140,7 @@ void Player::onCollisionEnter(AGameObject* contact)
 		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 	}
 	
-	//this->setPosition(this->getPosition().x, contact->getTransformable()->getPosition().y );
-	/*std::cout << contact->getTransformable()->getPosition().y << std::endl;*/
+	
 }
 
 

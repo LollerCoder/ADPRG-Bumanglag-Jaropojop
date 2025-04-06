@@ -8,7 +8,7 @@ GroundChecker::GroundChecker(std::string name, float width, float height) : Coll
 }
 
 void GroundChecker::initialize()
-{
+{ 
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Hitbox"));
 
@@ -39,7 +39,9 @@ void GroundChecker::initialize()
 
 void GroundChecker::onCollisionExit(AGameObject* contact)
 {
-
+	/*
+		Ground Checker is used by both Player AND the seals so it checks which one it is and toggles accordingly.
+	*/
 	PlayerMovement* pm = nullptr;
 	WalkerMovement* wm = nullptr;
 	//std::cout << contact->getName() << std::endl;
@@ -53,6 +55,9 @@ void GroundChecker::onCollisionExit(AGameObject* contact)
 			//std::cout << "pm found" << std::endl;
 		}
 	}
+	/*
+		This bit of code just ensures that there's something keeping it 'Grounded' otherwise, DROP EM.
+	*/
 	if (contact->getTag() == Tag::BLOCK) {
 		inside--;
 	}
@@ -69,7 +74,7 @@ void GroundChecker::onCollisionExit(AGameObject* contact)
 
 void GroundChecker::onCollisionEnter(AGameObject* contact)
 {
-	
+	//check if YOU CAN WALK ON IT.	
 	if (contact->getTag() == Tag::BLOCK) {
 		if (this->getParent()->getName() == "Player") {
 			//std::cout << "BlockFound" << std::endl;
@@ -77,29 +82,34 @@ void GroundChecker::onCollisionEnter(AGameObject* contact)
 		
 		inside++;
 		PlayerMovement* pm = nullptr;
-		//::cout << contact->getName() << std::endl;
+		
 		for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
 			if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "MyPlayerMovement") {
 				pm = (PlayerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
 				
-				//std::cout << "pm found" << std::endl;
+				
 			}
 		}
 		if (pm == nullptr) {
-			//std::cout << " PAKC" << std::endl;
+			//std::cout << "noPm" << std::endl;
 		}
 		else {
+			/*
+			* The main function of this cpp is here. It checks THE TOP OF A BLOCK and says if its close? You are now on me. The -/+ 20 is the leeway. This is 
+			* sadly increasing the leeway seems to do nothing to prevent TORPEDO SEALS. It does help the player land below when they miss a jump.
+			*/
+			
+
 			float contPos = contact->getTransformable()->getPosition().y;
 			float aug = contact->getSprite()->getGlobalBounds().height/2;
 
-			/*std::cout << "ToCheck: " << contPos - aug << std::endl;
-			std::cout << "curr pos: "  << this->getGlobalTransform().transformPoint(0,0).y << std::endl;*/
+			
 
 
 			if (contPos - aug -20 <= this->getGlobalTransform().transformPoint(0, 0).y && this->getGlobalTransform().transformPoint(0, 0).y <= contPos - aug + 20) {
 				if (this->getParent()->getName() == "Player") {
 	
-					//std::cout << "I'm walking" << std::endl;
+					
 				}
 				pm->setVelocity(sf::Vector2f(0, 0));
 				pm->setGrounded(true);
