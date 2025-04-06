@@ -95,4 +95,15 @@ void UIBox::initialize()
 	button_2Text->setPosition(0, -20);
 	button_2Text->setSize(100);
 	button_2Text->setText("NO");
+
+	UIBoxMover* uiMove = new UIBoxMover("uiMover");
+	this->attachComponent(uiMove);
+	std::cout << "uimover added" << std::endl;
+
 }
+
+void UIBox::updateCollider()
+{
+}
+
+

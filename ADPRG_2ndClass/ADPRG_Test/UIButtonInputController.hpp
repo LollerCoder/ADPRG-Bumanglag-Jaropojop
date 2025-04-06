@@ -1,5 +1,6 @@
 #pragma once
 #include "GenericInputController.hpp"
+#include "CameraManager.hpp"
 #include "UIButton.hpp"
 #include "ButtonListener.hpp"
 #include <iostream>

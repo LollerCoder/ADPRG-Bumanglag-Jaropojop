@@ -2,7 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "AGameObject.hpp"
 #include "TextureManager.hpp"
+#include "CollisionListener.hpp"
 #include "Game.h"
+#include "Collider.hpp"
 class Block : public AbstractPoolable, public CollisionListener
 {
 

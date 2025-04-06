@@ -55,6 +55,11 @@ void CameraManager::resetCamera() {
     this->window->setView(this->view);
 }
 
+sf::RenderWindow* CameraManager::getWindow()
+{
+    return this->window;
+}
+
 sf::View CameraManager::getViewCamera()
 {
     return this->window->getView();

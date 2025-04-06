@@ -10,6 +10,7 @@ public:
 	void setUpCamera(sf::RenderWindow* window);
 	void updateCamera(sf::Time deltaTime);
 	void resetCamera();
+	sf::RenderWindow* getWindow();
 	sf::View getViewCamera();
 private:
 	CameraManager() {};

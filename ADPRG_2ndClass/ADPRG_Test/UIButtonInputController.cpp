@@ -13,7 +13,7 @@ void UIButtonInputController::perform() {
 		return;
 	}
 
-	if (this->event.type == sf::Event::MouseButtonReleased && 
+	if (this->event.type == sf::Event::MouseButtonReleased &&	
 		event.mouseButton.button == sf::Mouse::Left && 
 		this->pressed) {
 		this->pressed = false;
@@ -24,10 +24,11 @@ void UIButtonInputController::perform() {
 	if (this->event.type == sf::Event::MouseButtonPressed &&
 		this->event.mouseButton.button == sf::Mouse::Left) {
 
-		sf::Vector2f mousePos(this->event.mouseButton.x, this->event.mouseButton.y);
+		sf::Vector2i mousePos(this->event.mouseButton.x, this->event.mouseButton.y);
+		sf::Vector2f worldMousePos = CameraManager::getInstance()->getWindow()->mapPixelToCoords(mousePos);
 		sf::FloatRect bounds = button->getGlobalBounds();
 
-		if (bounds.contains(mousePos)) {
+		if (bounds.contains(worldMousePos)) {
 			this->pressed = true;
 			button->changeButtonToPressed();
 			this->buttonListener->onButtonClick(button);

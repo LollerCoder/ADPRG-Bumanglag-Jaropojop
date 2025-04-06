@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+
 class ApplicationManager {
 	enum GameState { Running = 0, Paused = 1 };
 public:

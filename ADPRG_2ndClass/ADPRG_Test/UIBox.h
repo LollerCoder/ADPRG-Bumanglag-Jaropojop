@@ -3,6 +3,7 @@
 #include "ButtonListener.hpp"
 #include "UIButton.hpp"
 #include <string>
+#include "UIBoxMover.hpp"
 class UIBox : public AGameObject, public ButtonListener
 {
 public:
@@ -17,7 +18,9 @@ public:
 	void onOption2Button();
 
 	void initialize();
+	void updateCollider();
 
+	
 
 
 

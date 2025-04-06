@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include "GenericInputController.hpp"
+#include "UIBoxMover.hpp"
+
 class PlayerInputController : public GenericInputController{
 public:
 	PlayerInputController(std::string name);

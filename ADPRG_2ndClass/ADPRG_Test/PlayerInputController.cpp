@@ -17,7 +17,10 @@ void PlayerInputController::perform(){
 		isPressed = true;
 		if (this->event.key.code == sf::Keyboard::P) {
 			if (this->Pause == false) {
-				GameObjectManager::getInstance()->findObjectByName("UIBoxGame")->setEnabled(true);
+				AGameObject* uiGameBox = GameObjectManager::getInstance()->findObjectByName("UIBoxGame");
+				uiGameBox->setEnabled(true);
+				UIBoxMover* uimove = (UIBoxMover*)uiGameBox->findComponentByName("uiMover");
+				uimove->perform();
 				ApplicationManager::getInstance()->pauseApplication();
 			}
 			else ApplicationManager::getInstance()->resumeApplication();
