@@ -7,7 +7,7 @@ class CameraManager {
 public:
 	static CameraManager* getInstance();
 public:
-	void setUpCamera(sf::RenderWindow* window);
+	void setUpCamera(sf::RenderWindow* window); // initializes camera and window
 	void updateCamera(sf::Time deltaTime);
 	void resetCamera();
 	sf::RenderWindow* getWindow();

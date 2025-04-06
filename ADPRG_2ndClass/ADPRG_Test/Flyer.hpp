@@ -7,6 +7,8 @@
 #include "CollisionListener.hpp"
 #include "FlyerMovement.hpp"
 
+// class for the flyer (bird)
+
 class Flyer : public AGameObject, public CollisionListener {
 public:
 	Flyer(std::string name, sf::Vector2f spawn);
@@ -21,12 +23,17 @@ public:
 	bool onSecond = false;
 
 private:
+	// stores the frames needed for animation
 	std::vector<Frame> flyFrames;
 	int currWalkFrame = -1;
 
+	// checks if on final checkpoint
 	bool onFinal = false;
 
+	// flag
 	bool hidden = false;
+
+	// respawn timer
 	float timer = 0.0f;
 	const float RESPAWN_TIMER = 1.5f;
 

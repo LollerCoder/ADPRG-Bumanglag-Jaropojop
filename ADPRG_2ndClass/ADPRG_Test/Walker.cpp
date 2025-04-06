@@ -7,11 +7,12 @@ Walker::Walker(std::string name, sf::Vector2f spawn) : AGameObject(name, Tag::EN
 
 void Walker::initialize() {
 	this->sprite = new sf::Sprite();
-	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Walker"));
+	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Walker")); 
 
-	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Walker", 0));
-	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Walker", 1));
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Walker", 0)); // grabs the first frame info for flying animation
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Walker", 1)); // then the second frame
 
+	// sets the texture to the first frame
 	this->sprite->setTextureRect(sf::IntRect(
 											this->walkFrames[0][0],
 											this->walkFrames[0][1],
@@ -51,6 +52,7 @@ void Walker::initialize() {
 }
 
 void Walker::processInput(sf::Event event) {
+	// changes the spawn point after level progression in the game
 	AGameObject::processInput(event);
 	if (GameInfo::cp1 && GameInfo::currCP == 0 && !this->hidden) {
 		this->setSpawnLoc(this->spawn.x, this->spawn.y - 355);
@@ -69,13 +71,14 @@ void Walker::processInput(sf::Event event) {
 }
 
 void Walker::update(sf::Time deltaTime) {
+	// first check when despawned
 	if (!this->isEnabled() && !this->onFinal) {
 		this->hidden = true;
-		//std::cout << this->spawn.x << ", " << this->spawn.y << std::endl;
 		this->setPosition(this->spawn.x, this->spawn.y);
 		this->setEnabled(true);
 	}
 
+	// respawn timer
 	if(this->hidden) {
 		this->timer += deltaTime.asSeconds();
 		if (this->timer >= this->respawnCD) {
@@ -98,6 +101,7 @@ void Walker::onCollisionEnter(AGameObject* contact) {
 
 }
 
+// increments through the frames in the vector
 void Walker::incrementWalkFrame() {
 	int frame = this->currWalkFrame + 1;
 	if (!(frame >= this->walkFrames.size() || frame < 0)) {

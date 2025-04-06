@@ -6,7 +6,9 @@
 #include <unordered_map>
 #include "string"
 
-typedef std::vector<int> Frame;
+// the file reader class
+
+typedef std::vector<int> Frame; // a vector of frames 
 
 class FileReader {
 public:
@@ -20,9 +22,9 @@ private:
 
 	static FileReader* sharedInstance;
 public:
-	void loadFrames(std::string name, std::string path);
-	Frame getFrame(std::string name, int index);
+	void loadFrames(std::string name, std::string path); // loads the file and gets the frame info from the json
+	Frame getFrame(std::string name, int index); // returns the specific frame
 private:
-	std::unordered_map<std::string, std::vector<Frame>> frames;
+	std::unordered_map<std::string, std::vector<Frame>> frames; // stores a vector of frames with their names as key
 };
 

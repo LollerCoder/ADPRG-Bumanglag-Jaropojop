@@ -55,8 +55,9 @@ void WalkerMovement::perform() {
 		walkerTransformable->setPosition(walkerTransformable->getPosition().x, 410);
 
 	}
-	//std::cout << walkerTransformable->getPosition().y << std::endl;
 
+	// basically checks if the walker is still within the camera view
+	// if not, then despawn
 	sf::View view = CameraManager::getInstance()->getViewCamera();
 
 	sf::Vector2f center = view.getCenter();
@@ -75,8 +76,6 @@ void WalkerMovement::perform() {
 	right = center.x + walker->getSprite()->getGlobalBounds().width / 2.f;
 	top = center.y - walker->getSprite()->getGlobalBounds().height / 2.f;
 	bottom = center.y + walker->getSprite()->getGlobalBounds().height / 2.f;
-
-
 
 	sf::FloatRect walkerBounds(left, top, right - left, bottom - top);
 

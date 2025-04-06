@@ -10,6 +10,8 @@ FileReader* FileReader::getInstance() {
     return sharedInstance;
 }
 
+// loads the json file based on the given path
+// stores the frames iin an unordered map using the provided name to retrieve them later
 void FileReader::loadFrames(std::string name, std::string path) {
 	FILE* file = fopen(path.c_str(), "rb");
 	assert(file != 0);

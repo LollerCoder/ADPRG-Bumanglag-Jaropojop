@@ -8,62 +8,30 @@ TextureManager* TextureManager::getInstance(){
     return sharedInstance;
 }
 
+// executes every load texture functions for the entire game
 void TextureManager::loadAll(){
-    this->loadTexture("eagle", "../Media/Textures/Eagle.png");
     this->loadTexture("background", "../Media/Textures/background_1.png");
     this->loadTexture("blocks", "../Media/Textures/iceClimbBox.png");
     this->loadTexture("eval_box", "../Media/Textures/eval_box_edited.png");
-    //this->loadTexture("chili", "../Media/Textures/chili.png");
+    this->loadTexture("Hitbox", "../Media/Textures/hitboxTest.png");
 
-
-    this->loadTexture("bonus_item", "../Media/Textures/SpriteSheets/BonusItems/bonus_item.png");
-    FileReader::getInstance()->loadFrames("bonus_item", "../Media/Textures/SpriteSheets/BonusItems/bonus_item.json");
-
+    // the two bonus item
+    // load its corresponding json file
+    // load the spritesheet 
+    // its the same for every loaded spritesheet
+    this->loadTexture("bonus_item", "../Media/Textures/SpriteSheets/BonusItems/bonus_item.png"); 
+    FileReader::getInstance()->loadFrames("bonus_item", "../Media/Textures/SpriteSheets/BonusItems/bonus_item.json"); 
     
     //blocks
     this->loadTexture("block", "../Media/Textures/SpriteSheets/Blocks/blocks.png");
     FileReader::getInstance()->loadFrames("block", "../Media/Textures/SpriteSheets/Blocks/blocks.json");
 
-
-
     this->loadPlayer();
     this->loadEnemies();
+    this->loadUI();
 }
 
-void TextureManager::loadPlayer() {
-    //std::vector<sf::Texture*> vec;
-
-    //sf::Texture* texture = new sf::Texture();
-    //texture->loadFromFile("../Media/Textures/Player/Player-1.1.png"); // walking
-    //vec.push_back(texture);
-    //texture = new sf::Texture();
-    //texture->loadFromFile("../Media/Textures/Player/Player-2.1.png"); // walking
-    //vec.push_back(texture);
-    //this->framesMap["player-walk"] = vec;
-
-    //vec = std::vector<sf::Texture*>();
-
-    //texture = new sf::Texture();
-    //texture->loadFromFile("../Media/Textures/Player/Player-3.1.png"); // hitting
-    //vec.push_back(texture);
-    //texture = new sf::Texture();
-    //texture->loadFromFile("../Media/Textures/Player/Player-4.1.png"); // hitting
-    //vec.push_back(texture);
-
-    //this->framesMap["player-hit"] = vec;
-    this->loadTexture("Walker", "../Media/Textures/yeti.png");
-    this->loadTexture("Hitbox", "../Media/Textures/hitboxTest.png");
-
-    //UI
-    this->loadTexture("sealSingle", "../Media/Textures/UI/SealLog.png");
-    this->loadTexture("iceBg", "../Media/Textures/UI/IceBg.png");
-   
-    this->loadTexture("iceButton", "../Media/Textures/UI/IceButton.png");
-    this->loadTexture("iceButtonPressed", "../Media/Textures/UI/IceButtonSelected.png");
-  
-    
-
-   
+void TextureManager::loadPlayer() {   
     this->loadTexture("Player", "../Media/Textures/SpriteSheets/Player/Player.png");
     FileReader::getInstance()->loadFrames("Player", "../Media/Textures/SpriteSheets/Player/Player.json");
 }
@@ -74,6 +42,15 @@ void TextureManager::loadEnemies() {
 
     this->loadTexture("Walker", "../Media/Textures/SpriteSheets/Enemies/Seal.png");
     FileReader::getInstance()->loadFrames("Walker", "../Media/Textures/SpriteSheets/Enemies/Seal.json");
+}
+
+void TextureManager::loadUI() {
+    //UI
+    this->loadTexture("sealSingle", "../Media/Textures/UI/SealLog.png");
+    this->loadTexture("iceBg", "../Media/Textures/UI/IceBg.png");
+
+    this->loadTexture("iceButton", "../Media/Textures/UI/IceButton.png");
+    this->loadTexture("iceButtonPressed", "../Media/Textures/UI/IceButtonSelected.png");
 }
 
 sf::Texture* TextureManager::getTexture(std::string key){

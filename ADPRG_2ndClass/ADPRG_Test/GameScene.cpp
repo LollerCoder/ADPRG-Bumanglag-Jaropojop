@@ -8,19 +8,19 @@ GameScene::GameScene() : AbstractScene(SceneManager::GAME_SCENE_NAME) {
 void GameScene::onLoadResources() {
 
 }
-
+// executes everything needed for this scene
 void GameScene::onLoadObjects() {
 	this->loadPhysicsManager();
 	this->loadEnemies();
 	this->loadBG();
 	this->loadPlayer();
 	this->loadPoolables();
-	this->loadUIButton();
 	this->loadUI();
-	PlayerScore::resetScore();
-	PlayerScore::Level += 1;
-	GameInfo::resetInfo();
+	PlayerScore::resetScore(); // resets score
+	PlayerScore::Level += 1; //incremenent level
+	GameInfo::resetInfo(); // reset checkpoint and camera boolean
 
+	// gets the sound from sfx manager
 	if (this->bgm == nullptr) {
 		this->bgm = SFXManager::getInstance()->getSound("stage");
 		this->bgm->setVolume(40);
@@ -28,6 +28,8 @@ void GameScene::onLoadObjects() {
 	this->bgm->play();
 }
 
+
+// unloads every object and stops the music
 void GameScene::onUnloadObjects() {
 	this->bgm->stop();
 	AbstractScene::onUnloadObjects();
@@ -83,6 +85,7 @@ void GameScene::loadEnemies() {
 	this->registerObject(flyer);
 }
 
+// setting up for pools
 void GameScene::loadPoolables() {
 	EmptyGameObject* poolableHolder = new EmptyGameObject("poolableHolder",Tag::TOOL);
 	this->registerObject(poolableHolder);
@@ -106,9 +109,7 @@ void GameScene::loadPoolables() {
 	
 }
 
-void GameScene::loadUIButton() {
-	std::cout << "HELLO" << std::endl;
-}
+// loads the physics manager for this scene
 
 void GameScene::loadPhysicsManager() {
 	EmptyGameObject* physicsHolder = new EmptyGameObject("PhysicsManagerHolder", Tag::TOOL);
@@ -116,6 +117,7 @@ void GameScene::loadPhysicsManager() {
 	GameObjectManager::getInstance()->addObject(physicsHolder);
 }
 
+ // loads the UI for the pause
 void GameScene::loadUI()
 {
 	UIBox* uiBox = new UIBox("UIBoxGame");

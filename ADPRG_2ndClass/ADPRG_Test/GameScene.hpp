@@ -30,11 +30,10 @@ public:
 	void onUnloadObjects();
 	void onUnloadResources();
 private:
-	void loadBG();
-	void loadPlayer();
-	void loadEnemies();
-	void loadPoolables();
-	void loadUIButton();
+	void loadBG(); // loads background image
+	void loadPlayer(); 	// loads player object and hitboxes for colliding
+	void loadEnemies(); // loads the walker and flyer enemies
+	void loadPoolables(); // loads the poolable blocks as well as the bonus item
 	void loadPhysicsManager();
 	void loadUI();
 private:

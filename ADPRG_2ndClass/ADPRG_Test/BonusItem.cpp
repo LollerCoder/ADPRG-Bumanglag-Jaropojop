@@ -8,9 +8,11 @@ BonusItem::BonusItem(std::string name) : AGameObject(name, Tag::ITEM), Collision
 void BonusItem::initialize() {
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("bonus_item"));
-	Frame frame = FileReader::getInstance()->getFrame("bonus_item", PlayerScore::Level % 2);
+	Frame frame = FileReader::getInstance()->getFrame("bonus_item", PlayerScore::Level % 2); // gets an item sprite based on the level. if on first level, 
+																							// should get the chili/carrot idk what that vegetable is
+																							// if its any odd number its the eggplant
 
-	this->sprite->setTextureRect(sf::IntRect(
+	this->sprite->setTextureRect(sf::IntRect(					// sets the texture based on the stored frame
 												frame[0],
 												frame[1],
 												frame[2],
@@ -37,8 +39,9 @@ void BonusItem::initialize() {
 
 void BonusItem::onCollisionEnter(AGameObject* gameObject) {
 	this->setEnabled(false);
-	PlayerScore::bonusScore = 100;
+	PlayerScore::bonusScore = 100; // sets the bonus score to 100
 	SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
+	// if the item was obtained, proceed to the evaluation scene
 }
 
 void BonusItem::onCollisionExit(AGameObject* gameObject) {

@@ -6,16 +6,15 @@ Player::Player(std::string name) : AGameObject(name, Tag::PLAYER), CollisionList
 
 void Player::initialize() {
 	this->sprite = new sf::Sprite();
-	//this->walkFrames = TextureManager::getInstance()->getFrames("player-walk");
-	//this->hitFrames = TextureManager::getInstance()->getFrames("player-hit");
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Player"));
 	
-	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Player", 0));
+	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Player", 0)); // stores frames for walking and jumping
 	this->walkFrames.push_back(FileReader::getInstance()->getFrame("Player", 1));
-	
-	this->hitFrames.push_back(FileReader::getInstance()->getFrame("Player", 2));
+
+	this->hitFrames.push_back(FileReader::getInstance()->getFrame("Player", 2)); // stores frames for hitting
 	this->hitFrames.push_back(FileReader::getInstance()->getFrame("Player", 3));
 
+	// sets the texture to the first frame of walking
 	this->sprite->setTextureRect(sf::IntRect(
 											this->walkFrames[0][0],
 											this->walkFrames[0][1],
@@ -30,6 +29,7 @@ void Player::initialize() {
 	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
 	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 200);
 
+	// for ground checking
 	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.015);
 	this->attachChild(gr);
 	sf::IntRect playerBounds3 = this->getSprite()->getTextureRect();
@@ -65,15 +65,18 @@ void Player::update(sf::Time deltaTime) {
 	AGameObject::update(deltaTime);
 }
 
+// increments through thhe walk frames for animation
+// it make sures to cycle properly and not go over the size or under
+// this is basically the same thing for every animation function
 void Player::incrementWalkFrame() {
-	int frame = this->currWalkFrame + 1;
-	if (!(frame >= this->walkFrames.size() || frame < 0)) {
-		this->currWalkFrame = frame;
+	int frame = this->currWalkFrame + 1; // increment frame already
+	if (!(frame >= this->walkFrames.size() || frame < 0)) { // check if its not within range of our vector frame
+		this->currWalkFrame = frame; 
 	}
-	else {
+	else { // sets back to first frame if the above if is false
 		this->currWalkFrame = 0;
 	}
-	//this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
+	// sets the current frame to the texture
 	this->sprite->setTextureRect(sf::IntRect(
 											this->walkFrames[this->currWalkFrame][0],
 											this->walkFrames[this->currWalkFrame][1],
@@ -82,7 +85,7 @@ void Player::incrementWalkFrame() {
 											)
 								);
 }
-
+// increments through the hitting frames for animation
 void Player::incrementHitFrame() {
 	std::cout << this->currHitFrame;
 	if (this->currHitFrame + 1 >= this->hitFrames.size() || this->currHitFrame < 0) {
@@ -91,7 +94,6 @@ void Player::incrementHitFrame() {
 	else {
 		this->currHitFrame++;
 	}
-	//this->sprite->setTexture(*this->hitFrames[this->currHitFrame]);
 	this->sprite->setTextureRect(sf::IntRect(
 											this->hitFrames[this->currHitFrame][0],
 											this->hitFrames[this->currHitFrame][1],
@@ -100,11 +102,10 @@ void Player::incrementHitFrame() {
 											)
 								);
 }
-
+// sets walking frame for animation
 void Player::setWalkFrame(int frame) {
-	if (!(frame >= this->walkFrames.size() || frame < 0)) {
+	if (!(frame >= this->walkFrames.size() || frame < 0)) { // checks if the requested frame is within the vector frames
 		this->currWalkFrame = frame;
-		//this->sprite->setTexture(*this->walkFrames[this->currWalkFrame]);
 		this->sprite->setTextureRect(sf::IntRect(
 												this->walkFrames[this->currWalkFrame][0],
 												this->walkFrames[this->currWalkFrame][1],
@@ -115,8 +116,9 @@ void Player::setWalkFrame(int frame) {
 	}
 }
 
+// just sets the jump frame for jumping
 void Player::setJumpFrame(int frame) {
-	if (!(frame >= this->walkFrames.size() || frame < 0)) {
+	if (!(frame >= this->walkFrames.size() || frame < 0)) { // checks if the requested frame is within the vector frames
 		this->currWalkFrame = frame;
 		this->sprite->setTextureRect(sf::IntRect(
 												this->hitFrames[this->currWalkFrame][0],
@@ -131,7 +133,6 @@ void Player::setJumpFrame(int frame) {
 void Player::onCollisionExit(AGameObject* contact)
 {
 	
-	
 }
 
 void Player::onCollisionEnter(AGameObject* contact)
@@ -139,8 +140,6 @@ void Player::onCollisionEnter(AGameObject* contact)
 	if (contact->getTag() == Tag::ENEMY) {
 		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 	}
-	
-	
 }
 
 

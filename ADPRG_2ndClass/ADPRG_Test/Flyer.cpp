@@ -9,9 +9,10 @@ void Flyer::initialize() {
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*TextureManager::getInstance()->getTexture("Bird_1"));
 
-	this->flyFrames.push_back(FileReader::getInstance()->getFrame("Bird_1", 0));
-	this->flyFrames.push_back(FileReader::getInstance()->getFrame("Bird_1", 1));
+	this->flyFrames.push_back(FileReader::getInstance()->getFrame("Bird_1", 0)); // grabs the first frame info for flying animation
+	this->flyFrames.push_back(FileReader::getInstance()->getFrame("Bird_1", 1)); // grabs the second frame info
 
+	// sets to the texture to the first frame
 	this->sprite->setTextureRect(sf::IntRect(
 												this->flyFrames[0][0],
 												this->flyFrames[0][1],
@@ -45,6 +46,7 @@ void Flyer::initialize() {
 
 void Flyer::processInput(sf::Event event) {
 	AGameObject::processInput(event);
+	// changes the spawn point after level progression in the game
 	if (GameInfo::cp1 && GameInfo::currCP == 0 && !this->hidden) {
 		this->setSpawnLoc(this->spawn.x, this->spawn.y - 355);
 		this->hidden = true;
@@ -55,7 +57,6 @@ void Flyer::processInput(sf::Event event) {
 		this->hidden = true;
 		this->setEnabled(false);
 		this->onSecond = true;
-		std::cout << "awd" << std::endl;
 	}
 	if (GameInfo::cp3 && GameInfo::currCP == 2 && !this->hidden) {
 		this->setSpawnLoc(this->spawn.x, this->spawn.y);
@@ -65,13 +66,14 @@ void Flyer::processInput(sf::Event event) {
 }
 
 void Flyer::update(sf::Time deltaTime) {
+	// first check if dead or despawned
 	if (!this->isEnabled() && !this->onFinal) {
 		this->hidden = true;
 		this->setPosition(this->spawn.x, this->spawn.y);
-		std::cout << this->spawn.x << ", " << this->spawn.y << std::endl;
 		this->setEnabled(true);
 	}
 
+	// timer for when to move again
 	if (this->hidden) {
 		this->timer += deltaTime.asSeconds();
 		if (this->timer >= this->RESPAWN_TIMER) {
@@ -93,6 +95,7 @@ void Flyer::onCollisionEnter(AGameObject* contact) {
 
 }
 
+ // increments through fly frames for animation
 void Flyer::incrementFlyFrame() {
 	int frame = this->currWalkFrame + 1;
 	if (!(frame >= this->flyFrames.size() || frame < 0)) {

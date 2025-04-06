@@ -19,6 +19,7 @@ public:
 	void loadAll();
 	void loadPlayer();
 	void loadEnemies();
+	void loadUI();
 	sf::Texture* getTexture(std::string key);
 private:
 	void loadTexture(std::string key, std::string path);

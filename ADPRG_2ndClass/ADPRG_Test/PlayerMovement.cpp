@@ -15,9 +15,12 @@ void PlayerMovement::perform(){
 		std::cout << "Controller or Transformable not found" << std::endl;
 	}
 
+	// variables for animation
 	static float hitAnimTimer = 0.0f; 
 	static float frameTimer = 0.0f;    
 	static bool isHitting = false;    
+
+	/*for flight mode(remember to comment out the gravity part)*/
 
 	//if (inputController->isJump()) {
 	//	this->velocity.y = -this->SPEED_MULTIPLIER - 100;
@@ -26,6 +29,8 @@ void PlayerMovement::perform(){
 	//	this->velocity.y = 0;
 	//}
 
+	// checks for ground
+	// pulls player down when not on any platform
 	if (!this->isGrounded) {
 		this->velocity.y += GRAVITY_FORCE;
 	}
@@ -33,6 +38,8 @@ void PlayerMovement::perform(){
 		this->velocity.y = 0; 
 	}
 
+	// increment through the hitting frames when player is hitting
+	// uses a timer to actually show the whole animation
 	if (isHitting) {
 		hitAnimTimer -= this->deltaTime.asSeconds();
 		frameTimer += this->deltaTime.asSeconds();
@@ -48,6 +55,8 @@ void PlayerMovement::perform(){
 		return; 
 	}
 
+	// checks if the player is hitting
+	// does not work when mid-air
 	if (inputController->isAttack() && !isHitting && this->isGrounded) {
 		isHitting = true;
 		hitAnimTimer = 0.2f;
@@ -55,21 +64,28 @@ void PlayerMovement::perform(){
 		player->incrementHitFrame();
 		this->fAnimFreq = 0;
 
+		// activates the front hit box for hitting
 		Hitbox* hit = (Hitbox*)player->findChild("FrontHitbox");
 		hit->activate();
 		return; 
 	}
 	else {
+		// deactivates the front hit box
 		Hitbox* hit = (Hitbox*)player->findChild("FrontHitbox");
 		hit->deactivate();
 	}
 
+
+	// resets to the first frame of walk frames. for idle
+	// this is only when player is on ground
 	if (!(inputController->isRight() ||
 		inputController->isLeft()) && this->isGrounded) {
 		player->setWalkFrame(0);
 		this->fAnimFreq = 0;
 	}
 	else{
+		// increments through the walk frames for walking animation
+		// this is only when player is on ground
 		if (this->fAnimFreq >= this->fAnimThresh && this->isGrounded) {
 			player->incrementWalkFrame();
 			this->fAnimFreq = 0;
@@ -80,44 +96,42 @@ void PlayerMovement::perform(){
 
 	float dir = 0.0f;
 	
+	// for jumping
 	if (inputController->isJump() && this->isGrounded) {
-		this->velocity.y = -JUMP_FORCE; 
-
+		this->velocity.y = -JUMP_FORCE; // subtract the jump force the the y velocity (negative y is upwards)
 
 		isGrounded = false; 
-		player->setJumpFrame(0);
 
+		player->setJumpFrame(0); // sets the frame to the jump frame 
 
-		isGrounded = false;  
+		// activates the top hitbox for hitting 
 		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
 		hit->activate();
-
-
-
 	}
+
+	// sets the orienation of the sprite based on where they are looking
 	if (inputController->isRight()) {
 		dir = 1.0f;
-		//player->getSprite()->setScale(1.f, 1.f);
 		player->getTransformable()->setScale(1.f, 1.f);
 	}
 	else if (inputController->isLeft()) {
 		dir = -1.f;
-		//player->getSprite()->setScale(-1.f, 1.f);
 		player->getTransformable()->setScale(-1.f, 1.f);
 	}
 	else {
 		this->velocity.x = 0; 
 	}
 
-	if (!this->isGrounded) {
+	if (!this->isGrounded) { // adds air resistance when moving mid-air
 		this->velocity.x = dir * this->SPEED_MULTIPLIER * this->AIR_SPEED_MULTIPLIER;
 	}
 	else {
 		this->velocity.x = dir * this->SPEED_MULTIPLIER;
 	}
 
-	playerTransformable->move(this->velocity * deltaTime.asSeconds());
+	playerTransformable->move(this->velocity * deltaTime.asSeconds()); // moves the player
 
+	// when walking out of the camera bounds on either left or right, teleports you to the opposite side. this also works for the walkers
 	if (playerTransformable->getPosition().x < -25.0f) {
 		playerTransformable->setPosition(680.0f, playerTransformable->getPosition().y);
 	}
@@ -125,10 +139,10 @@ void PlayerMovement::perform(){
 		playerTransformable->setPosition(-25.0f, playerTransformable->getPosition().y);
 	}
 
+	// grounds the player
 	if (playerTransformable->getPosition().y >= 400) {
 		this->isGrounded = true;
-
-
+		
 		//hitbox temp
 		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");
 		hit->deactivate();
@@ -137,8 +151,9 @@ void PlayerMovement::perform(){
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 	}
 
-	//std::cout << playerTransformable->getPosition().y << std::endl;
-
+	// checks if player is on a certain y level.
+	// move camera accordingly if reached the checkpoint
+	// pause application aswell
 	if (playerTransformable->getPosition().y <= 40.0f && !GameInfo::cp1 && !this->isGrounded && GameInfo::currCP == -1) {
 		GameInfo::cp1 = true;
 		GameInfo::currCP += 1;
@@ -157,19 +172,12 @@ void PlayerMovement::perform(){
 		ApplicationManager::getInstance()->pauseApplication();
 		GameInfo::cameraMoving = true;
 	}
-	//if (playerTransformable->getPosition().y <= -885.0f && !Game::cp4 && !this->isGrounded) {
-	//	ApplicationManager::getInstance()->pauseApplication();
-	//	Game::camera = true;
-	//}
-	//if (playerTransformable->getPosition().y <= -1180.0f && !Game::cp5 && !this->isGrounded) {
-	//	ApplicationManager::getInstance()->pauseApplication();
-	//	Game::camera = true;
-	//}
-	//if (playerTransformable->getPosition().y <= -1360.0f && !Game::cp6 && !this->isGrounded) {
-	//	ApplicationManager::getInstance()->pauseApplication();
-	//	Game::camera = true;
-	//}
 
+	// for checking if the player is out of bounds
+	// if yes, then player dies or game over
+	// this basically tries to see if the player is still within the camerabounds,
+	// if playerbounds is no longer intersecting with the bounds, then go back to main menu screen 
+	// this is the same for the walker as well in WalkerMovement
 	sf::View view = CameraManager::getInstance()->getViewCamera();
 
 	sf::Vector2f center = view.getCenter();
@@ -195,12 +203,12 @@ void PlayerMovement::perform(){
 		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 	}
 
+
+	// if the player is not jumping, deactivate the top hitbox
 	if (this->velocity.y >= 0) {
 		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");
 		hit->deactivate();
 	}
-	//std::cout << playerTransformable->getPosition().x << "," << playerTransformable->getPosition().y << std::endl;
-
 }
 
 void PlayerMovement::setGrounded(bool flag)

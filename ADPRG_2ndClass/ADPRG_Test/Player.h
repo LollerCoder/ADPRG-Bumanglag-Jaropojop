@@ -17,6 +17,8 @@ public:
 	void initialize();
 	void processInput(sf::Event event);
 	void update(sf::Time deltaTime);
+
+	// functions for animations
 	void incrementWalkFrame();
 	void incrementHitFrame();
 	void setWalkFrame(int frame);
@@ -27,9 +29,11 @@ public:
 	void onCollisionEnter(AGameObject* contact);
 
 public:
+	// for storing walking and hitting frames for the animation of the player
 	std::vector<Frame> walkFrames;
 	std::vector<Frame> hitFrames;
 	int currWalkFrame = -1;
 	int currHitFrame = -1;
+	
 	Collider* collider;
 };

@@ -23,13 +23,20 @@ public:
 
 	Collider* collider;
 public:
+	// increments throught the walking frames
 	void incrementWalkFrame();
 private:
+	// stores walking frames for animation
 	std::vector<Frame> walkFrames;
 	int currWalkFrame = -1;
 
+	// toggle for when player is on final checkpoint
 	bool onFinal = false;
+
+	// flag for when it was despawned
 	bool hidden = false;
+	
+	// timer/cooldown
 	float timer = 0.0f;
 	float respawnCD = 1.5f;
 };
