@@ -31,8 +31,14 @@ void EvaluationScene::loadUI() {
 	UIText* continueText = new UIText("ContinueText", "nes", sf::Color::White, sf::Color::Transparent);
 	this->registerObject(continueText);
 	continueText->setText("Press Enter to Continue");
-	continueText->setPosition((Game::WINDOW_WIDTH/2) + 470, (Game::WINDOW_HEIGHT / 2) + 240);
+	continueText->setPosition((Game::WINDOW_WIDTH/2) + 470, (Game::WINDOW_HEIGHT / 2) + 90);
 	continueText->setSize(13.f);
+
+	UIText* LevelCompleteText = new UIText("LevelCompleteText", "nes", sf::Color::White, sf::Color::Transparent);
+	this->registerObject(LevelCompleteText);
+	LevelCompleteText->setText(" Level " + std::to_string(PlayerScore::Level) + " \n\nComplete!");
+	LevelCompleteText->setPosition((Game::WINDOW_WIDTH / 2) + 190, (Game::WINDOW_HEIGHT / 2));
+	LevelCompleteText->setSize(34.f);
 
 	UIText* playerText = new UIText("PlayerText", "nes", sf::Color::White, sf::Color::Transparent);
 	evalBox->attachChild(playerText);
