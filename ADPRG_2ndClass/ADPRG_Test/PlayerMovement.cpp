@@ -19,12 +19,12 @@ void PlayerMovement::perform(){
 	static float frameTimer = 0.0f;    
 	static bool isHitting = false;    
 
-	/*if (inputController->isJump()) {
-		this->velocity.y = -this->SPEED_MULTIPLIER - 100;
-	}
-	else {
-		this->velocity.y = 0;
-	}*/
+	//if (inputController->isJump()) {
+	//	this->velocity.y = -this->SPEED_MULTIPLIER - 100;
+	//}
+	//else {
+	//	this->velocity.y = 0;
+	//}
 
 	if (!this->isGrounded) {
 		this->velocity.y += GRAVITY_FORCE;
@@ -137,21 +137,21 @@ void PlayerMovement::perform(){
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 	}
 
-	std::cout << playerTransformable->getPosition().y << std::endl;
+	//std::cout << playerTransformable->getPosition().y << std::endl;
 
-	if (playerTransformable->getPosition().y <= 40.0f && !GameInfo::cp1 && !this->isGrounded) {
+	if (playerTransformable->getPosition().y <= 40.0f && !GameInfo::cp1 && !this->isGrounded && GameInfo::currCP == -1) {
 		GameInfo::cp1 = true;
 		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
 		GameInfo::cameraMoving = true;
 	}
-	if (playerTransformable->getPosition().y <= -320.0f && !GameInfo::cp2 && !this->isGrounded) {
+	if (playerTransformable->getPosition().y <= -320.0f && !GameInfo::cp2 && !this->isGrounded && GameInfo::currCP == 0) {
 		GameInfo::cp2 = true;
 		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
 		GameInfo::cameraMoving = true;
 	}
-	if (playerTransformable->getPosition().y <= -560.0f && !GameInfo::cp3 && !this->isGrounded) {
+	if (playerTransformable->getPosition().y <= -560.0f && !GameInfo::cp3 && !this->isGrounded && GameInfo::currCP == 1) {
 		GameInfo::cp3 = true;
 		GameInfo::currCP += 1;
 		ApplicationManager::getInstance()->pauseApplication();
@@ -176,32 +176,6 @@ void PlayerMovement::perform(){
 	}
 	//std::cout << playerTransformable->getPosition().x << "," << playerTransformable->getPosition().y << std::endl;
 
-	sf::View view = CameraManager::getInstance()->getViewCamera();
-
-	sf::Vector2f center = view.getCenter();
-	sf::Vector2f size = view.getSize();
-
-	float left = center.x - size.x / 2.f;
-	float right = center.x + size.x / 2.f;
-	float top = center.y - size.y / 2.f;
-	float bottom = center.y + size.y / 2.f;
-	
-	sf::FloatRect cameraBounds(left, top, size.x, size.y);
-
-	center = player->getTransformable()->getPosition();
-
-	left = center.x - player->getSprite()->getGlobalBounds().width / 2.f;
-	right = center.x + player->getSprite()->getGlobalBounds().width / 2.f;
-	top = center.y - player->getSprite()->getGlobalBounds().height/ 2.f;
-	bottom = center.y + player->getSprite()->getGlobalBounds().height / 2.f;
-
-
-
-	sf::FloatRect playerBounds(left, top, right-left, bottom-top);
-
-	if (!playerBounds.intersects(cameraBounds)) {
-		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
-	}
 }
 
 void PlayerMovement::setGrounded(bool flag)

@@ -30,7 +30,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		break;
 	case 1:
@@ -49,7 +49,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		break;
 	case 2:
@@ -68,7 +68,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		break;
 	case 3:
@@ -87,7 +87,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		break;
 	case 4:
@@ -106,7 +106,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		break;
 	case 5:
@@ -125,7 +125,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		
 		break;
@@ -147,7 +147,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 		
 		break;
@@ -169,7 +169,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 
 		break;
@@ -191,7 +191,7 @@ void BlockHandler::perform() {
 			flor++;
 		}
 		else {
-			std::cout << "notEnough for floor: " << flor << std::endl;
+			//std::cout << "notEnough for floor: " << flor << std::endl;
 		}
 
 		break;

@@ -12,6 +12,7 @@ void WalkerMovement::perform() {
 		std::cout << "Transformable not found" << std::endl;
 	}
 
+	// gravity 
 	if (!this->isGrounded) {
 		this->velocity.y += GRAVITY_FORCE;
 	}
@@ -26,6 +27,8 @@ void WalkerMovement::perform() {
 
 	this->fAnimFreq += deltaTime.asSeconds();
 
+	// sets orientation based on where it spawned 
+
 	if (walker->getSpawnLoc().x < 0) {
 		walker->getTransformable()->setScale(-0.7f, 0.7f);
 		this->velocity.x = this->SPEED_MULTIPLIER;
@@ -37,6 +40,8 @@ void WalkerMovement::perform() {
 
 	walkerTransformable->move(this->velocity * deltaTime.asSeconds());
 
+	// teleport to other side
+	
 	if (walkerTransformable->getPosition().x < -30.0f) {
 		walkerTransformable->setPosition(700, walkerTransformable->getPosition().y);
 	}
@@ -50,6 +55,7 @@ void WalkerMovement::perform() {
 		walkerTransformable->setPosition(walkerTransformable->getPosition().x, 410);
 
 	}
+	//std::cout << walkerTransformable->getPosition().y << std::endl;
 }
 
 void WalkerMovement::setGrounded(bool flag) {

@@ -22,9 +22,10 @@ private:
 	std::vector<Frame> flyFrames;
 	int currWalkFrame = -1;
 
+	bool onFinal = false;
 	bool hidden = false;
 	float timer = 0.0f;
-	const float RESPAWN_TIMER = 4.f;
+	const float RESPAWN_TIMER = 1.5f;
 
 	Collider* collider;
 };

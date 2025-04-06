@@ -28,8 +28,9 @@ private:
 	std::vector<Frame> walkFrames;
 	int currWalkFrame = -1;
 
+	bool onFinal = false;
 	bool hidden = false;
 	float timer = 0.0f;
-	float respawnCD = 4.f;
+	float respawnCD = 1.5f;
 };
 

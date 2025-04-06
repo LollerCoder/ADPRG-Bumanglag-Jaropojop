@@ -52,12 +52,27 @@ void Walker::initialize() {
 
 void Walker::processInput(sf::Event event) {
 	AGameObject::processInput(event);
-
+	if (GameInfo::cp1 && GameInfo::currCP == 0 && !this->hidden) {
+		this->setSpawnLoc(this->spawn.x, this->spawn.y - 355);
+		this->hidden = true;
+		this->setEnabled(false);
+	}
+	if (GameInfo::cp2 && GameInfo::currCP == 1 && !this->hidden) {
+		this->setSpawnLoc(this->spawn.x, this->spawn.y - 370);
+		this->hidden = true;
+		this->setEnabled(false);
+	}
+	if (GameInfo::cp3 && GameInfo::currCP == 2 && !this->hidden) {
+		this->setEnabled(false);
+		this->onFinal = true;
+	}
 }
 
 void Walker::update(sf::Time deltaTime) {
-	if (!this->isEnabled()) {
+	if (!this->isEnabled() && !this->onFinal) {
 		this->hidden = true;
+		//std::cout << this->spawn.x << ", " << this->spawn.y << std::endl;
+		this->setPosition(this->spawn.x, this->spawn.y);
 		this->setEnabled(true);
 	}
 

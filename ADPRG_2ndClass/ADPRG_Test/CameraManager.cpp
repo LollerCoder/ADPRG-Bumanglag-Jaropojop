@@ -35,10 +35,20 @@ void CameraManager::updateCamera(sf::Time deltaTime) {
         float delta = speed * deltaTime.asSeconds();
 
         currentCenter.y -= delta;
-
+        
         if (currentCenter.y <= this->cameraPosTarget[GameInfo::currCP]) {
             currentCenter.y = this->cameraPosTarget[GameInfo::currCP];
             GameInfo::cameraMoving = false;
+
+            switch (GameInfo::currCP) {
+            case 0: GameInfo::cp1 = false;
+                break;
+            case 1:GameInfo::cp2 = false;
+                break;
+            case 2:GameInfo::cp3 = false;
+                break;
+            }
+
             ApplicationManager::getInstance()->resumeApplication();
         }
 

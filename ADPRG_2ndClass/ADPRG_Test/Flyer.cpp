@@ -1,4 +1,5 @@
 #include "Flyer.hpp"
+#include "GameValue.hpp"
 
 Flyer::Flyer(std::string name, sf::Vector2f spawn) : AGameObject(name, Tag::ENEMY), CollisionListener(){
 	this->spawn = spawn;
@@ -44,11 +45,28 @@ void Flyer::initialize() {
 
 void Flyer::processInput(sf::Event event) {
 	AGameObject::processInput(event);
+	if (GameInfo::cp1 && GameInfo::currCP == 0 && !this->hidden) {
+		this->setSpawnLoc(this->spawn.x, this->spawn.y - 355);
+		this->hidden = true;
+		this->setEnabled(false);
+	}
+	if (GameInfo::cp2 && GameInfo::currCP == 1 && !this->hidden) {
+		this->setSpawnLoc(this->spawn.x, this->spawn.y - 150);
+		this->hidden = true;
+		this->setEnabled(false);
+	}
+	if (GameInfo::cp3 && GameInfo::currCP == 2 && !this->hidden) {
+		this->setSpawnLoc(this->spawn.x, this->spawn.y);
+		this->setEnabled(false);
+		this->onFinal = true;
+	}
 }
 
 void Flyer::update(sf::Time deltaTime) {
-	if (!this->isEnabled()) {
+	if (!this->isEnabled() && !this->onFinal) {
 		this->hidden = true;
+		this->setPosition(this->spawn.x, this->spawn.y);
+		std::cout << this->spawn.x << ", " << this->spawn.y << std::endl;
 		this->setEnabled(true);
 	}
 
