@@ -58,6 +58,7 @@ void BlockHandler::perform() {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
 					newBlock->setColCheck(2);
+					newBlock->setInvincibility(false);
 					blocksMade.push_back(newBlock);
 
 				}
@@ -85,6 +86,7 @@ void BlockHandler::perform() {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
 					newBlock->setColCheck(1);
+					newBlock->setInvincibility(false);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -117,6 +119,7 @@ void BlockHandler::perform() {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
 					newBlock->setColCheck(1);
+					newBlock->setInvincibility(false);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -162,6 +165,7 @@ void BlockHandler::perform() {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
 					newBlock->setColCheck(1);
+					newBlock->setInvincibility(false);
 					blocksMade.push_back(newBlock);
 				}
 				x++;
@@ -183,7 +187,9 @@ void BlockHandler::perform() {
 					Block* newBlock = (Block*)blockPool->requestPoolable();
 					newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));
 					newBlock->setColCheck(0);
+					newBlock->setInvincibility(false);
 					blocksMade.push_back(newBlock);
+
 				}
 				x++;
 			}
