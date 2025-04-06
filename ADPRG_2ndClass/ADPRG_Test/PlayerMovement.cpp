@@ -1,4 +1,5 @@
 #include "PlayerMovement.hpp"
+#include "CameraManager.hpp"
 
 PlayerMovement::PlayerMovement(std::string name) : AbstractComponent(name, Script){
 
@@ -17,12 +18,19 @@ void PlayerMovement::perform(){
 	static float frameTimer = 0.0f;    
 	static bool isHitting = false;    
 
-	if (!this->isGrounded) {
-		this->velocity.y += GRAVITY_FORCE;
+	if (inputController->isJump()) {
+		this->velocity.y = -this->SPEED_MULTIPLIER - 100;
 	}
 	else {
-		this->velocity.y = 0; 
+		this->velocity.y = 0;
 	}
+
+	//if (!this->isGrounded) {
+	//	this->velocity.y += GRAVITY_FORCE;
+	//}
+	//else {
+	//	this->velocity.y = 0; 
+	//}
 
 	if (isHitting) {
 		hitAnimTimer -= this->deltaTime.asSeconds();
@@ -71,19 +79,19 @@ void PlayerMovement::perform(){
 
 	float dir = 0.0f;
 	
-	if (inputController->isJump() && this->isGrounded) {
-		this->velocity.y = -JUMP_FORCE; 
+	//if (inputController->isJump() && this->isGrounded) {
+	//	this->velocity.y = -JUMP_FORCE; 
 
 
-		isGrounded = false; 
-		player->setJumpFrame(0);
+	//	isGrounded = false; 
+	//	player->setJumpFrame(0);
 
-		isGrounded = false;  
-		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
-		hit->activate();
+	//	isGrounded = false;  
+	//	Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
+	//	hit->activate();
 
-	}
-	else if (inputController->isRight()) {
+	//}
+	if (inputController->isRight()) {
 		dir = 1.0f;
 		//player->getSprite()->setScale(1.f, 1.f);
 		player->getTransformable()->setScale(1.f, 1.f);
@@ -125,7 +133,38 @@ void PlayerMovement::perform(){
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 		
 	}
-	//std::cout << playerTransformable->getPosition().x << "," << playerTransformable->getPosition().y << std::endl;
+	std::cout << playerTransformable->getPosition().y << std::endl;
+
+	if (playerTransformable->getPosition().y <= 40.0f && !Game::cp1 && !this->isGrounded) {
+		ApplicationManager::getInstance()->pauseApplication();
+		Game::camera = true;
+	}
+	if (playerTransformable->getPosition().y <= -320.0f && !Game::cp2 && !this->isGrounded) {
+		ApplicationManager::getInstance()->pauseApplication();
+		Game::camera = true;
+	}
+	if (playerTransformable->getPosition().y <= -560.0f && !Game::cp3 && !this->isGrounded) {
+		ApplicationManager::getInstance()->pauseApplication();
+		Game::camera = true;
+	}
+	if (playerTransformable->getPosition().y <= -885.0f && !Game::cp4 && !this->isGrounded) {
+		ApplicationManager::getInstance()->pauseApplication();
+		Game::camera = true;
+	}
+	if (playerTransformable->getPosition().y <= -1180.0f && !Game::cp5 && !this->isGrounded) {
+		ApplicationManager::getInstance()->pauseApplication();
+		Game::camera = true;
+	}
+	if (playerTransformable->getPosition().y <= -1360.0f && !Game::cp6 && !this->isGrounded) {
+		ApplicationManager::getInstance()->pauseApplication();
+		Game::camera = true;
+	}	if (playerTransformable->getPosition().y <= -1460.0f && !this->isGrounded) {
+		SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
+	}
+
+	//if (playerTransformable->getPosition().y <= 20.0f) {
+	//	SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
+	//}
 }
 
 void PlayerMovement::setGrounded(bool flag)

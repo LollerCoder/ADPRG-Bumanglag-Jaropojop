@@ -1,6 +1,5 @@
 #include "GameScene.hpp"
 
-
 GameScene::GameScene() : AbstractScene(SceneManager::GAME_SCENE_NAME) {
 
 }
@@ -10,13 +9,19 @@ void GameScene::onLoadResources() {
 }
 
 void GameScene::onLoadObjects() {
+	Game::cp1 = false;
+	Game::cp2 = false;
+	Game::cp3 = false;
+	Game::cp4 = false;
+	Game::cp5 = false;
+	Game::cp6 = false;
 	this->loadPhysicsManager();
-	this->loadEnemies();
+	//this->loadEnemies();
 	this->loadBG();
 	this->loadPlayer();
 	this->loadPoolables();
-	this->loadUIButton();
-	this->loadUI();
+	//this->loadUIButton();
+	//this->loadUI();
 }
 
 void GameScene::onUnloadResources() {
@@ -66,13 +71,13 @@ void GameScene::loadEnemies() {
 	walker = new Walker("Walker-2", (sf::Vector2f(660, 290)));
 	this->registerObject(walker);
 
-	walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
-	this->registerObject(walker);
+	//walker = new Walker("Walker-3", (sf::Vector2f(-60, 165)));
+	//this->registerObject(walker);
 
-	walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
-	this->registerObject(walker);
+	//walker = new Walker("Walker-4", (sf::Vector2f(660, 45)));
+	//this->registerObject(walker);
 
-	Flyer* flyer = new Flyer("Flyer-1", sf::Vector2f(300,150));
+	Flyer* flyer = new Flyer("Flyer-1", sf::Vector2f(0, 30));
 	this->registerObject(flyer);
 }
 

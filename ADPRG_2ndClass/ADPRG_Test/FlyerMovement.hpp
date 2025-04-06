@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractComponent.hpp"
 #include "Flyer.hpp"
+#include "GameObjectManager.hpp"
 
 class FlyerMovement : public AbstractComponent{
 public:
@@ -11,5 +12,15 @@ private:
 	float fAnimThresh = 0.2f;
 	float fAnimFreq = 0;
 	float fAnimTimer = 0;
+
+	float findPlayerCD = 5.0f;
+	float timer = 0.0f;
+
+	bool moving = false;
+
+	const float SPEED_MULTIPLIER = 50.0f;
+
+	sf::Vector2f targetPos;
+	sf::Vector2f pos;
 };
 

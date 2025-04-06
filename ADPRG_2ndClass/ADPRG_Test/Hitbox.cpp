@@ -49,8 +49,7 @@ void Hitbox::onCollisionEnter(AGameObject* contact)
 	if (contact->getTag() == Tag::ENEMY) {
 		contact->setEnabled(false);
 		contact->setPosition(contact->getSpawnLoc().x, contact->getSpawnLoc().y);
-		PlayerScore::birdScore = 1;
-		SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
+		PlayerScore::killScore += 1;
 	}
 }
 

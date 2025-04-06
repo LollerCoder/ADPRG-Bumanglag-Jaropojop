@@ -19,7 +19,7 @@ void EvaluationBox::initialize() {
 
 void EvaluationBox::processInput(sf::Event event) {
 	switch (event.key.code) {
-	case sf::Keyboard::Space:
+	case sf::Keyboard::Enter:
 		//ApplicationManager::getInstance()->applicationQuit();
 		SceneManager::getInstance()->loadScene(SceneManager::GAME_SCENE_NAME);
 		break;

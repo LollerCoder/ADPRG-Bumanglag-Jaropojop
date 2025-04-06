@@ -1,5 +1,5 @@
 #include "BlockBreaker.h"
-
+#include "PlayerScore.hpp"
 
 
 BlockBreaker::BlockBreaker(std::string name, float width, float height) : CollisionListener(), AGameObject(name, Tag::TOOL)
@@ -47,7 +47,7 @@ void BlockBreaker::onCollisionEnter(AGameObject* contact)
 {
 	if (contact->getName() == "Block") {
 		 contact->setEnabled(false);
-
+		 PlayerScore::blockScore += 1;
 
 		
 			 PlayerMovement* pm = nullptr;

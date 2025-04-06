@@ -31,6 +31,6 @@ private:
 
 	bool hidden = false;
 	float timer = 0.0f;
-	const float RESPAWN_TIMER = 4.f;
+	float respawnCD = 4.f;
 };
 

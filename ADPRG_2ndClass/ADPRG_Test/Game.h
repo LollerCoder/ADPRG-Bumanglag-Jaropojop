@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <unordered_map>
 
 #include "TextureManager.hpp"
 #include "SFXManager.hpp"
@@ -11,6 +12,7 @@
 #include "MainMenuScene.hpp"
 #include "GameScene.hpp"
 #include "EvaluationScene.hpp"
+#include "CameraManager.hpp"
 
 class Game
 {
@@ -20,6 +22,13 @@ public:
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 	static const int WINDOW_WIDTH = 640;
 	static const int WINDOW_HEIGHT = 480;
+	static bool camera;
+	static bool cp1;
+	static bool cp2;
+	static bool cp3;
+	static bool cp4;
+	static bool cp5;
+	static bool cp6;
 private:
 	void processEvents();
 	void update(sf::Time);
@@ -27,6 +36,5 @@ private:
 
 private:
 	sf::RenderWindow mWindow;
-
 };
 

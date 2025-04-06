@@ -4,7 +4,7 @@ public:
 	static void resetScore();
 public:
 	static int bonusScore;
-	static int birdScore;
+	static int killScore;
 	static int blockScore;
 };
 

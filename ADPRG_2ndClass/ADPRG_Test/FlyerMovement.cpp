@@ -7,7 +7,9 @@ FlyerMovement::FlyerMovement(std::string name) : AbstractComponent(name, Abstrac
 void FlyerMovement::perform() {
 	Flyer* flyer = (Flyer*)this->getOwner();
 	sf::Transformable* flyerTransform = flyer->getTransformable();
-	if (flyer == nullptr || flyerTransform == nullptr) {
+	Player* player = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
+
+	if (flyer == nullptr || flyerTransform == nullptr || player == nullptr) {
 		std::cout << "Owner or Transform cannot be found" << std::endl;
 		return;
 	}
@@ -18,4 +20,43 @@ void FlyerMovement::perform() {
 	}
 
 	this->fAnimFreq += deltaTime.asSeconds();
+
+	if (this->targetPos.x < 0.0f) {
+		flyerTransform->setScale(0.7f, 0.7f);
+	}
+	else {
+		flyerTransform->setScale(-0.7f, 0.7f);
+	}
+
+	if (!this->moving) {
+		pos = player->getPosition();
+		sf::Vector2f dir = pos - flyerTransform->getPosition();
+
+		float length = std::sqrt(dir.x * dir.x + dir.y * dir.y);
+		if (length != 0) {
+			dir /= length;
+			this->targetPos = dir;
+			this->moving = true;
+			this->timer = 0.0f;
+		}
+		this->moving = true;
+	}
+	else {
+		this->timer += deltaTime.asSeconds();
+		if (this->timer >= this->findPlayerCD) {
+			this->moving = false;
+			this->timer = 0.0f;
+			return;
+		}
+		sf::Vector2f diff = pos - flyerTransform->getPosition();
+		float distance = std::sqrt(diff.x * diff.x + diff.y * diff.y);
+
+		if (distance <= 3.0f) {
+			return;
+		}
+
+		flyerTransform->move(this->targetPos * this->SPEED_MULTIPLIER * this->deltaTime.asSeconds());
+	}
+	
+
 }

@@ -61,7 +61,7 @@ void Walker::update(sf::Time deltaTime) {
 
 	if(this->hidden) {
 		this->timer += deltaTime.asSeconds();
-		if (this->timer >= this->RESPAWN_TIMER) {
+		if (this->timer >= this->respawnCD) {
 			this->setEnabled(true);
 			this->timer = 0.0f;
 			this->hidden = false;

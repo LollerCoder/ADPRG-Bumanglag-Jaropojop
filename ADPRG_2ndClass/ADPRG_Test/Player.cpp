@@ -28,7 +28,7 @@ void Player::initialize() {
 
 	sf::IntRect frameRect = this->sprite->getTextureRect();
 	this->sprite->setOrigin(frameRect.width / 2, frameRect.height / 2);
-	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 20);
+	this->transformable.setPosition(Game::WINDOW_WIDTH / 2, (Game::WINDOW_HEIGHT / 2) + 200);
 
 	GroundChecker* gr = new GroundChecker("GroundCheck", 0.05, 0.015);
 	this->attachChild(gr);

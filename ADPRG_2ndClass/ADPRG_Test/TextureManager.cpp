@@ -12,8 +12,8 @@ void TextureManager::loadAll(){
     this->loadTexture("eagle", "../Media/Textures/Eagle.png");
     this->loadTexture("background", "../Media/Textures/background.png");
     this->loadTexture("blocks", "../Media/Textures/iceClimbBox.png");
-
     this->loadTexture("eval_box", "../Media/Textures/eval_box.png");
+    this->loadTexture("chili", "../Media/Textures/chili.png");
 
     
     //blocks

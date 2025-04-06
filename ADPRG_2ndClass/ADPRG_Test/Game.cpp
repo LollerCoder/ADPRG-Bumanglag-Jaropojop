@@ -1,13 +1,23 @@
 #include "Game.h"
 
+bool Game::camera = false;
+bool Game::cp1 = false;
+bool Game::cp2 = false;
+bool Game::cp3 = false;
+bool Game::cp4 = false;
+bool Game::cp5 = false;
+bool Game::cp6 = false;
+
 Game::Game() : mWindow(sf::VideoMode(640,480), "SFML Application"){
     TextureManager::getInstance()->loadAll();
     FontManager::getInstance()->loadAll();
     ApplicationManager::getInstance()->initialize(&mWindow);
-   
+
+    CameraManager::getInstance()->setUpCamera(&mWindow);
+    
     SceneManager::getInstance()->registerScene(new GameScene());
     SceneManager::getInstance()->registerScene(new MainMenuScene());
-    //SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+    SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
     SceneManager::getInstance()->registerScene(new EvaluationScene());
     SceneManager::getInstance()->loadScene(SceneManager::GAME_SCENE_NAME);
 }
@@ -38,6 +48,7 @@ void Game::run() {
     }
 }
 
+
 void Game::processEvents() {
     sf::Event event;
     while (mWindow.pollEvent(event))
@@ -57,6 +68,10 @@ void Game::processEvents() {
 void Game::update(sf::Time deltaTime) {
     if (!ApplicationManager::getInstance()->isPaused()) {
         GameObjectManager::getInstance()->update(deltaTime);
+    }
+    
+    if (Game::camera) {
+        CameraManager::getInstance()->updateCamera(deltaTime);
     }
 }
 void Game::render() {
