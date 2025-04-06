@@ -16,16 +16,7 @@ void BlockBreaker::initialize()
 	sf::Vector2u textureSize = this->sprite->getTexture()->getSize();
 	this->sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
 
-	//invisible sprite
-	sf::Color invisible = sf::Color::Transparent;
-
-	//this->sprite->setColor(invisible);
-
-	//this->transformable.setPosition(0, 0);
-
-	//Renderer* renderer = new Renderer("HitRenderer");
-	//renderer->assignDrawable(this->sprite);
-	//this->attachComponent(renderer);
+	
 
 	this->getTransformable()->setScale(width, height);
 
@@ -44,27 +35,27 @@ void BlockBreaker::onCollisionExit(AGameObject* contact)
 }
 
 void BlockBreaker::onCollisionEnter(AGameObject* contact)
-{
+{ //if block check what it is, with invi then DROP PLAYER.
 	if (contact->getName() == "Block") {
 		Block* cont = (Block*)contact;
-		if (!cont->getInvi()) {
+		if (!cont->getInvi()) { //invi check
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BLOCK_POOL_TAG)->releasePoolable(cont);
-			//contact->setEnabled(false);
+			
 		}
 		 PlayerScore::blockScore += 1;
 
 		
 			 PlayerMovement* pm = nullptr;
-			 //::cout << contact->getName() << std::endl;
+			
 			 for (int i = 0; i < this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script).size(); i++) {
 				 if (this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i]->getName() == "MyPlayerMovement") {
 					 pm = (PlayerMovement*)this->getParent()->getComponentsOfType(AbstractComponent::ComponentType::Script)[i];
 
-					 //std::cout << "pm found" << std::endl;
+					
 				 }
 			 }
 			 if (pm == nullptr) {
-				 //std::cout << " PAKC" << std::endl;
+				 //std::cout << " noPM" << std::endl;
 			 }
 			 else {
 				 pm->setVelocity(sf::Vector2f(15.0f, 0.0f));

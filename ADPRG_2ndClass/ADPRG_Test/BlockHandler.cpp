@@ -8,6 +8,32 @@ BlockHandler::BlockHandler(std::string name, GameObjectPool* blockPool) : Abstra
 }
 
 void BlockHandler::perform() {
+	/*
+		What is inside is a very rushed but FUNCTIONAL implementation of THE BLOCKS
+		This here causes most of the lag problems, a necessary evil that is trying to 
+
+		1: Avoid errors
+		2. Fill the space with blocks
+
+		It could be better. But as IECMPTK Once said:
+
+		Efficiency
+		Useability
+		Elegance 
+		Readabilty
+
+		And this code checks none of those... We'll try to make it make sense.
+
+		essentially this makes blocks BY FLOOR.
+
+		For loops that have 1 digit numbers are for the caves. Used by the seal's so they can actually walk before becoming LITERAL TORPEDO'S
+		Otherwise, they are used to actually POPULATE THE PLATFORMS A PLAYER CAN USE.
+
+		Random is there to cut down the number of objects.
+		Poolables are released depending on the camera.
+		
+		Everything here was made to avoid lag...but even in that sense, we're based on luck.
+	*/
 	Block* unBreakBlock;
 	
 
@@ -265,32 +291,7 @@ void BlockHandler::perform() {
 		break;
 	
 	}
-	//for (int i = 0; i < blockPool->getAvailableSize(); i++) {
-	//	count++;
-
-	//	Block* newBlock = (Block*)blockPool->requestPoolable();
-	//	newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 - (x * 19.6), (Game::WINDOW_HEIGHT / 2) + 80 - (120 * flor));	
-	//	blocksMade.push_back(newBlock);
-	//	x++;
-	//	//std::cout << "spawn" << std::endl;
-	//	if (count >= needed) {
-	//		count = 0;
-	//		x = 1;
-	//		flor++;
-	//		switch ((int)flor) {
-	//		case 1:
-	//			needed -= 2;
-	//			break;
-	//		case 4:
-	//		case 5:
-	//		case 6:
-	//		case 7:
-	//			needed -= 2;
-	//			x = 2;
-	//		}
-	//		//std::cout << "Flor: " << flor << " needed:  " << needed << std::endl;
-	//	}
-	//}
+	//if camera has been moved CLEAR SPACE
 	if (GameInfo::cameraMoving) {
 		clearUnused();
 	}
@@ -320,6 +321,7 @@ void BlockHandler::clearUnused()
 
 float BlockHandler::generateRandom()
 {
+	//rng
 	static std::random_device rd;
 	static std::mt19937 gen(rd());
 	std::uniform_real_distribution<> prob(0.f, 100.0f);

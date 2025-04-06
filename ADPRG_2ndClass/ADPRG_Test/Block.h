@@ -17,6 +17,8 @@ public:
 	void onCollisionExit(AGameObject* contact);
 	void onCollisionEnter(AGameObject* contact);
 
+	//used to initialize for POOLABLES. To see how they are initialized...DON'T for your Own sanity...its in BlockHandler.
+	/**/
 	void setPos(float x, float y);
 	void setColCheck(int col);
 	void setInvincibility(bool invinc);

@@ -20,7 +20,7 @@ public:
 	void releasePoolableBatch(std::vector<AbstractPoolable*> objectList);
 
 	std::string getTag();
-	float getAvailableSize();
+	float getAvailableSize();//used to check if there are enough poolables;
 private:
 	std::string tag;
 	AbstractPoolable* poolableCopy = NULL;

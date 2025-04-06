@@ -25,7 +25,7 @@ void UIButtonInputController::perform() {
 		this->event.mouseButton.button == sf::Mouse::Left) {
 
 		sf::Vector2i mousePos(this->event.mouseButton.x, this->event.mouseButton.y);
-		sf::Vector2f worldMousePos = CameraManager::getInstance()->getWindow()->mapPixelToCoords(mousePos);
+		sf::Vector2f worldMousePos = CameraManager::getInstance()->getWindow()->mapPixelToCoords(mousePos); //changed to make buttons be detected via WORLD instead of screen
 		sf::FloatRect bounds = button->getGlobalBounds();
 
 		if (bounds.contains(worldMousePos)) {
