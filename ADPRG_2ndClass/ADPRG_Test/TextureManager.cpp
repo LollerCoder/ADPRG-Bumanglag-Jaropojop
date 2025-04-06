@@ -16,7 +16,7 @@ void TextureManager::loadAll(){
     //this->loadTexture("chili", "../Media/Textures/chili.png");
 
     this->loadTexture("bonus_item", "../Media/Textures/SpriteSheets/BonusItems/bonus_item.png");
-    FileReader::getInstance()->loadFrames("bonus_item", "../Media/Textures/SpriteSheets/SpriteSheets/BonusItems/bonus_item.json");
+    FileReader::getInstance()->loadFrames("bonus_item", "../Media/Textures/SpriteSheets/BonusItems/bonus_item.json");
     
     //blocks
     this->loadTexture("block", "../Media/Textures/SpriteSheets/Blocks/blocks.png");

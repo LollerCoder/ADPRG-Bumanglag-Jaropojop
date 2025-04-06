@@ -4,6 +4,7 @@
 #include "CollisionListener.hpp"
 #include "TextureManager.hpp"
 #include "FileReader.hpp"
+#include "SceneManager.hpp"
 #include "Game.h"
 
 class BonusItem : public AGameObject, public CollisionListener{

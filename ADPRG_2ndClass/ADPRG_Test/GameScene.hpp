@@ -19,6 +19,7 @@
 #include "BlockBreaker.h"
 #include "Flyer.hpp"
 #include "BlockHandler.h"
+#include "BonusItem.hpp"
 
 class GameScene : public AbstractScene{
 public:

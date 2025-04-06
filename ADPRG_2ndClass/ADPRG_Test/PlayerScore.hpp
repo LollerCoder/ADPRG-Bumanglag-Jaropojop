@@ -6,5 +6,6 @@ public:
 	static int bonusScore;
 	static int killScore;
 	static int blockScore;
+	static int Level;
 };
 

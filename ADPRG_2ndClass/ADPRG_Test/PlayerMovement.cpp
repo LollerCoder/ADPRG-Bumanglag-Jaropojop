@@ -18,19 +18,19 @@ void PlayerMovement::perform(){
 	static float frameTimer = 0.0f;    
 	static bool isHitting = false;    
 
-	//if (inputController->isJump()) {
-	//	this->velocity.y = -this->SPEED_MULTIPLIER - 100;
-	//}
-	//else {
-	//	this->velocity.y = 0;
-	//}
-
-	if (!this->isGrounded) {
-		this->velocity.y += GRAVITY_FORCE;
+	if (inputController->isJump()) {
+		this->velocity.y = -this->SPEED_MULTIPLIER - 100;
 	}
 	else {
-		this->velocity.y = 0; 
+		this->velocity.y = 0;
 	}
+
+	//if (!this->isGrounded) {
+	//	this->velocity.y += GRAVITY_FORCE;
+	//}
+	//else {
+	//	this->velocity.y = 0; 
+	//}
 
 	if (isHitting) {
 		hitAnimTimer -= this->deltaTime.asSeconds();
@@ -161,8 +161,6 @@ void PlayerMovement::perform(){
 	if (playerTransformable->getPosition().y <= -1360.0f && !Game::cp6 && !this->isGrounded) {
 		ApplicationManager::getInstance()->pauseApplication();
 		Game::camera = true;
-	}	if (playerTransformable->getPosition().y <= -1460.0f && !this->isGrounded) {
-		SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
 	}
 
 	if (this->velocity.y >= 0) {

@@ -11,13 +11,14 @@ void GameScene::onLoadResources() {
 
 void GameScene::onLoadObjects() {
 	this->loadPhysicsManager();
-	//this->loadEnemies();
+	this->loadEnemies();
 	this->loadBG();
 	this->loadPlayer();
 	this->loadPoolables();
 	this->loadUIButton();
 	this->loadUI();
 	PlayerScore::resetScore();
+	PlayerScore::Level += 1;
 }
 
 void GameScene::onUnloadResources() {
@@ -84,6 +85,9 @@ void GameScene::loadPoolables() {
 	BlockHandler* blockHandle = new BlockHandler("blockHandler",blockPool);
 	poolableHolder->attachComponent(blockHandle);
 	//blockPool->requestPoolable();
+
+	BonusItem* item = new BonusItem("Item");
+	this->registerObject(item);
 
 	
 }
