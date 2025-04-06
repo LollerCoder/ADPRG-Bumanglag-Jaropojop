@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "AGameObject.hpp"
 #include "TextureManager.hpp"
-#include "AGameObject.hpp"
 #include "Game.h"
 #include "Collider.hpp"
 #include "CollisionListener.hpp"

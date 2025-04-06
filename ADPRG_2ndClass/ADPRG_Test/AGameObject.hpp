@@ -13,6 +13,7 @@ enum Tag{
 	BACKGROUND,
 	POOLABLE,
 	UI,
+	ITEM,
 	TOOL
 };
 
