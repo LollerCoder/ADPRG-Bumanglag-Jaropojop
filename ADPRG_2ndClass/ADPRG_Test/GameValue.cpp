@@ -9,6 +9,7 @@ void PlayerScore::resetScore() {
 	PlayerScore::bonusScore = -1;
 	PlayerScore::killScore = 0;
 	PlayerScore::blockScore = 0;
+	PlayerScore::Level = -1;
 }
 
 bool GameInfo::cameraMoving = false;
