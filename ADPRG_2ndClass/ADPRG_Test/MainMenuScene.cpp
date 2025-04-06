@@ -1,6 +1,6 @@
 #include "MainMenuScene.hpp"
 #include "CameraManager.hpp"
-
+#include "GameValue.hpp"
 MainMenuScene::MainMenuScene() : AbstractScene(SceneManager::MAIN_MENU_SCENE_NAME) {
 
 }
@@ -10,6 +10,7 @@ void MainMenuScene::onLoadResources() {
 }
 // executes everything needed for this scene
 void MainMenuScene::onLoadObjects() {
+	PlayerScore::Level = -1;
 	CameraManager::getInstance()->resetCamera();
 	this->LoadUI();
 
