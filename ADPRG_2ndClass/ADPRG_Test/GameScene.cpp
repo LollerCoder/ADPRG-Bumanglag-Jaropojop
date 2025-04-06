@@ -32,18 +32,9 @@ void GameScene::loadBG() {
 
 	GameBG* bg = new GameBG("Background", Tag::BACKGROUND);
 	this->registerObject(bg);
-	
 
-;
-	/*Block* blocks = new Block("Block");
 
-	this->registerObject(blocks);
-	Block* block2 = new Block("Block");
-	blocks->setPos(Game::WINDOW_WIDTH / 2 + 220, (Game::WINDOW_HEIGHT / 2) + 80);
-	this->registerObject(block2);
-	Block* block3 = new Block("Block");
-	blocks->setPos(Game::WINDOW_WIDTH / 2 - 230, (Game::WINDOW_HEIGHT / 2) + 80);
-	this->registerObject(block3);*/
+
 }
 
 void GameScene::loadPlayer() {
@@ -87,7 +78,7 @@ void GameScene::loadPoolables() {
 	GameObjectPool* blockPool;
 	blockPool = new GameObjectPool(ObjectPoolHolder::ENEMY_POOL_TAG,
 		new Block("Block", Game::WINDOW_WIDTH / 2 + 240, (Game::WINDOW_HEIGHT / 2) + 80),
-		60,
+		71,
 		poolableHolder
 	);
 
@@ -98,7 +89,7 @@ void GameScene::loadPoolables() {
 	//block placer
 	float count = 0;
 	float x = 0;
-	float floor = 0;
+	int flor = 0;
 	float needed = 25;
 	float sameCol = 0;
 	float rep = 1;
@@ -106,32 +97,22 @@ void GameScene::loadPoolables() {
 		count++;
 		
 		Block* newBlock = (Block*)blockPool->requestPoolable();
-		newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 -(x *19.6), (Game::WINDOW_HEIGHT / 2) + 80 -(120* floor));
+		newBlock->setPosition(Game::WINDOW_WIDTH / 2 + 240 -(x *19.6), (Game::WINDOW_HEIGHT / 2) + 80 -(120* flor));
 		x++;
 		std::cout << "spawn" << std::endl;
-		if (count == needed) {
+		if (count >= needed) {
 			count = 0;
-			floor++;
-			if (floor == 1) {
-				
+			x = 1;
+			flor++;
+			switch ((int)flor) {
+			case 1:
 				needed -= 2;
-				
-				
+				break;
+			case 4:
+				needed -= 2;
+				x = 2;
 			}
-			
-			x = rep;
-
-			if (floor == 3) {
-				sameCol++;
-				x = rep;
-				if (sameCol == 2) {
-					needed -= 2;
-					rep++;
-					
-				}
-
-			}
-
+			std::cout << "Flor: " << flor << " needed:  " << needed << std::endl;
 		}
 	}
 }

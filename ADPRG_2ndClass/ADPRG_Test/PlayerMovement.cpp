@@ -86,9 +86,12 @@ void PlayerMovement::perform(){
 	//	isGrounded = false; 
 	//	player->setJumpFrame(0);
 
+
 	//	isGrounded = false;  
 	//	Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
 	//	hit->activate();
+
+
 
 	//}
 	if (inputController->isRight()) {
@@ -126,13 +129,14 @@ void PlayerMovement::perform(){
 
 
 		//hitbox temp
-		Hitbox* hit = (Hitbox*)player->findChild("TopHitbox");
+		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");
 		hit->deactivate();
 		//hitbox temp
 
 		playerTransformable->setPosition(playerTransformable->getPosition().x, 400);
 		
 	}
+
 	std::cout << playerTransformable->getPosition().y << std::endl;
 
 	if (playerTransformable->getPosition().y <= 40.0f && !Game::cp1 && !this->isGrounded) {
@@ -165,6 +169,13 @@ void PlayerMovement::perform(){
 	//if (playerTransformable->getPosition().y <= 20.0f) {
 	//	SceneManager::getInstance()->loadScene(SceneManager::EVAL_SCENE_NAME);
 	//}
+
+	if (this->velocity.y >= 0) {
+		BlockBreaker* hit = (BlockBreaker*)player->findChild("TopHitbox");
+		hit->deactivate();
+	}
+	//std::cout << playerTransformable->getPosition().x << "," << playerTransformable->getPosition().y << std::endl;
+
 }
 
 void PlayerMovement::setGrounded(bool flag)

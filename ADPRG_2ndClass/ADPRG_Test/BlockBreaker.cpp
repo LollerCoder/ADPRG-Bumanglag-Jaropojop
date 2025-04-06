@@ -21,7 +21,7 @@ void BlockBreaker::initialize()
 
 	//this->sprite->setColor(invisible);
 
-	this->transformable.setPosition(0, 0);
+	//this->transformable.setPosition(0, 0);
 
 	Renderer* renderer = new Renderer("HitRenderer");
 	renderer->assignDrawable(this->sprite);
@@ -64,7 +64,7 @@ void BlockBreaker::onCollisionEnter(AGameObject* contact)
 			 }
 			 else {
 				 pm->setVelocity(sf::Vector2f(15.0f, 0.0f));
-
+				 this->deactivate();
 
 
 			 }

@@ -18,7 +18,7 @@ void GroundChecker::initialize()
 	//invisible sprite
 	sf::Color invisible = sf::Color::Transparent;
 
-	//this->sprite->setColor(invisible);
+	this->sprite->setColor(invisible);
 
 	this->transformable.setPosition(0, 0);
 
@@ -96,7 +96,7 @@ void GroundChecker::onCollisionEnter(AGameObject* contact)
 			std::cout << "curr pos: "  << this->getGlobalTransform().transformPoint(0,0).y << std::endl;*/
 
 
-			if (contPos - aug -10 <= this->getGlobalTransform().transformPoint(0, 0).y && this->getGlobalTransform().transformPoint(0, 0).y <= contPos - aug + 10) {
+			if (contPos - aug -20 <= this->getGlobalTransform().transformPoint(0, 0).y && this->getGlobalTransform().transformPoint(0, 0).y <= contPos - aug + 20) {
 				if (this->getParent()->getName() == "Player") {
 	
 					//std::cout << "I'm walking" << std::endl;
